@@ -5,5 +5,6 @@ public class App {
         System.out.println("Hello, World!"); 
         Function fun = new Function();
         fun.welcome();
+        fun.chance();
     }
 }
