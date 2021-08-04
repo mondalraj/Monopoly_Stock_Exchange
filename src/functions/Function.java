@@ -19,4 +19,9 @@ public class Function {
         System.out.println(s);
         return s;
     }
+
+    public void quit(){
+        System.out.println("You Lose the game");
+        System.out.println("Better Luck Next Time!");
+    }
 }

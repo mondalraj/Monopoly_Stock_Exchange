@@ -28,5 +28,8 @@ public class App {
         player.getPlayerName(1);
         player.getPlayerName(2);
         player.getPlayerName(3);
+
+        //quit function
+        fun.quit();
     }
 }
