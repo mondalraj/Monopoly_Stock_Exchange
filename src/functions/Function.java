@@ -24,4 +24,8 @@ public class Function {
         System.out.println("You Lose the game");
         System.out.println("Better Luck Next Time!");
     }
+
+    public void winner(){
+        System.out.println("Congratulations You Have Won The Game");
+    }
 }

@@ -31,5 +31,8 @@ public class App {
 
         //quit function
         fun.quit();
+
+        //winner function
+        fun.winner();
     }
 }
