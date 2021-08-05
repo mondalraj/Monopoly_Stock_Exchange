@@ -1,14 +1,17 @@
 import java.util.Scanner;
 
 import functions.Function;
+import company.Company;
 import player.Player;
 
 public class App {
     public static void main(String[] args) throws Exception {
         Function fun = new Function();
+        Player player = new Player();
+        Company company = new Company();
+
         fun.welcome();
         fun.chance();
-        Player player = new Player();
 
         // Setting Player Names
         Scanner sc = new Scanner(System.in);
@@ -29,20 +32,41 @@ public class App {
         player.getPlayerName(2);
         player.getPlayerName(3);
 
-        //quit function
+        // quit function
         fun.quit();
 
-        //winner function
+        // winner function
         fun.winner();
 
-        //Setting Player's currentBalance
+        // Setting Player's currentBalance
         player.setPlayerCurrentBal(2000, 1);
-        player.setPlayerCurrentBal(5000, 2);
-        player.setPlayerCurrentBal(6000, 3);
+        player.setPlayerCurrentBal(2000, 2);
+        player.setPlayerCurrentBal(2000, 3);
 
-        //Getting Player's currentBalance
+        // Getting Player's currentBalance
         player.getPlayerCurrentBal(1);
         player.getPlayerCurrentBal(2);
         player.getPlayerCurrentBal(3);
+
+        // Company Notation -> a2 - Amazon, t5 - tesla, m6 - Microsoft, g9 - Google, i10 - ISRO, f11 - Facebook
+
+        // Getting Company Cost
+        company.getCompanyCost(2);
+
+        // Setting company's Share Price
+        company.setCompanySharePrice(300, 2);
+
+        // Getting company's Share Price
+        company.getCompanySharePrice(2);
+
+        // Getting Company's no. of shares
+        company.getCompanyNoOfShares(2);
+
+        // Setting Company's Service Rent
+        company.setCompanyServiceRent(500, 2);
+
+        // Getting Company's service rent
+        company.getCompanyServiceRent(2);
+
     }
 }
