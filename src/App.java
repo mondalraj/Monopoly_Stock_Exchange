@@ -71,6 +71,13 @@ public class App {
 
         //Calling excess balance func
         player.excessBalance(2);
+        
+        //Setting Player Current Position
+        player.setPlayerCurrentPosition(4,1);
+
+        //Getting Player Current Position
+        System.out.println(player.getPlayerCurrentPosition(1));
+
 
     }
 }

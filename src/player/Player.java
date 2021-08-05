@@ -55,6 +55,31 @@ public class Player {
         return result;
     }
 
+    int position;
+    public int getPlayerCurrentPosition(int p) {
+        if (p == 1) {
+            position = p1.getCurrentPosition();
+            
+        } else if (p == 2) {
+            position = p2.getCurrentPosition();
+            
+        } else {
+            position = p3.getCurrentPosition();
+
+        }
+        return position;
+    }
+
+    public void setPlayerCurrentPosition(int pos, int p){
+        if (p == 1) {
+            p1.setCurrentPosition(pos);
+        } else if (p == 2) {
+            p2.setCurrentPosition(pos);
+        } else if (p == 3) {
+            p3.setCurrentPosition(pos);
+        }
+    }
+
     public void excessBalance(int p){
         if (getPlayerCurrentBal(p)>=20000){
             System.out.println("Since your current balance is more than 20000,So you won");
@@ -65,6 +90,7 @@ public class Player {
 class Player1 {
     String name;
     float currentBal;
+    int currentPosition = 1;
 
     public void setName(String name1) {
         this.name = name1;
@@ -81,11 +107,20 @@ class Player1 {
     public float getCurrentBal() {
         return this.currentBal;
     }
+
+    public void setCurrentPosition(int pos){
+        this.currentPosition = pos;
+    }
+
+    public int getCurrentPosition(){
+        return this.currentPosition;
+    }
 }
 
 class Player2 {
     String name;
     float currentBal;
+    int currentPosition = 1;
 
     public void setName(String name2) {
         this.name = name2;
@@ -102,11 +137,20 @@ class Player2 {
     public float getCurrentBal() {
         return this.currentBal;
     }
+
+    public void setCurrentPosition(int pos){
+        this.currentPosition = pos;
+    }
+
+    public int getCurrentPosition(){
+        return this.currentPosition;
+    }
 }
 
 class Player3 {
     String name;
     float currentBal;
+    int currentPosition = 1;
 
     public void setName(String name3) {
         this.name = name3;
@@ -122,5 +166,13 @@ class Player3 {
 
     public float getCurrentBal() {
         return this.currentBal;
+    }
+
+    public void setCurrentPosition(int pos){
+        this.currentPosition = pos;
+    }
+
+    public int getCurrentPosition(){
+        return this.currentPosition;
     }
 }
