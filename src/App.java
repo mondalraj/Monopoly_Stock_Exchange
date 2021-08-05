@@ -34,5 +34,15 @@ public class App {
 
         //winner function
         fun.winner();
+
+        //Setting Player's currentBalance
+        player.setPlayerCurrentBal(2000, 1);
+        player.setPlayerCurrentBal(5000, 2);
+        player.setPlayerCurrentBal(6000, 3);
+
+        //Getting Player's currentBalance
+        player.getPlayerCurrentBal(1);
+        player.getPlayerCurrentBal(2);
+        player.getPlayerCurrentBal(3);
     }
 }
