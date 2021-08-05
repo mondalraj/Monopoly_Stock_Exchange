@@ -2,7 +2,11 @@ package functions;
 
 import java.util.*;
 
+import player.Player;
+
 public class Function {
+    Player player = new Player();
+
     public int welcome() {
         System.out.println("Welcome");
         return 0;
@@ -28,4 +32,6 @@ public class Function {
     public void winner(){
         System.out.println("Congratulations You Have Won The Game");
     }
+     
+    
 }

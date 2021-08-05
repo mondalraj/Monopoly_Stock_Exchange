@@ -39,12 +39,13 @@ public class App {
         fun.winner();
 
         // Setting Player's currentBalance
-        player.setPlayerCurrentBal(2000, 1);
+        player.setPlayerCurrentBal(25000, 1);
         player.setPlayerCurrentBal(2000, 2);
         player.setPlayerCurrentBal(2000, 3);
 
         // Getting Player's currentBalance
-        player.getPlayerCurrentBal(1);
+        System.out.println(player.getPlayerCurrentBal(1));
+        
         player.getPlayerCurrentBal(2);
         player.getPlayerCurrentBal(3);
 
@@ -67,6 +68,9 @@ public class App {
 
         // Getting Company's service rent
         company.getCompanyServiceRent(2);
+
+        //Calling excess balance func
+        player.excessBalance(2);
 
     }
 }

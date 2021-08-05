@@ -40,23 +40,31 @@ public class Player {
         }
     }
 
-    public void getPlayerCurrentBal(int p) {
+    float result;
+    public float getPlayerCurrentBal(int p) {
         if (p == 1) {
-            System.out.println("Current Balance of Player 1 is : " + p1.getCurrentBal());
-
+            result = p1.getCurrentBal();
+            
         } else if (p == 2) {
-            System.out.println("Current Balance of Player 2 is : " + p2.getCurrentBal());
+            result = p2.getCurrentBal();
+            
+        } else {
+            result = p3.getCurrentBal();
 
-        } else if (p == 3) {
-            System.out.println("Current Balance of Player 3 is : " + p3.getCurrentBal());
+        }
+        return result;
+    }
 
+    public void excessBalance(int p){
+        if (getPlayerCurrentBal(p)>=20000){
+            System.out.println("Since your current balance is more than 20000,So you won");
         }
     }
 }
 
 class Player1 {
     String name;
-    int currentBal;
+    float currentBal;
 
     public void setName(String name1) {
         this.name = name1;
@@ -70,14 +78,14 @@ class Player1 {
         this.currentBal = bal;
     }
 
-    public int getCurrentBal() {
+    public float getCurrentBal() {
         return this.currentBal;
     }
 }
 
 class Player2 {
     String name;
-    int currentBal;
+    float currentBal;
 
     public void setName(String name2) {
         this.name = name2;
@@ -91,14 +99,14 @@ class Player2 {
         this.currentBal = bal;
     }
 
-    public int getCurrentBal() {
+    public float getCurrentBal() {
         return this.currentBal;
     }
 }
 
 class Player3 {
     String name;
-    int currentBal;
+    float currentBal;
 
     public void setName(String name3) {
         this.name = name3;
@@ -112,7 +120,7 @@ class Player3 {
         this.currentBal = bal;
     }
 
-    public int getCurrentBal() {
+    public float getCurrentBal() {
         return this.currentBal;
     }
 }
