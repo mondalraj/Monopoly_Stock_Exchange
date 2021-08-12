@@ -17,17 +17,19 @@ public class Player {
 
     }
 
-    public void getPlayerName(int p) {
+    String name;
+    public String getPlayerName(int p) {
         if (p == 1) {
-            System.out.println("Name of Player 1 is : " + p1.getName());
+            name = p1.getName();
 
         } else if (p == 2) {
-            System.out.println("Name of Player 2 is : " + p2.getName());
+            name = p2.getName();
 
         } else if (p == 3) {
-            System.out.println("Name of Player 3 is : " + p3.getName());
+            name = p3.getName();
 
         }
+        return name;
     }
 
     public void setPlayerCurrentBal(int bal, int p) {
