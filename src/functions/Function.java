@@ -41,31 +41,31 @@ public class Function {
     }
 
     public int board() {
-        System.out.println("  _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ ");
-        System.out.println(" |            |             |             |              |     ");
-        System.out.println(" |     1.     |      2.     |      3.     |      4.      |    ");
-        System.out.println(" |     GO     |   Amazon    |    Stock    |   Short      |        ");
-        System.out.println(" |            |             |    Market   |   Listing    |             ");
-        System.out.println(" |            |             |             |   Fraud      |                         ");
-        System.out.println(" |_ _ _ _ _ _ |_ _ _ _ _ _ _| _ _ _ _ _ _ |_ _ _ _ _ _ _ |   ");
-        System.out.println(" |            |                           |              | ");
-        System.out.println(" |    12.     |                           |      5.      |          ");
-        System.out.println(" |   Chance   |                           |    Tesla     |                        ");
-        System.out.println(" |            |                           |              |                ");
-        System.out.println(" |_ _ _ _ _ _ |                           | _ _ _ _ _ _ _|  ");
-        System.out.println(" |            |                           |              |  ");
-        System.out.println(" |     11.    |                           |      6.      |        ");
-        System.out.println(" |  Facebook  |                           |   Micorsoft  |                         ");
-        System.out.println(" |            |                           |              |               ");
-        System.out.println(" |_ _ _ _ _ _ | _ _ _ _ _ _ _ _ _ _ _ _ _ |_ _ _ _ _ _ _ |");
-        System.out.println(" |            |              |            |              |      ");
-        System.out.println(" |     10.    |      9.      |     8.     |      7.      |                ");
-        System.out.println(" |    ISRO    |    Google    |   Stock    |    Income    |              ");
-        System.out.println(" |            |              |   Market   |   Tax Raid   |                    ");
-        System.out.println(" |            |              |            |              |                         ");
-        System.out.println(
-                " |_ _ _ _ _ _ |_ _ _ _ _ _ _ |_ _ _ _ _ _ |_ _ _ _ _ _ _ |                                             ");
-        System.out.println("                                          ");
+        System.out.println("                                                         ");
+         System.out.println("  _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ \t" +"______________________                                                      ");
+         System.out.println(" |            |             |             |              |\t" +"          RAJIB                                                 "               );
+         System.out.println(" |     1.     |      2.     |      3.     |      4.      |\t" +"    current balance     :- 10000                                                      ");
+         System.out.println(" |     GO     |   Amazon    |    Stock    |   Short      |\t" +"    companies owned     :- Amazon , Microsoft                                                          ");
+         System.out.println(" |            |             |    Market   |   Listing    |\t" +"    shared owned        :- Amazon-5 , Tesla-10                                                                ");
+         System.out.println(" |            |             |             |   Fraud      |\t" +"    net values of shares:- 200 , 400                                                           ");
+         System.out.println(" |_ _ _ _ _ _ |_ _ _ _ _ _ | _ _ _ _ _ _ | _ _ _ _ _ _ |\t" +"                                                                 ");
+         System.out.println(" |            |                           |              |\t" +"______________________                                                            ");
+         System.out.println(" |    12.     |                           |      5.      |\t" +"                                                                 ");
+         System.out.println(" |   Chance   |                           |    Tesla     |\t" +"          Hitansh                                                               ");
+         System.out.println(" |            |                           |              |\t" +"    current balance     :- 10000                                                        ");
+         System.out.println(" |_ _ _ _ _ _ |                           | _ _ _ _ _ _ _|\t" +"    companies owned     :- Amazon , Microsoft                                                               ");
+         System.out.println(" |            |                           |              |\t" +"    shared owned        :- Amazon-5 , Tesla-10                                                               ");
+         System.out.println(" |     11.    |                           |      6.      |\t" +"    net values of shares:- 200 , 400                                                          ");
+         System.out.println(" |  Facebook  |                           |   Micorsoft  |\t" +"                                                                   ");
+         System.out.println(" |            |                           |              |\t" +"_______________________                                                                           ");
+         System.out.println(" |_ _ _ _ _ _ | _ _ _ _ _ _ _ _ _ _ _ _ _ |_ _ _ _ _ _ _ |\t" +"                                                                   ");
+         System.out.println(" |            |              |            |              |\t" +"          Dhruv                                                           ");
+         System.out.println(" |     10.    |      9.      |     8.     |      7.      |\t" +"    current balance     :- 10000                                                            ");
+         System.out.println(" |    ISRO    |    Google    |   Stock    |    Income    |\t" +"    companies owned     :- Amazon , Microsoft                                                           ");
+         System.out.println(" |            |              |   Market   |   Tax Raid   |\t" +"    shared owned        :- Amazon-5 , Tesla-10                                                                ");
+         System.out.println(" |            |              |            |              |\t" +"    net values of shares:- 200 , 400                                                                            ");
+         System.out.println(" |_ _ _ _ _ _ |_ _ _ _ _ _ _ |_ _ _ _ _ _ |_ _ _ _ _ _ _ |\t" +"                                                                             ");
+         System.out.println("                                                          \t" +"_______________________"     );
         return 0;
     }
 
