@@ -47,7 +47,7 @@ public class App {
                 break;
             }
             func.promptEnterKey();
-            System.out.println(func.dice());
+            System.out.println("You rolled "+ func.dice(i));
         }
         // func.cls();
 

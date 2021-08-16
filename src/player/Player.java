@@ -52,7 +52,7 @@ public class Player {
         }
     }
 
-    public void setPlayerCurrentBal(int bal, int p) {
+    public void setPlayerCurrentBal(float bal, int p) {
         if (p == 1) {
             p1.setCurrentBal(bal);
         } else if (p == 2) {
@@ -62,19 +62,19 @@ public class Player {
         }
     }
 
-    float result;
+    float balance;
     public float getPlayerCurrentBal(int p) {
         if (p == 1) {
-            result = p1.getCurrentBal();
+            balance = p1.getCurrentBal();
             
         } else if (p == 2) {
-            result = p2.getCurrentBal();
+            balance = p2.getCurrentBal();
             
         } else {
-            result = p3.getCurrentBal();
+            balance = p3.getCurrentBal();
 
         }
-        return result;
+        return balance;
     }
 
     int position;
@@ -112,7 +112,7 @@ public class Player {
 class Player1 {
     String name;
     float currentBal;
-    int currentPosition = 1;
+    int currentPosition = 11;
     boolean companiesOwned[] = new boolean[12];
     int sharesOwned[] = new int[12];
     
@@ -140,7 +140,7 @@ class Player1 {
         return this.name;
     }
 
-    public void setCurrentBal(int bal) {
+    public void setCurrentBal(float bal) {
         this.currentBal = bal;
     }
 
@@ -160,7 +160,7 @@ class Player1 {
 class Player2 {
     String name;
     float currentBal;
-    int currentPosition = 1;
+    int currentPosition = 11;
     boolean companiesOwned[] = new boolean[12];
     int sharesOwned[] = new int[12];
     
@@ -188,7 +188,7 @@ class Player2 {
         return this.name;
     }
     
-    public void setCurrentBal(int bal) {
+    public void setCurrentBal(float bal) {
         this.currentBal = bal;
     }
     
@@ -236,7 +236,7 @@ class Player3 {
         return this.name;
     }
 
-    public void setCurrentBal(int bal) {
+    public void setCurrentBal(float bal) {
         this.currentBal = bal;
     }
 

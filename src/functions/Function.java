@@ -41,15 +41,15 @@ public class Function {
     }
 
     public int board() {
-        System.out.println("                                                         ");
-         System.out.println("  _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ \t" +"______________________                                                      ");
-         System.out.println(" |            |             |             |              |\t" +"          RAJIB                                                 "               );
+         System.out.println("                                                          \t" +"________________________________________________________________                                                                                 ");
+         System.out.println("  _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ \t" +"                                                                                    ");
+         System.out.println(" |            |             |             |              |\t" +"          RAJIB                                                     "  );
          System.out.println(" |     1.     |      2.     |      3.     |      4.      |\t" +"    current balance     :- 10000                                                      ");
          System.out.println(" |     GO     |   Amazon    |    Stock    |   Short      |\t" +"    companies owned     :- Amazon , Microsoft                                                          ");
          System.out.println(" |            |             |    Market   |   Listing    |\t" +"    shared owned        :- Amazon-5 , Tesla-10                                                                ");
          System.out.println(" |            |             |             |   Fraud      |\t" +"    net values of shares:- 200 , 400                                                           ");
-         System.out.println(" |_ _ _ _ _ _ |_ _ _ _ _ _ | _ _ _ _ _ _ | _ _ _ _ _ _ |\t" +"                                                                 ");
-         System.out.println(" |            |                           |              |\t" +"______________________                                                            ");
+         System.out.println(" |_ _ _ _ _ _ |_ _ _ _ _ _ _| _ _ _ _ _ _ |_ _ _ _ _ _ _ |\t" +"                                                                 ");
+         System.out.println(" |            |                           |              |\t" +"________________________________________________________________                                                            ");
          System.out.println(" |    12.     |                           |      5.      |\t" +"                                                                 ");
          System.out.println(" |   Chance   |                           |    Tesla     |\t" +"          Hitansh                                                               ");
          System.out.println(" |            |                           |              |\t" +"    current balance     :- 10000                                                        ");
@@ -57,7 +57,7 @@ public class Function {
          System.out.println(" |            |                           |              |\t" +"    shared owned        :- Amazon-5 , Tesla-10                                                               ");
          System.out.println(" |     11.    |                           |      6.      |\t" +"    net values of shares:- 200 , 400                                                          ");
          System.out.println(" |  Facebook  |                           |   Micorsoft  |\t" +"                                                                   ");
-         System.out.println(" |            |                           |              |\t" +"_______________________                                                                           ");
+         System.out.println(" |            |                           |              |\t" +"_________________________________________________________________                                                                           ");
          System.out.println(" |_ _ _ _ _ _ | _ _ _ _ _ _ _ _ _ _ _ _ _ |_ _ _ _ _ _ _ |\t" +"                                                                   ");
          System.out.println(" |            |              |            |              |\t" +"          Dhruv                                                           ");
          System.out.println(" |     10.    |      9.      |     8.     |      7.      |\t" +"    current balance     :- 10000                                                            ");
@@ -65,7 +65,7 @@ public class Function {
          System.out.println(" |            |              |   Market   |   Tax Raid   |\t" +"    shared owned        :- Amazon-5 , Tesla-10                                                                ");
          System.out.println(" |            |              |            |              |\t" +"    net values of shares:- 200 , 400                                                                            ");
          System.out.println(" |_ _ _ _ _ _ |_ _ _ _ _ _ _ |_ _ _ _ _ _ |_ _ _ _ _ _ _ |\t" +"                                                                             ");
-         System.out.println("                                                          \t" +"_______________________"     );
+         System.out.println("                                                          \t" +"_________________________________________________________________"     );  
         return 0;
     }
 
@@ -111,9 +111,28 @@ public class Function {
      * System.out.println(E); } }
      */
 
-     public int dice(){
+     public int dice(int p){
         int die = (int)(3.0 * Math.random()) + 1;
-         return die;
+        int currentPosition = player.getPlayerCurrentPosition(p);
+        currentPosition = currentPosition + die;
+        player.setPlayerCurrentPosition(currentPosition, p);
+        resetPostion(player.getPlayerCurrentPosition(p), p);
+        System.out.println("Now you are on "+player.getPlayerCurrentPosition(p));
+        return die;
+    }
+    public int resetPostion(int currentPosition, int p){   // this function is to repeat the cycle to go to block 1 after block 12
+        if(currentPosition > 12){
+            currentPosition = currentPosition - 12;
+            player.setPlayerCurrentPosition(currentPosition, p);
+            go(p);
+        } else{
+            player.setPlayerCurrentPosition(currentPosition, p);
+        }
+        return 0;
      }
-
+     public int go(int p){
+         player.setPlayerCurrentBal(player.getPlayerCurrentBal(p) + 2000, p);
+         System.out.println("Your current balance is "+ player.getPlayerCurrentBal(p));
+        return 0;
+    }
 }
