@@ -3,10 +3,12 @@ package functions;
 import java.io.IOException;
 import java.util.*;
 
+import company.Company;
 import player.Player;
 
 public class Function {
     Player player = new Player();
+    Company company = new Company();
 
     public int welcome() {
         System.out.println("\n\n\n\t\t\t\t\tWelcome TO\n");
@@ -117,7 +119,7 @@ public class Function {
         currentPosition = currentPosition + die;
         player.setPlayerCurrentPosition(currentPosition, p);
         resetPostion(player.getPlayerCurrentPosition(p), p);
-        System.out.println("Now you are on "+player.getPlayerCurrentPosition(p));
+        // System.out.println("Now you are on "+player.getPlayerCurrentPosition(p));
         return die;
     }
     public int resetPostion(int currentPosition, int p){   // this function is to repeat the cycle to go to block 1 after block 12
@@ -132,7 +134,23 @@ public class Function {
      }
      public int go(int p){
          player.setPlayerCurrentBal(player.getPlayerCurrentBal(p) + 2000, p);
-         System.out.println("Your current balance is "+ player.getPlayerCurrentBal(p));
+        //  System.out.println("Your current balance is "+ player.getPlayerCurrentBal(p));
         return 0;
     }
+
+    public void updateServiceRent(int n){
+        float currentRent = company.getCompanyServiceRent(n);  
+        currentRent = (float) (currentRent + 0.1*currentRent);
+        company.setCompanyServiceRent(currentRent, n);
+    }
+
+    /*
+    public int bankRupt(){ 
+         System.out.println(" We are sorry to inform you that you don't have sufficient balance in your account.");
+         System.out.println(" You dont even have any stocks to sell .");
+         System.out.println(" You lost the game ");
+            // isme abhi uss player ka naam add krna ha jo bankrupt ho rha ha
+        return 0;
+    }
+    */
 }
