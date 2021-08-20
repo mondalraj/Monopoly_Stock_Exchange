@@ -1,5 +1,8 @@
 Clear the screen after every turn.
 3 loop holes 
 
-20 august - sell function , amazon ka case complete krna ha , board mei input wali correction krni ha
+19 august - sell function , amazon ka case complete krna ha , board mei input wali correction krni ha
           - see line 94 in app.java (problem with break statement)  
+
+20 august - board mei changes , cases mei changes krni ha kuch ( no of shares)
+           - bankrupt mei changes , kaha kaha pr call hoga bankrupt call hoga 

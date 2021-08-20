@@ -152,7 +152,22 @@ public class Function {
      */
 
     public int sell(int i) {
+        if(player.getPlayerSharesOwned(i, 2) > 0){
+            if(company.getCompanyOwner(2) != i){
+                int shareNum = player.getPlayerSharesOwned(i, 2);
+                int owner = company.getCompanyOwner(2);
+                float shareBal = (player.getPlayerSharesOwned(i, 2))* (company.getCompanySharePrice(2));
+                player.setPlayerCurrentBal(player.getPlayerCurrentBal(i)+ shareBal, i);
+                player.setPlayerSharesOwned(i, 2, 0);
 
+                if(player.getPlayerCurrentBal(owner) > shareBal){
+                    player.setPlayerSharesOwned(owner, 2, player.getPlayerSharesOwned(owner, 2)+ shareNum);
+                    player.setPlayerCurrentBal(player.getPlayerCurrentBal(owner)-shareBal, owner);
+                }else {
+                    bankRupt(player.getPlayerName(owner));
+                }
+            }
+        }
         
         // Show all the share list of the player
         // Paise add honge player k main balance
@@ -163,6 +178,18 @@ public class Function {
         
         return 0;
     }
+
+    public int bankRupt(String gareeb){ 
+         System.out.println(" We are sorry to inform you that your current balance is 0 .");
+         System.out.println( gareeb +" dont even have any stocks to sell .");
+         System.out.println(gareeb +" lost the game ");
+         System.out.println(" //// ////// won the game");
+         System.out.println(" Congratulations");
+            // isme abhi uss player ka naam add krna ha jo bankrupt ho rha ha
+           
+         quit();
+         return 0;
+     }
 
     String mnc;
     public String company(int c){

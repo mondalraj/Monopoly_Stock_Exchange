@@ -137,10 +137,10 @@ public class App {
 
                     if (company.getCompanyOwner(5) == 0) {
 
-                        System.out.println("Cost of Amazon is 6000 dollars only");
+                        System.out.println("Cost of TESLA is 6000 dollars only");
                         System.out.println("You will own a total of 20 shares of the company ");
                         System.out.println("Each share cost is 200 and will increase 10% whenever someones arrives on it ");
-                        System.out.println("Service Rent of Amazon is 400");
+                        System.out.println("Service Rent of TESLA is 400");
                         System.out.println("Do you want to buy or not ?");
 
                         String response = sc.nextLine();
@@ -151,11 +151,11 @@ public class App {
                                 company.setCompanyOwner(2, i);
                                 player.setPlayerCompaniesOwned(i, 1);
                                 System.out.println(" Congratulations !!!");
-                                System.out.println(" You have bought Amazon");
+                                System.out.println(" You have bought TESLA");
                                 System.out.println("Player " + i + "'s current Balance = ");
                                 player.getPlayerCurrentBal(i);
                             } else {
-                                System.out.println(" You don't have sufficient balance to buy Amazon");
+                                System.out.println(" You don't have sufficient balance to buy TESLA");
                                 System.out.println(" Do u want to sell your shares ? Remember , you will have to sell all your shares ,you will not be allowed to sell a particular amount of shares ( Enter yes / no )");
 
                                 String res = sc.nextLine();
@@ -168,14 +168,14 @@ public class App {
                             }
                         } else {
                             System.out.println(" Continue the game");
-                            System.out.println(" Thanks for visiting Amazon");
+                            System.out.println(" Thanks for visiting TESLA");
                         }
 
                     } else {
                         int owner = company.getCompanyOwner(2);
 
                         if (player.getPlayerCurrentBal(i) >= company.getCompanyServiceRent(2)) {
-                            System.out.println("Amazon is owned by " + player.getPlayerName(owner));
+                            System.out.println("TESLA is owned by " + player.getPlayerName(owner));
 
                             System.out
                                     .println(" You will have to pay $" + company.getCompanyServiceRent(2) + " as rent");
@@ -214,11 +214,68 @@ public class App {
                 }
                 case 6: {
                     System.out.println("You have reached | MICROSOFT |");
-                    
+                       if (company.getCompanyOwner(6) == 0) {
+
+                        System.out.println("Cost of MICROSOFT is 6000 dollars only");
+                        System.out.println("You will own a total of 20 shares of the company ");
+                        System.out.println("Each share cost is 200 and will increase 10% whenever someones arrives on it ");
+                        System.out.println("Service Rent of MICROSOFT is 400");
+                        System.out.println("Do you want to buy or not ?");
+
+                        String response = sc.nextLine();
+
+                        if (response == "yes" || response == "Yes" || response == "YES") {
+                            if (player.getPlayerCurrentBal(i) >= 6000) {
+                                player.setPlayerCurrentBal(player.getPlayerCurrentBal(i) - 6000, i);
+                                company.setCompanyOwner(2, i);
+                                player.setPlayerCompaniesOwned(i, 1);
+                                System.out.println(" Congratulations !!!");
+                                System.out.println(" You have bought MICROSOFT");
+                                System.out.println("Player " + i + "'s current Balance = ");
+                                player.getPlayerCurrentBal(i);
+                            } else {
+                                System.out.println(" You don't have sufficient balance to buy MICROSOFT");
+                                System.out.println(" Do u want to sell your shares ? Remember , you will have to sell all your shares ,you will not be allowed to sell a particular amount of shares ( Enter yes / no )");
+
+                                String res = sc.nextLine();
+
+                                if (res == "yes" || res == "Yes" || res == "YES") {
+                                    func.sell(i);
+                                } else {
+                                    break;
+                                }
+                            }
+                        } else {
+                            System.out.println(" Continue the game");
+                            System.out.println(" Thanks for visiting MICROSOFT");
+                        }
+
+                    } else {
+                        int owner = company.getCompanyOwner(2);
+
+                        if (player.getPlayerCurrentBal(i) >= company.getCompanyServiceRent(2)) {
+                            System.out.println("MICROSOFT is owned by " + player.getPlayerName(owner));
+
+                            System.out
+                                    .println(" You will have to pay $" + company.getCompanyServiceRent(2) + " as rent");
+                            player.setPlayerCurrentBal(player.getPlayerCurrentBal(i) - company.getCompanyServiceRent(2),
+                                    i);
+
+                            player.setPlayerCurrentBal(
+                                    player.getPlayerCurrentBal(owner) + company.getCompanyServiceRent(2), owner);
+                            func.updateServiceRent(2);
+
+                        } else {
+                            func.sell(i);
+                        }
+
+                    }
 
                     break;
 
                 }
+
+                   
                 case 7: {
                     // call income tax raid function
                     break;

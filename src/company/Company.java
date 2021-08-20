@@ -89,25 +89,27 @@ public class Company {
         }
     }
 
-    public void getCompanySharePrice(int n) {
+    float sharePrice;
+    public float getCompanySharePrice(int n) {
         if (n == 2) {
-            System.out.println(a2.getSharePrice());
+            sharePrice = a2.getSharePrice();
         } else if (n == 5) {
-            System.out.println(t5.getSharePrice());
+            sharePrice = t5.getSharePrice();
             
         } else if (n == 6) {
-            System.out.println(m6.getSharePrice());
+            sharePrice = m6.getSharePrice();
             
         } else if (n == 9) {
-            System.out.println(g9.getSharePrice());
+            sharePrice = g9.getSharePrice();
             
         } else if (n == 10) {
-            System.out.println(i10.getSharePrice());
+            sharePrice = i10.getSharePrice();
             
         } else if (n == 11) {
-            System.out.println(f11.getSharePrice());
+            sharePrice = f11.getSharePrice();
 
         }
+        return sharePrice;
     }
 
     public void getCompanyNoOfShares(int n) {
