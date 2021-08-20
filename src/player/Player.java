@@ -116,6 +116,7 @@ class Player1 {
     boolean companiesOwned[] = new boolean[12];
     int sharesOwned[] = new int[12];
     
+    
     public void setCompaniesOwned(int index, boolean owned){
         this.companiesOwned[index] = owned;
     }

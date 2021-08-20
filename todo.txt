@@ -1,5 +1,5 @@
 Clear the screen after every turn.
 3 loop holes 
 
-19 august - sell function , amazon ka case complete krna ha , board mei input wali correction krni ha
+20 august - sell function , amazon ka case complete krna ha , board mei input wali correction krni ha
           - see line 94 in app.java (problem with break statement)  

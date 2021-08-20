@@ -67,7 +67,7 @@ public class App {
 
                         System.out.println("Cost of Amazon is 6000 dollars only");
                         System.out.println("You will own a total of 20 shares of the company ");
-                        System.out.println("Each share cost is 200 ");
+                        System.out.println("Each share cost is 200 and will increase 10% whenever someones arrives on it ");
                         System.out.println("Service Rent of Amazon is 400");
                         System.out.println("Do you want to buy or not ?");
 
@@ -89,7 +89,7 @@ public class App {
                                 String res = sc.nextLine();
 
                                 if (res == "yes" || res == "Yes" || res == "YES") {
-                                    func.sell();
+                                    func.sell(i);
                                 } else {
                                     break;
                                 }
@@ -115,8 +115,7 @@ public class App {
                             func.updateServiceRent(2);
 
                         } else {
-                            // Option dena hai player ko stocks aur company sell karne k liye if uske paas
-                            // paryapt dhan rashi nhi hai.
+                            func.sell(i);
                         }
 
                     }
@@ -135,6 +134,64 @@ public class App {
                 }
                 case 5: {
                     System.out.println("You have reached | TESLA |");
+
+                    if (company.getCompanyOwner(5) == 0) {
+
+                        System.out.println("Cost of Amazon is 6000 dollars only");
+                        System.out.println("You will own a total of 20 shares of the company ");
+                        System.out.println("Each share cost is 200 and will increase 10% whenever someones arrives on it ");
+                        System.out.println("Service Rent of Amazon is 400");
+                        System.out.println("Do you want to buy or not ?");
+
+                        String response = sc.nextLine();
+
+                        if (response == "yes" || response == "Yes" || response == "YES") {
+                            if (player.getPlayerCurrentBal(i) >= 6000) {
+                                player.setPlayerCurrentBal(player.getPlayerCurrentBal(i) - 6000, i);
+                                company.setCompanyOwner(2, i);
+                                player.setPlayerCompaniesOwned(i, 1);
+                                System.out.println(" Congratulations !!!");
+                                System.out.println(" You have bought Amazon");
+                                System.out.println("Player " + i + "'s current Balance = ");
+                                player.getPlayerCurrentBal(i);
+                            } else {
+                                System.out.println(" You don't have sufficient balance to buy Amazon");
+                                System.out.println(" Do u want to sell your shares ? Remember , you will have to sell all your shares ,you will not be allowed to sell a particular amount of shares ( Enter yes / no )");
+
+                                String res = sc.nextLine();
+
+                                if (res == "yes" || res == "Yes" || res == "YES") {
+                                    func.sell(i);
+                                } else {
+                                    break;
+                                }
+                            }
+                        } else {
+                            System.out.println(" Continue the game");
+                            System.out.println(" Thanks for visiting Amazon");
+                        }
+
+                    } else {
+                        int owner = company.getCompanyOwner(2);
+
+                        if (player.getPlayerCurrentBal(i) >= company.getCompanyServiceRent(2)) {
+                            System.out.println("Amazon is owned by " + player.getPlayerName(owner));
+
+                            System.out
+                                    .println(" You will have to pay $" + company.getCompanyServiceRent(2) + " as rent");
+                            player.setPlayerCurrentBal(player.getPlayerCurrentBal(i) - company.getCompanyServiceRent(2),
+                                    i);
+
+                            player.setPlayerCurrentBal(
+                                    player.getPlayerCurrentBal(owner) + company.getCompanyServiceRent(2), owner);
+                            func.updateServiceRent(2);
+
+                        } else {
+                            func.sell(i);
+                        }
+
+                    }
+
                     // if(Tesla==0){
                     // System.out.println("Cost of Tesla is 5500 dollars only");
                     // System.out.println("You will own a total of 45 shares of the company ");
@@ -157,23 +214,7 @@ public class App {
                 }
                 case 6: {
                     System.out.println("You have reached | MICROSOFT |");
-                    // if(Amazon==0){
-                    // System.out.println("Cost of Microsoft is 5000 dollars only");
-                    // System.out.println("You will own a total of 30 shares of the company ");
-                    // System.out.println("Each share cost"+ shareprice );
-                    // System.out.println("Service Rent of Microsoft is 300");
-                    // System.out.println("Do you want to buy or not ?");
-                    // input lena ha yes or no
-                    // if(input == yes){
-                    // currentBalance = currentBalance - 5000 ;
-                    // system.put.println(" Congratulations !!!")
-                    // system.put.println(" You have bought Microsoft")
-                    // }
-                    // else{
-                    // yaha pr jis bnde ke company ha uska naam print krvana ha
-                    // system.out.println(" You have to pay this much rent");
-                    // update current balance of both the players
-                    // }
+                    
 
                     break;
 
@@ -189,66 +230,182 @@ public class App {
                 }
                 case 9: {
                     System.out.println("You have reached | GOOGLE |");
-                    // if(Amazon==0){
-                    // System.out.println("Cost of Google is 10000 dollars only");
-                    // System.out.println("You will own a total of 8 shares of the company ");
-                    // System.out.println("Each share cost"+ shareprice );
-                    // System.out.println("Service Rent of Google is 400");
-                    // System.out.println("Do you want to buy or not ?");
-                    // input lena ha yes or no
-                    // if(input == yes){
-                    // currentBalance = currentBalance - 10000 ;
-                    // system.put.println(" Congratulations !!!")
-                    // system.put.println(" You have bought Google")
-                    // }
-                    // else{
-                    // yaha pr jis bnde ke company ha uska naam print krvana ha
-                    // system.out.println(" You have to pay this much rent");
-                    // update current balance of both the players
-                    // }
+                   if (company.getCompanyOwner(9) == 0) {
+
+                        System.out.println("Cost of GOOGLE is 6000 dollars only");
+                        System.out.println("You will own a total of 20 shares of the company ");
+                        System.out.println("Each share cost is 200 and will increase 10% whenever someones arrives on it ");
+                        System.out.println("Service Rent of GOOGLE is 400");
+                        System.out.println("Do you want to buy or not ?");
+
+                        String response = sc.nextLine();
+
+                        if (response == "yes" || response == "Yes" || response == "YES") {
+                            if (player.getPlayerCurrentBal(i) >= 6000) {
+                                player.setPlayerCurrentBal(player.getPlayerCurrentBal(i) - 6000, i);
+                                company.setCompanyOwner(2, i);
+                                player.setPlayerCompaniesOwned(i, 1);
+                                System.out.println(" Congratulations !!!");
+                                System.out.println(" You have bought GOOGLE");
+                                System.out.println("Player " + i + "'s current Balance = ");
+                                player.getPlayerCurrentBal(i);
+                            } else {
+                                System.out.println(" You don't have sufficient balance to buy GOOGLE");
+                                System.out.println(" Do u want to sell your shares ? Remember , you will have to sell all your shares ,you will not be allowed to sell a particular amount of shares ( Enter yes / no )");
+
+                                String res = sc.nextLine();
+
+                                if (res == "yes" || res == "Yes" || res == "YES") {
+                                    func.sell(i);
+                                } else {
+                                    break;
+                                }
+                            }
+                        } else {
+                            System.out.println(" Continue the game");
+                            System.out.println(" Thanks for visiting GOOGLE");
+                        }
+
+                    } else {
+                        int owner = company.getCompanyOwner(2);
+
+                        if (player.getPlayerCurrentBal(i) >= company.getCompanyServiceRent(2)) {
+                            System.out.println("GOOGLE is owned by " + player.getPlayerName(owner));
+                             System.out.println(" You will have to pay $" + company.getCompanyServiceRent(2) + " as rent");
+                            player.setPlayerCurrentBal(player.getPlayerCurrentBal(i) - company.getCompanyServiceRent(2),
+                                    i);
+
+                            player.setPlayerCurrentBal(
+                                    player.getPlayerCurrentBal(owner) + company.getCompanyServiceRent(2), owner);
+                            func.updateServiceRent(2);
+
+                        } else {
+                            func.sell(i);
+                        }
+
+                    }
+
                     break;
+                    
                 }
                 case 10: {
                     System.out.println("You have reached | ISRO |");
-                    // if(Amazon==0){
-                    // System.out.println("Cost of ISRO is 7000 dollars only");
-                    // System.out.println("You will own a total of 10 shares of the company ");
-                    // System.out.println("Each share cost"+ shareprice );
-                    // System.out.println("Service Rent of ISOR is 400");
-                    // System.out.println("Do you want to buy or not ?");
-                    // input lena ha yes or no
-                    // if(input == yes){
-                    // currentBalance = currentBalance - 7000 ;
-                    // system.put.println(" Congratulations !!!")
-                    // system.put.println(" You have bought ISRO")
-                    // }
-                    // else{
-                    // yaha pr jis bnde ke company ha uska naam print krvana ha
-                    // system.out.println(" You have to pay this much rent");
-                    // update current balance of both the players
-                    // }
+                    if (company.getCompanyOwner(10) == 0) {
+
+                        System.out.println("Cost of ISRO is 6000 dollars only");
+                        System.out.println("You will own a total of 20 shares of the company ");
+                        System.out.println("Each share cost is 200 and will increase 10% whenever someones arrives on it ");
+                        System.out.println("Service Rent of ISRO is 400");
+                        System.out.println("Do you want to buy or not ?");
+
+                        String response = sc.nextLine();
+
+                        if (response == "yes" || response == "Yes" || response == "YES") {
+                            if (player.getPlayerCurrentBal(i) >= 6000) {
+                                player.setPlayerCurrentBal(player.getPlayerCurrentBal(i) - 6000, i);
+                                company.setCompanyOwner(2, i);
+                                player.setPlayerCompaniesOwned(i, 1);
+                                System.out.println(" Congratulations !!!");
+                                System.out.println(" You have bought ISRO");
+                                System.out.println("Player " + i + "'s current Balance = ");
+                                player.getPlayerCurrentBal(i);
+                            } else {
+                                System.out.println(" You don't have sufficient balance to buy ISRO");
+                                System.out.println(" Do u want to sell your shares ? Remember , you will have to sell all your shares ,you will not be allowed to sell a particular amount of shares ( Enter yes / no )");
+
+                                String res = sc.nextLine();
+
+                                if (res == "yes" || res == "Yes" || res == "YES") {
+                                    func.sell(i);
+                                } else {
+                                    break;
+                                }
+                            }
+                        } else {
+                            System.out.println(" Continue the game");
+                            System.out.println(" Thanks for visiting ISRO");
+                        }
+
+                    } else {
+                        int owner = company.getCompanyOwner(2);
+
+                        if (player.getPlayerCurrentBal(i) >= company.getCompanyServiceRent(2)) {
+                            System.out.println("ISRO is owned by " + player.getPlayerName(owner));
+
+                            System.out
+                                    .println(" You will have to pay $" + company.getCompanyServiceRent(2) + " as rent");
+                            player.setPlayerCurrentBal(player.getPlayerCurrentBal(i) - company.getCompanyServiceRent(2),
+                                    i);
+
+                            player.setPlayerCurrentBal(
+                                    player.getPlayerCurrentBal(owner) + company.getCompanyServiceRent(2), owner);
+                            func.updateServiceRent(2);
+
+                        } else {
+                            func.sell(i);
+                        }
+
+                    }
                     break;
                 }
                 case 11: {
                     System.out.println("You have reached | Facebook |");
-                    // if(Amazon==0){
-                    // System.out.println("Cost of Facebook is 6000 dollars only");
-                    // System.out.println("You will own a total of 30 shares of the company ");
-                    // System.out.println("Each share cost"+ shareprice );
-                    // System.out.println("Service Rent of Facebook is 600");
-                    // System.out.println("Do you want to buy or not ?");
-                    // input lena ha yes or no
-                    // if(input == yes){
-                    // currentBalance = currentBalance - 6000 ;
-                    // system.put.println(" Congratulations !!!")
-                    // system.put.println(" You have bought Facebook")
-                    // }
+                    if (company.getCompanyOwner(11) == 0) {
 
-                    // else{
-                    // yaha pr jis bnde ke company ha uska naam print krvana ha
-                    // system.out.println(" You have to pay this much rent");
-                    // update current balance of both the players
-                    // }
+                        System.out.println("Cost of Facebook is 6000 dollars only");
+                        System.out.println("You will own a total of 30 shares of the company ");
+                        System.out.println("Each share cost is 200 and will increase 10% whenever someones arrives on it ");
+                        System.out.println("Service Rent of Facebook is 600");
+                        System.out.println("Do you want to buy or not ?");
+
+                        String response = sc.nextLine();
+
+                        if (response == "yes" || response == "Yes" || response == "YES") {
+                            if (player.getPlayerCurrentBal(i) >= 6000) {
+                                player.setPlayerCurrentBal(player.getPlayerCurrentBal(i) - 6000, i);
+                                company.setCompanyOwner(2, i);
+                                player.setPlayerCompaniesOwned(i, 1);
+                                System.out.println(" Congratulations !!!");
+                                System.out.println(" You have bought Facebook");
+                                System.out.println("Player " + i + "'s current Balance = ");
+                                player.getPlayerCurrentBal(i);
+                            } else {
+                                System.out.println(" You don't have sufficient balance to buy Facebook");
+                                System.out.println(" Do u want to sell your shares ? Remember , you will have to sell all your shares ,you will not be allowed to sell a particular amount of shares ( Enter yes / no )");
+
+                                String res = sc.nextLine();
+
+                                if (res == "yes" || res == "Yes" || res == "YES") {
+                                    func.sell(i);
+                                } else {
+                                    break;
+                                }
+                            }
+                        } else {
+                            System.out.println(" Continue the game");
+                            System.out.println(" Thanks for visiting Facebook");
+                        }
+
+                    } else {
+                        int owner = company.getCompanyOwner(2);
+
+                        if (player.getPlayerCurrentBal(i) >= company.getCompanyServiceRent(2)) {
+                            System.out.println("Facebook is owned by " + player.getPlayerName(owner));
+
+                            System.out
+                                    .println(" You will have to pay $" + company.getCompanyServiceRent(2) + " as rent");
+                            player.setPlayerCurrentBal(player.getPlayerCurrentBal(i) - company.getCompanyServiceRent(2),
+                                    i);
+
+                            player.setPlayerCurrentBal(
+                                    player.getPlayerCurrentBal(owner) + company.getCompanyServiceRent(2), owner);
+                            func.updateServiceRent(2);
+
+                        } else {
+                            func.sell(i);
+                        }
+
+                    }
                     break;
                 }
                 case 12: {

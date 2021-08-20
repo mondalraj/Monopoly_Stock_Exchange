@@ -151,17 +151,16 @@ public class Function {
      * add krna ha jo bankrupt ho rha ha return 0; }
      */
 
-    public int sell() {
-        System.out.println("You will have to sell all your shares");
-        // System.out.println("how many shares does the player have");
-        // Scanner sc=new Scanner(System.in);//user se input karwana hai ki konsi
-        // company ka share bechna hai
-        // Scanner sc=new Scanner(System.in);//no.of shares does the user want to sell
-        // input num=
-        // int sum=0;
-        // sum=company share price*num
-        // currentbalance=currentbalance+sum //of the person selling
-        // currentbalance=currentbalance-sum //of the person buying
+    public int sell(int i) {
+
+        
+        // Show all the share list of the player
+        // Paise add honge player k main balance
+        // Paise subtract honge Company owner k account meh
+        // shares 0 honge player k account se
+        // shares add honge company owner k account meh
+        // if(owner k paas shares khareedne k paise nahi hue toh bankrupt() for owner)
+        
         return 0;
     }
 
