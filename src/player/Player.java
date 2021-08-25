@@ -14,7 +14,7 @@ public class Player {
         } else if (p == 3) {
             p3.setName(name);
         }
- 
+
     }
 
     String name;
@@ -41,6 +41,18 @@ public class Player {
         } else if (p == 3) {
             p3.setCompaniesOwned(index, true);
         }
+    }
+
+    boolean[] companies;
+    public boolean[] getPlayerCompaniesOwned(int p) {
+        if (p == 1) {
+            companies = p1.getCompaniesOwned();
+        } else if (p == 2) {
+            companies = p2.getCompaniesOwned();
+        } else if (p == 3) {
+            companies = p3.getCompaniesOwned();
+        }
+        return companies;
     }
 
     public void setPlayerCurrentBal(float bal, int p) {
@@ -188,7 +200,8 @@ public class Player {
     }
 
     int shares;
-    public int getPlayerSharesOwned(int p, int c){
+
+    public int getPlayerSharesOwned(int p, int c) {
         if (p == 1) {
             switch (c) {
                 case 2: {

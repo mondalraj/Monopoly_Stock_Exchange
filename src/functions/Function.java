@@ -51,22 +51,22 @@ public class Function {
          System.out.println("  _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ \t" +"                                                      ");
          System.out.println(" |            |             |             |              |\t" +"         "+ player.getPlayerName(1));
          System.out.println(" |     1.     |      2.     |      3.     |      4.      |\t" +"    current balance     :- "+ player.getPlayerCurrentBal(1));
-         System.out.println(" |     GO     |   Amazon    |    Stock    |   Short      |\t" +"    companies owned     :- "+  );
-         System.out.println(" |            |             |    Market   |   Listing    |\t" +"    shared owned        :- "+   );
+         System.out.println(" |     GO     |   Amazon    |    Stock    |   Short      |\t" +"    companies owned     :- ");companiesOwned(1);
+         System.out.println(" |            |             |    Market   |   Listing    |\t" +"    shared owned        :- "   );sharesOwned(1);
          System.out.println(" |            |             |             |   Fraud      |\t" +"                                                               ");
          System.out.println(" |_ _ _ _ _ _ |_ _ _ _ _ _ _| _ _ _ _ _ _ |_ _ _ _ _ _ _ |\t" +"________________________________________________________________                                                               ");
          System.out.println(" |            |                           |              |\t" +"                                                            ");
          System.out.println(" |    12.     |                           |      5.      |\t" +"          "+ player.getPlayerName(2));
          System.out.println(" |   Chance   |                           |    Tesla     |\t" +"    current balance     :- "+ player.getPlayerCurrentBal(2));
-         System.out.println(" |            |                           |              |\t" +"    companies owned     :- "+     );
-         System.out.println(" |_ _ _ _ _ _ |                           | _ _ _ _ _ _ _|\t" +"    shared owned        :- "+     );
+         System.out.println(" |            |                           |              |\t" +"    companies owned     :- ");companiesOwned(2);
+         System.out.println(" |_ _ _ _ _ _ |                           | _ _ _ _ _ _ _|\t" +"    shared owned        :- ");sharesOwned(2);
          System.out.println(" |            |                           |              |\t" +"                                                                   ");
          System.out.println(" |     11.    |                           |      6.      |\t" +"_________________________________________________________________                                                             ");
          System.out.println(" |  Facebook  |                           |   Micorsoft  |\t" +"                                                                   ");
          System.out.println(" |            |                           |              |\t" +"          "+ player.getPlayerName(3));
          System.out.println(" |_ _ _ _ _ _ | _ _ _ _ _ _ _ _ _ _ _ _ _ |_ _ _ _ _ _ _ |\t" +"    current balance     :- "+ player.getPlayerCurrentBal(3));
-         System.out.println(" |            |              |            |              |\t" +"    companies owned     :- "+  );
-         System.out.println(" |     10.    |      9.      |     8.     |      7.      |\t" +"    shared owned        :- "+   );
+         System.out.println(" |            |              |            |              |\t" +"    companies owned     :- ");companiesOwned(3);
+         System.out.println(" |     10.    |      9.      |     8.     |      7.      |\t" +"    shared owned        :- ");sharesOwned(3);
          System.out.println(" |    ISRO    |    Google    |   Stock    |    Income    |\t" +"                                                              ");
          System.out.println(" |            |              |   Market   |   Tax Raid   |\t" +"_________________________________________________________________                                                                    ");
          System.out.println(" |            |              |            |              |\t" +"                                                                                ");
@@ -74,6 +74,49 @@ public class Function {
          System.out.println("                                                          \t" +""     ); 
   
         return 0;
+    }
+
+    public void companiesOwned(int p) {
+        boolean[] companies = player.getPlayerCompaniesOwned(p);
+        if (companies[1] == true) {
+            System.out.print("Amazon ");
+        }
+        if (companies[4] == true) {
+            System.out.print("Tesla ");
+        }
+        if (companies[5] == true) {
+            System.out.print("Microsoft ");
+        }
+        if (companies[8] == true) {
+            System.out.print("Google ");
+        }
+        if (companies[9] == true) {
+            System.out.print("ISRO ");
+        }
+        if (companies[10] == true) {
+            System.out.print("Facebook ");
+        }
+    }
+
+    public void sharesOwned(int p){
+        if(player.getPlayerSharesOwned(p, 2)>0){
+            System.out.println("Amazon: "+ player.getPlayerSharesOwned(p, 2));
+        }
+        if(player.getPlayerSharesOwned(p, 5)>0){
+            System.out.println("Tesla: "+ player.getPlayerSharesOwned(p, 5));
+        }
+        if(player.getPlayerSharesOwned(p, 6)>0){
+            System.out.println("Microsoft: "+ player.getPlayerSharesOwned(p, 6));
+        }
+        if(player.getPlayerSharesOwned(p, 9)>0){
+            System.out.println("Google: "+ player.getPlayerSharesOwned(p, 9));
+        }
+        if(player.getPlayerSharesOwned(p, 10)>0){
+            System.out.println("ISRO: "+ player.getPlayerSharesOwned(p, 10));
+        }
+        if(player.getPlayerSharesOwned(p, 11)>0){
+            System.out.println("Facebook: "+ player.getPlayerSharesOwned(p, 11));
+        }
     }
 
     public String chance() {
@@ -218,8 +261,6 @@ public class Function {
         }
         return 0;
     }
-
-
 
     public int stockMarket() {
         int count = 0;
