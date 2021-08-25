@@ -14,7 +14,7 @@ public class Player {
         } else if (p == 3) {
             p3.setName(name);
         }
-
+ 
     }
 
     String name;
