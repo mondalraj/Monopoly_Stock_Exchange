@@ -8,29 +8,30 @@ public class Company {
     ISRO i10 = new ISRO();
     Facebook f11 = new Facebook();
 
-
-    public void setCompanyOwner(int n, int p){
+    public void setCompanyOwner(int n, int p) {
         if (n == 2) {
             a2.setOwner(p);
         } else if (n == 5) {
             t5.setOwner(p);
-            
+
         } else if (n == 6) {
             m6.setOwner(p);
-            
+
         } else if (n == 9) {
             g9.setOwner(p);
-            
+
         } else if (n == 10) {
             i10.setOwner(p);
-            
+
         } else if (n == 11) {
             f11.setOwner(p);
 
         }
     }
+
     int owner;
-    public int getCompanyOwner(int n){
+
+    public int getCompanyOwner(int n) {
         if (n == 2) {
             owner = a2.getOwner();
         } else if (n == 5) {
@@ -52,16 +53,16 @@ public class Company {
             System.out.println(a2.getCost());
         } else if (n == 5) {
             System.out.println(t5.getCost());
-            
+
         } else if (n == 6) {
             System.out.println(m6.getCost());
-            
+
         } else if (n == 9) {
             System.out.println(g9.getCost());
-            
+
         } else if (n == 10) {
             System.out.println(i10.getCost());
-            
+
         } else if (n == 11) {
             System.out.println(f11.getCost());
 
@@ -73,16 +74,16 @@ public class Company {
             a2.setSharePrice(price);
         } else if (n == 5) {
             t5.setSharePrice(price);
-            
+
         } else if (n == 6) {
             m6.setSharePrice(price);
-            
+
         } else if (n == 9) {
             g9.setSharePrice(price);
-            
+
         } else if (n == 10) {
             i10.setSharePrice(price);
-            
+
         } else if (n == 11) {
             f11.setSharePrice(price);
 
@@ -90,21 +91,22 @@ public class Company {
     }
 
     float sharePrice;
+
     public float getCompanySharePrice(int n) {
         if (n == 2) {
             sharePrice = a2.getSharePrice();
         } else if (n == 5) {
             sharePrice = t5.getSharePrice();
-            
+
         } else if (n == 6) {
             sharePrice = m6.getSharePrice();
-            
+
         } else if (n == 9) {
             sharePrice = g9.getSharePrice();
-            
+
         } else if (n == 10) {
             sharePrice = i10.getSharePrice();
-            
+
         } else if (n == 11) {
             sharePrice = f11.getSharePrice();
 
@@ -112,25 +114,29 @@ public class Company {
         return sharePrice;
     }
 
-    public void getCompanyNoOfShares(int n) {
+    int noOfShares;
+
+    public int getCompanyNoOfShares(int n) {
         if (n == 2) {
-            System.out.println(a2.getNoOfShares());
+            noOfShares = a2.getNoOfShares();
         } else if (n == 5) {
-            System.out.println(t5.getNoOfShares());
-            
+            noOfShares = t5.getNoOfShares();
+
         } else if (n == 6) {
-            System.out.println(m6.getNoOfShares());
-            
+
+            noOfShares = m6.getNoOfShares();
+
         } else if (n == 9) {
-            System.out.println(g9.getNoOfShares());
-            
+            noOfShares = g9.getNoOfShares();
+
         } else if (n == 10) {
-            System.out.println(i10.getNoOfShares());
-            
+            noOfShares = i10.getNoOfShares();
+
         } else if (n == 11) {
-            System.out.println(f11.getNoOfShares());
+            noOfShares = f11.getNoOfShares();
 
         }
+        return noOfShares;
     }
 
     public void setCompanyServiceRent(float rent, int n) {
@@ -138,16 +144,16 @@ public class Company {
             a2.setServiceRent(rent);
         } else if (n == 5) {
             t5.setServiceRent(rent);
-            
+
         } else if (n == 6) {
             m6.setServiceRent(rent);
-            
+
         } else if (n == 9) {
             g9.setServiceRent(rent);
-            
+
         } else if (n == 10) {
             i10.setServiceRent(rent);
-            
+
         } else if (n == 11) {
             f11.setServiceRent(rent);
 
@@ -155,21 +161,22 @@ public class Company {
     }
 
     float rent;
+
     public float getCompanyServiceRent(int n) {
         if (n == 2) {
             rent = a2.getServiceRent();
         } else if (n == 5) {
             rent = t5.getServiceRent();
-            
+
         } else if (n == 6) {
             rent = m6.getServiceRent();
-            
+
         } else if (n == 9) {
             rent = g9.getServiceRent();
-            
+
         } else if (n == 10) {
             rent = i10.getServiceRent();
-            
+
         } else if (n == 11) {
             rent = f11.getServiceRent();
 
@@ -185,11 +192,11 @@ class Amazon {
     float serviceRent = 400;
     int owner = 0;
 
-    public void setOwner(int p){
+    public void setOwner(int p) {
         this.owner = p;
     }
 
-    public int getOwner(){
+    public int getOwner() {
         return this.owner;
     }
 
@@ -225,11 +232,11 @@ class Tesla {
     float serviceRent = 450;
     int owner = 0;
 
-    public void setOwner(int p){
+    public void setOwner(int p) {
         this.owner = p;
     }
 
-    public int getOwner(){
+    public int getOwner() {
         return this.owner;
     }
 
@@ -265,11 +272,11 @@ class Microsoft {
     float serviceRent = 300;
     int owner = 0;
 
-    public void setOwner(int p){
+    public void setOwner(int p) {
         this.owner = p;
     }
 
-    public int getOwner(){
+    public int getOwner() {
         return this.owner;
     }
 
@@ -305,11 +312,11 @@ class Google {
     float serviceRent = 400;
     int owner = 0;
 
-    public void setOwner(int p){
+    public void setOwner(int p) {
         this.owner = p;
     }
 
-    public int getOwner(){
+    public int getOwner() {
         return this.owner;
     }
 
@@ -345,11 +352,11 @@ class ISRO {
     float serviceRent = 500;
     int owner = 0;
 
-    public void setOwner(int p){
+    public void setOwner(int p) {
         this.owner = p;
     }
 
-    public int getOwner(){
+    public int getOwner() {
         return this.owner;
     }
 
@@ -385,14 +392,13 @@ class Facebook {
     float serviceRent = 600;
     int owner = 0;
 
-    public void setOwner(int p){
+    public void setOwner(int p) {
         this.owner = p;
     }
 
-    public int getOwner(){
+    public int getOwner() {
         return this.owner;
     }
-    
 
     public int getCost() {
         return this.cost;

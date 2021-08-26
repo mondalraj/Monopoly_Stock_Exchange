@@ -47,32 +47,62 @@ public class Function {
     }
 
     public int board() {
-         System.out.println("                                                          \t" +"________________________________________________________________                                                                                 ");
-         System.out.println("  _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ \t" +"                                                      ");
-         System.out.println(" |            |             |             |              |\t" +"         "+ player.getPlayerName(1));
-         System.out.println(" |     1.     |      2.     |      3.     |      4.      |\t" +"    current balance     :- "+ player.getPlayerCurrentBal(1));
-         System.out.println(" |     GO     |   Amazon    |    Stock    |   Short      |\t" +"    companies owned     :- ");companiesOwned(1);
-         System.out.println(" |            |             |    Market   |   Listing    |\t" +"    shared owned        :- "   );sharesOwned(1);
-         System.out.println(" |            |             |             |   Fraud      |\t" +"                                                               ");
-         System.out.println(" |_ _ _ _ _ _ |_ _ _ _ _ _ _| _ _ _ _ _ _ |_ _ _ _ _ _ _ |\t" +"________________________________________________________________                                                               ");
-         System.out.println(" |            |                           |              |\t" +"                                                            ");
-         System.out.println(" |    12.     |                           |      5.      |\t" +"          "+ player.getPlayerName(2));
-         System.out.println(" |   Chance   |                           |    Tesla     |\t" +"    current balance     :- "+ player.getPlayerCurrentBal(2));
-         System.out.println(" |            |                           |              |\t" +"    companies owned     :- ");companiesOwned(2);
-         System.out.println(" |_ _ _ _ _ _ |                           | _ _ _ _ _ _ _|\t" +"    shared owned        :- ");sharesOwned(2);
-         System.out.println(" |            |                           |              |\t" +"                                                                   ");
-         System.out.println(" |     11.    |                           |      6.      |\t" +"_________________________________________________________________                                                             ");
-         System.out.println(" |  Facebook  |                           |   Micorsoft  |\t" +"                                                                   ");
-         System.out.println(" |            |                           |              |\t" +"          "+ player.getPlayerName(3));
-         System.out.println(" |_ _ _ _ _ _ | _ _ _ _ _ _ _ _ _ _ _ _ _ |_ _ _ _ _ _ _ |\t" +"    current balance     :- "+ player.getPlayerCurrentBal(3));
-         System.out.println(" |            |              |            |              |\t" +"    companies owned     :- ");companiesOwned(3);
-         System.out.println(" |     10.    |      9.      |     8.     |      7.      |\t" +"    shared owned        :- ");sharesOwned(3);
-         System.out.println(" |    ISRO    |    Google    |   Stock    |    Income    |\t" +"                                                              ");
-         System.out.println(" |            |              |   Market   |   Tax Raid   |\t" +"_________________________________________________________________                                                                    ");
-         System.out.println(" |            |              |            |              |\t" +"                                                                                ");
-         System.out.println(" |_ _ _ _ _ _ |_ _ _ _ _ _ _ |_ _ _ _ _ _ |_ _ _ _ _ _ _ |\t" +"                                                                             ");
-         System.out.println("                                                          \t" +""     ); 
-  
+        System.out.println("                                                          \t"
+                + "________________________________________________________________                                                                                 ");
+        System.out.println("  _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ \t"
+                + "                                                      ");
+        System.out.println(
+                " |            |             |             |              |\t" + "         " + player.getPlayerName(1));
+        System.out.println(" |     1.     |      2.     |      3.     |      4.      |\t"
+                + "    current balance     :- " + player.getPlayerCurrentBal(1));
+        System.out.println(
+                " |     GO     |   Amazon    |    Stock    |   Short      |\t" + "    companies owned     :- ");
+        companiesOwned(1);
+        System.out.println(
+                " |            |             |    Market   |   Listing    |\t" + "    shared owned        :- ");
+        sharesOwned(1);
+        System.out.println(" |            |             |             |   Fraud      |\t"
+                + "                                                               ");
+        System.out.println(" |_ _ _ _ _ _ |_ _ _ _ _ _ _| _ _ _ _ _ _ |_ _ _ _ _ _ _ |\t"
+                + "________________________________________________________________                                                               ");
+        System.out.println(" |            |                           |              |\t"
+                + "                                                            ");
+        System.out.println(" |    12.     |                           |      5.      |\t" + "          "
+                + player.getPlayerName(2));
+        System.out.println(" |   Chance   |                           |    Tesla     |\t"
+                + "    current balance     :- " + player.getPlayerCurrentBal(2));
+        System.out.println(
+                " |            |                           |              |\t" + "    companies owned     :- ");
+        companiesOwned(2);
+        System.out.println(
+                " |_ _ _ _ _ _ |                           | _ _ _ _ _ _ _|\t" + "    shared owned        :- ");
+        sharesOwned(2);
+        System.out.println(" |            |                           |              |\t"
+                + "                                                                   ");
+        System.out.println(" |     11.    |                           |      6.      |\t"
+                + "_________________________________________________________________                                                             ");
+        System.out.println(" |  Facebook  |                           |   Micorsoft  |\t"
+                + "                                                                   ");
+        System.out.println(" |            |                           |              |\t" + "          "
+                + player.getPlayerName(3));
+        System.out.println(" |_ _ _ _ _ _ | _ _ _ _ _ _ _ _ _ _ _ _ _ |_ _ _ _ _ _ _ |\t"
+                + "    current balance     :- " + player.getPlayerCurrentBal(3));
+        System.out.println(
+                " |            |              |            |              |\t" + "    companies owned     :- ");
+        companiesOwned(3);
+        System.out.println(
+                " |     10.    |      9.      |     8.     |      7.      |\t" + "    shared owned        :- ");
+        sharesOwned(3);
+        System.out.println(" |    ISRO    |    Google    |   Stock    |    Income    |\t"
+                + "                                                              ");
+        System.out.println(" |            |              |   Market   |   Tax Raid   |\t"
+                + "_________________________________________________________________                                                                    ");
+        System.out.println(" |            |              |            |              |\t"
+                + "                                                                                ");
+        System.out.println(" |_ _ _ _ _ _ |_ _ _ _ _ _ _ |_ _ _ _ _ _ |_ _ _ _ _ _ _ |\t"
+                + "                                                                             ");
+        System.out.println("                                                          \t" + "");
+
         return 0;
     }
 
@@ -98,24 +128,24 @@ public class Function {
         }
     }
 
-    public void sharesOwned(int p){
-        if(player.getPlayerSharesOwned(p, 2)>0){
-            System.out.println("Amazon: "+ player.getPlayerSharesOwned(p, 2));
+    public void sharesOwned(int p) {
+        if (player.getPlayerSharesOwned(p, 2) > 0) {
+            System.out.println("Amazon: " + player.getPlayerSharesOwned(p, 2));
         }
-        if(player.getPlayerSharesOwned(p, 5)>0){
-            System.out.println("Tesla: "+ player.getPlayerSharesOwned(p, 5));
+        if (player.getPlayerSharesOwned(p, 5) > 0) {
+            System.out.println("Tesla: " + player.getPlayerSharesOwned(p, 5));
         }
-        if(player.getPlayerSharesOwned(p, 6)>0){
-            System.out.println("Microsoft: "+ player.getPlayerSharesOwned(p, 6));
+        if (player.getPlayerSharesOwned(p, 6) > 0) {
+            System.out.println("Microsoft: " + player.getPlayerSharesOwned(p, 6));
         }
-        if(player.getPlayerSharesOwned(p, 9)>0){
-            System.out.println("Google: "+ player.getPlayerSharesOwned(p, 9));
+        if (player.getPlayerSharesOwned(p, 9) > 0) {
+            System.out.println("Google: " + player.getPlayerSharesOwned(p, 9));
         }
-        if(player.getPlayerSharesOwned(p, 10)>0){
-            System.out.println("ISRO: "+ player.getPlayerSharesOwned(p, 10));
+        if (player.getPlayerSharesOwned(p, 10) > 0) {
+            System.out.println("ISRO: " + player.getPlayerSharesOwned(p, 10));
         }
-        if(player.getPlayerSharesOwned(p, 11)>0){
-            System.out.println("Facebook: "+ player.getPlayerSharesOwned(p, 11));
+        if (player.getPlayerSharesOwned(p, 11) > 0) {
+            System.out.println("Facebook: " + player.getPlayerSharesOwned(p, 11));
         }
     }
 
@@ -201,6 +231,87 @@ public class Function {
                 }
             }
         }
+        if (player.getPlayerSharesOwned(i, 5) > 0) {
+            if (company.getCompanyOwner(5) != i) {
+                int shareNum = player.getPlayerSharesOwned(i, 5);
+                int owner = company.getCompanyOwner(5);
+                float shareBal = (player.getPlayerSharesOwned(i, 5)) * (company.getCompanySharePrice(5));
+                player.setPlayerCurrentBal(player.getPlayerCurrentBal(i) + shareBal, i);
+                player.setPlayerSharesOwned(i, 5, 0);
+
+                if (player.getPlayerCurrentBal(owner) > shareBal) {
+                    player.setPlayerSharesOwned(owner, 5, player.getPlayerSharesOwned(owner, 5) + shareNum);
+                    player.setPlayerCurrentBal(player.getPlayerCurrentBal(owner) - shareBal, owner);
+                } else {
+                    bankRupt(player.getPlayerName(owner));
+                }
+            }
+        }
+        if (player.getPlayerSharesOwned(i, 6) > 0) {
+            if (company.getCompanyOwner(6) != i) {
+                int shareNum = player.getPlayerSharesOwned(i, 6);
+                int owner = company.getCompanyOwner(6);
+                float shareBal = (player.getPlayerSharesOwned(i, 6)) * (company.getCompanySharePrice(6));
+                player.setPlayerCurrentBal(player.getPlayerCurrentBal(i) + shareBal, i);
+                player.setPlayerSharesOwned(i, 6, 0);
+
+                if (player.getPlayerCurrentBal(owner) > shareBal) {
+                    player.setPlayerSharesOwned(owner, 6, player.getPlayerSharesOwned(owner, 6) + shareNum);
+                    player.setPlayerCurrentBal(player.getPlayerCurrentBal(owner) - shareBal, owner);
+                } else {
+                    bankRupt(player.getPlayerName(owner));
+                }
+            }
+        }
+        if (player.getPlayerSharesOwned(i, 9) > 0) {
+            if (company.getCompanyOwner(9) != i) {
+                int shareNum = player.getPlayerSharesOwned(i, 9);
+                int owner = company.getCompanyOwner(9);
+                float shareBal = (player.getPlayerSharesOwned(i, 9)) * (company.getCompanySharePrice(9));
+                player.setPlayerCurrentBal(player.getPlayerCurrentBal(i) + shareBal, i);
+                player.setPlayerSharesOwned(i, 9, 0);
+
+                if (player.getPlayerCurrentBal(owner) > shareBal) {
+                    player.setPlayerSharesOwned(owner, 9, player.getPlayerSharesOwned(owner, 9) + shareNum);
+                    player.setPlayerCurrentBal(player.getPlayerCurrentBal(owner) - shareBal, owner);
+                } else {
+                    bankRupt(player.getPlayerName(owner));
+                }
+            }
+        }
+        if (player.getPlayerSharesOwned(i, 10) > 0) {
+            if (company.getCompanyOwner(10) != i) {
+                int shareNum = player.getPlayerSharesOwned(i, 10);
+                int owner = company.getCompanyOwner(10);
+                float shareBal = (player.getPlayerSharesOwned(i, 10)) * (company.getCompanySharePrice(10));
+                player.setPlayerCurrentBal(player.getPlayerCurrentBal(i) + shareBal, i);
+                player.setPlayerSharesOwned(i, 10, 0);
+
+                if (player.getPlayerCurrentBal(owner) > shareBal) {
+                    player.setPlayerSharesOwned(owner, 10, player.getPlayerSharesOwned(owner, 10) + shareNum);
+                    player.setPlayerCurrentBal(player.getPlayerCurrentBal(owner) - shareBal, owner);
+                } else {
+                    bankRupt(player.getPlayerName(owner));
+                }
+            }
+        }
+        if (player.getPlayerSharesOwned(i, 11) > 0) {
+            if (company.getCompanyOwner(11) != i) {
+                int shareNum = player.getPlayerSharesOwned(i, 11);
+                int owner = company.getCompanyOwner(11);
+                float shareBal = (player.getPlayerSharesOwned(i, 11)) * (company.getCompanySharePrice(11));
+                player.setPlayerCurrentBal(player.getPlayerCurrentBal(i) + shareBal, i);
+                player.setPlayerSharesOwned(i, 11, 0);
+
+                if (player.getPlayerCurrentBal(owner) > shareBal) {
+                    player.setPlayerSharesOwned(owner, 11, player.getPlayerSharesOwned(owner, 11) + shareNum);
+                    player.setPlayerCurrentBal(player.getPlayerCurrentBal(owner) - shareBal, owner);
+                } else {
+                    bankRupt(player.getPlayerName(owner));
+                }
+            }
+        }
+
         return 0;
     }
 
@@ -245,9 +356,27 @@ public class Function {
 
     }
 
-    public void fraud() {
-        // System.out.println("Pay rs.500 to bank")
-        // System.out.println(Price decrease of the company you own by 20%);
+    public void fraud(int p) {
+        System.out.println("Short Listing Fraud");
+        System.out.println(player.getPlayerName(p) + "Pay rs.500 to the bank");
+        System.out.println("All the share Price for the companies you owned will decrease by 20%");
+        System.out.println("List of companies owned by " + player.getPlayerName(p));
+        companiesOwned(p);
+        if (player.getPlayerCurrentBal(p) >= 500) {
+            player.setPlayerCurrentBal(player.getPlayerCurrentBal(p) - 500, p);
+
+        } else {
+            System.out.println(
+                    "You don't have enough balance to pay for the short listing fraud \n Press Enter to sell all your shares. ");
+            promptEnterKey();
+            sell(p);
+            if (player.getPlayerCurrentBal(p) >= 500) {
+                player.setPlayerCurrentBal(player.getPlayerCurrentBal(p) - 500, p);
+
+            } else {
+                bankRupt(player.getPlayerName(p));
+            }
+        }
         // list of companies owned by user
         // current balance=current balance-500
         // updated shares of companies owned=4/5*shares of companies owned //it is only
