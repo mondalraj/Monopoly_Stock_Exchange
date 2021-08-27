@@ -48,12 +48,20 @@ public class App {
                 i = 3;
                 System.out.println(player.getPlayerName(3) + " press ENTER to roll the dice");
 
-                break;
+                // break;
             }
             func.promptEnterKey();
             func.excessBalance(i);
-            System.out.println("You rolled " + func.dice(i));
+
+            int die = (int) (3.0 * Math.random()) + 1;
             int currentPosition = player.getPlayerCurrentPosition(i);
+            currentPosition = currentPosition + die;
+            player.setPlayerCurrentPosition(currentPosition, i);
+            func.resetPostion(player.getPlayerCurrentPosition(i), i);
+
+            System.out.println("You rolled " + die);
+            System.out.println("Now you are on " + player.getPlayerCurrentPosition(i));
+
             switch (currentPosition) {
                 case 1: {
 
@@ -68,16 +76,17 @@ public class App {
 
                         System.out.println("Cost of Amazon is 6000 dollars only");
                         System.out.println("You will own a total of 20 shares of the company ");
-                        System.out.println("Each share cost is 200 and will increase 10% whenever other players arrives on the same ");
+                        System.out.println(
+                                "Each share cost is 200 and will increase 10% whenever other players arrives on the same ");
                         System.out.println("Service Rent of Amazon is 400");
-                        System.out.println("Do you want to buy or not ?");
+                        System.out.println("Do you want to buy or not ? (YES/NO)");
 
                         String response = sc.nextLine();
 
                         if (response == "yes" || response == "Yes" || response == "YES") {
                             if (player.getPlayerCurrentBal(i) >= 6000) {
                                 player.setPlayerCurrentBal(player.getPlayerCurrentBal(i) - 6000, i);
-                                player.setPlayerSharesOwned(i,2,company.getCompanyNoOfShares(2));
+                                player.setPlayerSharesOwned(i, 2, company.getCompanyNoOfShares(2));
                                 company.setCompanyOwner(2, i);
                                 player.setPlayerCompaniesOwned(i, 1);
                                 System.out.println(" Congratulations !!!");
@@ -95,7 +104,7 @@ public class App {
                                     func.sell(i);
                                     if (player.getPlayerCurrentBal(i) >= 6000) {
                                         player.setPlayerCurrentBal(player.getPlayerCurrentBal(i) - 6000, i);
-                                        player.setPlayerSharesOwned(i,2,company.getCompanyNoOfShares(2));
+                                        player.setPlayerSharesOwned(i, 2, company.getCompanyNoOfShares(2));
                                         company.setCompanyOwner(2, i);
                                         player.setPlayerCompaniesOwned(i, 1);
                                         System.out.println(" Congratulations !!!");
@@ -148,12 +157,12 @@ public class App {
 
                         }
 
-                        break;
-
+                        
                     }
+                    break;
                 }
                 case 3: {
-                    // call the function of stock market
+                    func.stockMarket(i);
 
                     break;
                 }
@@ -168,16 +177,17 @@ public class App {
 
                         System.out.println("Cost of Tesla is 5500 dollars only");
                         System.out.println("You will own a total of 45 shares of the company ");
-                        System.out.println("Each share cost is 100 and will increase 10% whenever other players arrives on the same ");
+                        System.out.println(
+                                "Each share cost is 100 and will increase 10% whenever other players arrives on the same ");
                         System.out.println("Service Rent of Tesla is 450");
-                        System.out.println("Do you want to buy or not ?");
+                        System.out.println("Do you want to buy or not ? (YES/NO)");
 
                         String response = sc.nextLine();
 
                         if (response == "yes" || response == "Yes" || response == "YES") {
                             if (player.getPlayerCurrentBal(i) >= 5500) {
                                 player.setPlayerCurrentBal(player.getPlayerCurrentBal(i) - 5500, i);
-                                  player.setPlayerSharesOwned(i,5,company.getCompanyNoOfShares(5));
+                                player.setPlayerSharesOwned(i, 5, company.getCompanyNoOfShares(5));
                                 company.setCompanyOwner(5, i);
                                 player.setPlayerCompaniesOwned(i, 4);
                                 System.out.println(" Congratulations !!!");
@@ -195,7 +205,7 @@ public class App {
                                     func.sell(i);
                                     if (player.getPlayerCurrentBal(i) >= 5500) {
                                         player.setPlayerCurrentBal(player.getPlayerCurrentBal(i) - 5500, i);
-                                          player.setPlayerSharesOwned(i,5,company.getCompanyNoOfShares(5));
+                                        player.setPlayerSharesOwned(i, 5, company.getCompanyNoOfShares(5));
                                         company.setCompanyOwner(5, i);
                                         player.setPlayerCompaniesOwned(i, 4);
                                         System.out.println(" Congratulations !!!");
@@ -248,9 +258,9 @@ public class App {
 
                         }
 
-                        break;
-
+                        
                     }
+                    break;
                 }
 
                 case 6: {
@@ -259,16 +269,17 @@ public class App {
 
                         System.out.println("Cost of Microsoft is 5000 dollars only");
                         System.out.println("You will own a total of 30 shares of the company ");
-                        System.out.println("Each share cost is 100 and will increase 10% whenever other players arrives on the same ");
+                        System.out.println(
+                                "Each share cost is 100 and will increase 10% whenever other players arrives on the same ");
                         System.out.println("Service Rent of Microsoft is 300");
-                        System.out.println("Do you want to buy or not ?");
+                        System.out.println("Do you want to buy or not ? ( YES/NO )");
 
                         String response = sc.nextLine();
 
                         if (response == "yes" || response == "Yes" || response == "YES") {
                             if (player.getPlayerCurrentBal(i) >= 6000) {
                                 player.setPlayerCurrentBal(player.getPlayerCurrentBal(i) - 6000, i);
-                                  player.setPlayerSharesOwned(i,6,company.getCompanyNoOfShares(6));
+                                player.setPlayerSharesOwned(i, 6, company.getCompanyNoOfShares(6));
                                 company.setCompanyOwner(6, i);
                                 player.setPlayerCompaniesOwned(i, 5);
                                 System.out.println(" Congratulations !!!");
@@ -286,7 +297,7 @@ public class App {
                                     func.sell(i);
                                     if (player.getPlayerCurrentBal(i) >= 5000) {
                                         player.setPlayerCurrentBal(player.getPlayerCurrentBal(i) - 5000, i);
-                                          player.setPlayerSharesOwned(i,6,company.getCompanyNoOfShares(6));
+                                        player.setPlayerSharesOwned(i, 6, company.getCompanyNoOfShares(6));
                                         company.setCompanyOwner(6, i);
                                         player.setPlayerCompaniesOwned(i, 5);
                                         System.out.println(" Congratulations !!!");
@@ -339,9 +350,9 @@ public class App {
 
                         }
 
-                        break;
-
+                        
                     }
+                    break;
                 }
 
                 case 7: {
@@ -360,16 +371,17 @@ public class App {
 
                         System.out.println("Cost of Google is 10000 dollars only");
                         System.out.println("You will own a total of 8 shares of the company ");
-                        System.out.println("Each share cost is 1000 and will increase 5% whenever other players arrives on the same ");
+                        System.out.println(
+                                "Each share cost is 1000 and will increase 5% whenever other players arrives on the same ");
                         System.out.println("Service Rent of Google is 400");
-                        System.out.println("Do you want to buy or not ?");
+                        System.out.println("Do you want to buy or not ? ( YES/NO )");
 
                         String response = sc.nextLine();
 
                         if (response == "yes" || response == "Yes" || response == "YES") {
                             if (player.getPlayerCurrentBal(i) >= 10000) {
                                 player.setPlayerCurrentBal(player.getPlayerCurrentBal(i) - 10000, i);
-                                  player.setPlayerSharesOwned(i,9,company.getCompanyNoOfShares(9));
+                                player.setPlayerSharesOwned(i, 9, company.getCompanyNoOfShares(9));
                                 company.setCompanyOwner(9, i);
                                 player.setPlayerCompaniesOwned(i, 8);
                                 System.out.println(" Congratulations !!!");
@@ -387,7 +399,7 @@ public class App {
                                     func.sell(i);
                                     if (player.getPlayerCurrentBal(i) >= 10000) {
                                         player.setPlayerCurrentBal(player.getPlayerCurrentBal(i) - 10000, i);
-                                          player.setPlayerSharesOwned(i,9,company.getCompanyNoOfShares(9));
+                                        player.setPlayerSharesOwned(i, 9, company.getCompanyNoOfShares(9));
                                         company.setCompanyOwner(9, i);
                                         player.setPlayerCompaniesOwned(i, 8);
                                         System.out.println(" Congratulations !!!");
@@ -440,9 +452,9 @@ public class App {
 
                         }
 
-                        break;
-
+                        
                     }
+                    break;
                 }
                 case 10: {
                     System.out.println("You have reached | ISRO |");
@@ -450,16 +462,17 @@ public class App {
 
                         System.out.println("Cost of ISRO is 7000 dollars only");
                         System.out.println("You will own a total of 10 shares of the company ");
-                        System.out.println("Each share cost is 500 and will increase 10% whenever other players arrives on the same ");
+                        System.out.println(
+                                "Each share cost is 500 and will increase 10% whenever other players arrives on the same ");
                         System.out.println("Service Rent of ISRO is 500");
-                        System.out.println("Do you want to buy or not ?");
+                        System.out.println("Do you want to buy or not ?(YES/NO)");
 
                         String response = sc.nextLine();
 
                         if (response == "yes" || response == "Yes" || response == "YES") {
                             if (player.getPlayerCurrentBal(i) >= 7000) {
                                 player.setPlayerCurrentBal(player.getPlayerCurrentBal(i) - 7000, i);
-                                  player.setPlayerSharesOwned(i,10,company.getCompanyNoOfShares(10));
+                                player.setPlayerSharesOwned(i, 10, company.getCompanyNoOfShares(10));
                                 company.setCompanyOwner(10, i);
                                 player.setPlayerCompaniesOwned(i, 9);
                                 System.out.println(" Congratulations !!!");
@@ -477,7 +490,7 @@ public class App {
                                     func.sell(i);
                                     if (player.getPlayerCurrentBal(i) >= 7000) {
                                         player.setPlayerCurrentBal(player.getPlayerCurrentBal(i) - 7000, i);
-                                          player.setPlayerSharesOwned(i,10,company.getCompanyNoOfShares(10));
+                                        player.setPlayerSharesOwned(i, 10, company.getCompanyNoOfShares(10));
                                         company.setCompanyOwner(10, i);
                                         player.setPlayerCompaniesOwned(i, 9);
                                         System.out.println(" Congratulations !!!");
@@ -530,9 +543,9 @@ public class App {
 
                         }
 
-                        break;
-
+                        
                     }
+                    break;
                 }
                 case 11: {
                     System.out.println("You have reached | Facebook |");
@@ -540,16 +553,17 @@ public class App {
 
                         System.out.println("Cost of Facebook is 6000 dollars only");
                         System.out.println("You will own a total of 30 shares of the company ");
-                        System.out.println("Each share cost is 200 and will increase 10% whenever other players arrives on the same ");
+                        System.out.println(
+                                "Each share cost is 200 and will increase 10% whenever other players arrives on the same ");
                         System.out.println("Service Rent of Facebook is 600");
-                        System.out.println("Do you want to buy or not ?");
+                        System.out.println("Do you want to buy or not ?(YES/NO)");
 
                         String response = sc.nextLine();
 
                         if (response == "yes" || response == "Yes" || response == "YES") {
                             if (player.getPlayerCurrentBal(i) >= 6000) {
                                 player.setPlayerCurrentBal(player.getPlayerCurrentBal(i) - 6000, i);
-                                  player.setPlayerSharesOwned(i,11,company.getCompanyNoOfShares(11));
+                                player.setPlayerSharesOwned(i, 11, company.getCompanyNoOfShares(11));
                                 company.setCompanyOwner(11, i);
                                 player.setPlayerCompaniesOwned(i, 10);
                                 System.out.println(" Congratulations !!!");
@@ -567,7 +581,7 @@ public class App {
                                     func.sell(i);
                                     if (player.getPlayerCurrentBal(i) >= 6000) {
                                         player.setPlayerCurrentBal(player.getPlayerCurrentBal(i) - 6000, i);
-                                          player.setPlayerSharesOwned(i,11,company.getCompanyNoOfShares(11));
+                                        player.setPlayerSharesOwned(i, 11, company.getCompanyNoOfShares(11));
                                         company.setCompanyOwner(11, i);
                                         player.setPlayerCompaniesOwned(i, 10);
                                         System.out.println(" Congratulations !!!");
@@ -620,9 +634,9 @@ public class App {
 
                         }
 
-                        break;
-
+                        
                     }
+                    break;
                 }
                 case 12: {
                     // call chance function

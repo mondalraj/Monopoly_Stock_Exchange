@@ -7,4 +7,5 @@ Clear the screen after every turn.
 20 august - board mei changes , cases mei changes krni ha kuch ( no of shares)
            - bankrupt mei changes , kaha kaha pr call hoga bankrupt call hoga 
 
-27 Aug - Problem in sell function, first fix it then create short listing fraud func
+26 Aug - Problem in sell function, first fix it then create short listing fraud func
+name null aa rha hai scorecard pe(Sore card mei null position add karni hai)
