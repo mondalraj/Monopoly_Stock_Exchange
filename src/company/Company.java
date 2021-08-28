@@ -48,28 +48,27 @@ public class Company {
         return owner;
     }
 
-    public void getCompanyCost(int n) {
+    int companyCost;
+
+    public int getCompanyCost(int n) {
         if (n == 2) {
-            System.out.println(a2.getCost());
+            companyCost = a2.getCost();
         } else if (n == 5) {
-            System.out.println(t5.getCost());
-
+            companyCost = t5.getCost();
         } else if (n == 6) {
-            System.out.println(m6.getCost());
-
+            companyCost = m6.getCost();
         } else if (n == 9) {
-            System.out.println(g9.getCost());
-
+            companyCost = g9.getCost();
         } else if (n == 10) {
-            System.out.println(i10.getCost());
-
+            companyCost = i10.getCost();
         } else if (n == 11) {
-            System.out.println(f11.getCost());
+            companyCost = f11.getCost();
 
         }
+        return companyCost;
     }
 
-    public void setCompanySharePrice(int price, int n) {
+    public void setCompanySharePrice(float price, int n) {
         if (n == 2) {
             a2.setSharePrice(price);
         } else if (n == 5) {
@@ -386,7 +385,7 @@ class ISRO {
 }
 
 class Facebook {
-    int cost = 6000;
+    int cost = 6500;
     float sharePrice = 200;
     int noOfShares = 30;
     float serviceRent = 600;

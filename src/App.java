@@ -36,6 +36,7 @@ public class App {
         func.board();
 
         for (int i = 1; i > 0; i++) {
+            System.out.println("");
             if (i % 3 == 1) {
                 i = 1;
                 System.out.println(player.getPlayerName(1) + " press ENTER to roll the dice");
@@ -157,7 +158,6 @@ public class App {
 
                         }
 
-                        
                     }
                     break;
                 }
@@ -258,7 +258,6 @@ public class App {
 
                         }
 
-                        
                     }
                     break;
                 }
@@ -350,17 +349,16 @@ public class App {
 
                         }
 
-                        
                     }
                     break;
                 }
 
                 case 7: {
-                    // call income tax raid function
+                    func.taxRaid(i);
                     break;
                 }
                 case 8: {
-                    // call stock market
+                    func.stockMarket(i);
                     break;
 
                 }
@@ -452,7 +450,6 @@ public class App {
 
                         }
 
-                        
                     }
                     break;
                 }
@@ -543,7 +540,6 @@ public class App {
 
                         }
 
-                        
                     }
                     break;
                 }
@@ -551,7 +547,7 @@ public class App {
                     System.out.println("You have reached | Facebook |");
                     if (company.getCompanyOwner(11) == 0) {
 
-                        System.out.println("Cost of Facebook is 6000 dollars only");
+                        System.out.println("Cost of Facebook is 6500 dollars only");
                         System.out.println("You will own a total of 30 shares of the company ");
                         System.out.println(
                                 "Each share cost is 200 and will increase 10% whenever other players arrives on the same ");
@@ -561,8 +557,8 @@ public class App {
                         String response = sc.nextLine();
 
                         if (response == "yes" || response == "Yes" || response == "YES") {
-                            if (player.getPlayerCurrentBal(i) >= 6000) {
-                                player.setPlayerCurrentBal(player.getPlayerCurrentBal(i) - 6000, i);
+                            if (player.getPlayerCurrentBal(i) >= 6500) {
+                                player.setPlayerCurrentBal(player.getPlayerCurrentBal(i) - 6500, i);
                                 player.setPlayerSharesOwned(i, 11, company.getCompanyNoOfShares(11));
                                 company.setCompanyOwner(11, i);
                                 player.setPlayerCompaniesOwned(i, 10);
@@ -579,11 +575,11 @@ public class App {
 
                                 if (res == "yes" || res == "Yes" || res == "YES") {
                                     func.sell(i);
-                                    if (player.getPlayerCurrentBal(i) >= 6000) {
-                                        player.setPlayerCurrentBal(player.getPlayerCurrentBal(i) - 6000, i);
+                                    if (player.getPlayerCurrentBal(i) >= 6500) {
+                                        player.setPlayerCurrentBal(player.getPlayerCurrentBal(i) - 6500, i);
                                         player.setPlayerSharesOwned(i, 11, company.getCompanyNoOfShares(11));
                                         company.setCompanyOwner(11, i);
-                                        player.setPlayerCompaniesOwned(i, 10);
+                                        player.setPlayerCompaniesOwned(i, 11);
                                         System.out.println(" Congratulations !!!");
                                         System.out.println(" You have bought Facebook");
                                         System.out.println("Player " + i + "'s current Balance = ");
@@ -616,7 +612,7 @@ public class App {
 
                         } else {
                             func.sell(i);
-                            if (player.getPlayerCurrentBal(i) >= company.getCompanyServiceRent(2)) {
+                            if (player.getPlayerCurrentBal(i) >= company.getCompanyServiceRent(11)) {
                                 System.out.println("Facebook is owned by " + player.getPlayerName(owner));
 
                                 System.out.println(
@@ -634,12 +630,11 @@ public class App {
 
                         }
 
-                        
                     }
                     break;
                 }
                 case 12: {
-                    // call chance function
+                    func.chance(i);
                     break;
                 }
             }
