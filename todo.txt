@@ -1,3 +1,4 @@
+
 Clear the screen after every turn.
 3 loop holes 
 
@@ -9,3 +10,6 @@ Clear the screen after every turn.
 
 26 Aug - Problem in sell function, first fix it then create short listing fraud func
 name null aa rha hai scorecard pe(Sore card mei null position add karni hai)
+
+        stock price 10% increase krvana ha when any players arrives at an already bought company
+        board ko call krna ha baar baar

@@ -291,7 +291,7 @@ public class Player {
 
 class Player1 {
     String name;
-    float currentBal = 10000;
+    float currentBal = 15000;
     int currentPosition = 1;
     boolean companiesOwned[] = new boolean[12];
     int amazonShares = 0;
@@ -384,7 +384,7 @@ class Player1 {
 
 class Player2 {
     String name;
-    float currentBal = 10000;
+    float currentBal = 15000;
     int currentPosition = 1;
     boolean companiesOwned[] = new boolean[12];
     int amazonShares = 0;
@@ -477,7 +477,7 @@ class Player2 {
 
 class Player3 {
     String name;
-    float currentBal = 10000;
+    float currentBal = 15000;
     int currentPosition = 1;
     boolean companiesOwned[] = new boolean[12];
     int amazonShares = 0;
