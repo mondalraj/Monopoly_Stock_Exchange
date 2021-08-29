@@ -82,9 +82,9 @@ public class App {
 
                     if (company.getCompanyOwner(2) == 0) {
 
-                        System.out.println(" Cost = $6000 ");
-                        System.out.println(" Total shares=20 ");
-                        System.out.println(" Each share costs = 200 ");
+                        System.out.println(" Cost = $ 6000 ");
+                        System.out.println(" Total shares = 20 ");
+                        System.out.println(" Share price = $ 200 ");
                         System.out.println(" It will increase by 10% whenever other players arrives on the same");
                         System.out.println(" Service Rent of Amazon is 400");
                         System.out.println(" Do you want to buy or not ? (YES/NO)");
@@ -104,7 +104,7 @@ public class App {
                                 System.out.println(
                                         " Do u want to sell your shares ? Remember , you will have to sell all your shares ,you will not be allowed to sell a particular amount of shares ( Enter yes / no )");
 
-                                String res = sc.nextLine();
+                                String res = sc.next();
 
                                 if (res.equalsIgnoreCase("yes")) {
                                     sell(i);
@@ -201,10 +201,10 @@ public class App {
                     if (company.getCompanyOwner(5) == 0) {
 
                         System.out.println(" Cost = $ 5500 ");
-                        System.out.println(" Total shares= 45 ");
-                        System.out.println(" Each share cost = 100 ");
-                        System.out.println("  It will increase by 10% whenever other players arrives on the same");
-                        System.out.println(" Service Rent of Tesla is 450");
+                        System.out.println(" Total shares = $ 45 ");
+                        System.out.println(" Share price = $ 100 ");
+                        System.out.println(" It will increase by 10% whenever other players arrives on the same");
+                        System.out.println(" Service Rent = $ 450");
                         System.out.println(" Do you want to buy or not ? (YES/NO)");
 
                         String response = sc.next();
@@ -217,13 +217,12 @@ public class App {
                                 player.setPlayerCompaniesOwned(i, 4);
                                 System.out.println(" Congratulations !!!");
                                 System.out.println(" You bought Tesla");
-                                System.out.println(
-                                        " Player " + i + "'s current Balance = " + player.getPlayerCurrentBal(i));
+                                
                             } else {
                                 System.out.println(" You don't have sufficient balance to buy Tesla");
                                 System.out.println(" Do you want to sell your shares ? Remember , you will have to sell all your shares ,you will not be allowed to sell a particular amount of shares ( Enter yes / no )");
 
-                                String res = sc.nextLine();
+                                String res = sc.next();
 
                                 if (res.equalsIgnoreCase("yes")) {
                                     sell(i);
@@ -234,7 +233,7 @@ public class App {
                                         player.setPlayerCompaniesOwned(i, 4);
                                         System.out.println(" Congratulations !!!");
                                         System.out.println(" You bought Tesla");
-                                        System.out.println(" Player " + i + "'s current Balance = ");
+                                        
                                         player.getPlayerCurrentBal(i);
                                     } else {
                                         System.out.println(" You still don't have enough balance");
@@ -320,7 +319,7 @@ public class App {
                                 System.out.println(" You don't have sufficient balance to buy Microsoft");
                                 System.out.println(" Do u want to sell your shares ? Remember , you will have to sell all your shares ,you will not be allowed to sell a particular amount of shares ( Enter yes / no )");
 
-                                String res = sc.nextLine();
+                                String res = sc.next();
 
                                 if (res.equalsIgnoreCase("yes")) {
                                     sell(i);
@@ -425,7 +424,7 @@ public class App {
                         System.out.println(" Service Rent = 400");
                         System.out.println(" Do you want to buy or not ? ( YES/NO )");
 
-                        String response = sc.nextLine();
+                        String response = sc.next();
 
                         if (response.equalsIgnoreCase("yes")) {
                             if (player.getPlayerCurrentBal(i) >= 10000) {
@@ -442,7 +441,7 @@ public class App {
                                 System.out.println(
                                         " Do u want to sell your shares ? Remember , you will have to sell all your shares ,you will not be allowed to sell a particular amount of shares ( Enter yes / no )");
 
-                                String res = sc.nextLine();
+                                String res = sc.next();
 
                                 if (res.equalsIgnoreCase("yes")) {
                                     sell(i);
@@ -517,12 +516,12 @@ public class App {
 
                         System.out.println(" Cost = $7000 ");
                         System.out.println(" Total shares = 10 ");
-                        System.out.println(" Each share cost is 500 ");
-                        System.out.println("It will increase 10% whenever other players arrives on the same ");
-                        System.out.println(" Service Rent = 500");
+                        System.out.println(" Share price = $500 ");
+                        System.out.println(" It will increase 10% whenever other players arrives on the same ");
+                        System.out.println(" Service Rent = $500");
                         System.out.println(" Do you want to buy or not ?(YES/NO)");
 
-                        String response = sc.nextLine();
+                        String response = sc.next();
 
                         if (response.equalsIgnoreCase("yes")) {
                             if (player.getPlayerCurrentBal(i) >= 7000) {
@@ -531,7 +530,7 @@ public class App {
                                 company.setCompanyOwner(10, i);
                                 player.setPlayerCompaniesOwned(i, 9);
                                 System.out.println(" Congratulations !!!");
-                                System.out.println(" You have bought ISRO");
+                                System.out.println(" You bought ISRO");
 
                                 player.getPlayerCurrentBal(i);
                             } else {
@@ -539,7 +538,7 @@ public class App {
                                 System.out.println(
                                         " Do u want to sell your shares ? Remember , you will have to sell all your shares ,you will not be allowed to sell a particular amount of shares ( Enter yes / no )");
 
-                                String res = sc.nextLine();
+                                String res = sc.next();
 
                                 if (res.equalsIgnoreCase("yes")) {
                                     sell(i);
@@ -620,7 +619,7 @@ public class App {
                         System.out.println(" Service Rent = 600");
                         System.out.println(" Do you want to buy or not ?(YES/NO)");
 
-                        String response = sc.nextLine();
+                        String response = sc.next();
 
                         if (response.equalsIgnoreCase("yes")) {
                             if (player.getPlayerCurrentBal(i) >= 6500) {
@@ -637,7 +636,7 @@ public class App {
                                 System.out.println(
                                         "Do u want to sell your shares ? Remember , you will have to sell all your shares ,you will not be allowed to sell a particular amount of shares ( Enter yes / no )");
 
-                                String res = sc.nextLine();
+                                String res = sc.next();
 
                                 if (res.equalsIgnoreCase("yes")) {
                                     sell(i);
@@ -1012,9 +1011,9 @@ public class App {
     }
 
     public static void updateSharePrice(int n) {
-        float currentPrice = company.getCompanySharePrice(n);
-        currentPrice = (float) (currentPrice + 0.1 * currentPrice);
-        company.setCompanySharePrice(currentPrice, n);
+        //float currentPrice = company.getCompanySharePrice(n);
+        
+        company.setCompanySharePrice((float) (company.getCompanySharePrice(n)*1.1) , n);
     }
 
     public static int sell(int i) {
@@ -1237,7 +1236,7 @@ public class App {
             a++;
             System.out.println("Do you want to buy shares of Amazon (yes/no)");
             Scanner sc = new Scanner(System.in);
-            String response = sc.nextLine();
+            String response = sc.next();
             if (response.equalsIgnoreCase("yes")) {
                 int owner = company.getCompanyOwner(2);
                 int sharesForsale = player.getPlayerSharesOwned(owner, 2) - 10;
@@ -1267,10 +1266,11 @@ public class App {
             a++;
             System.out.println(" Do you want to buy shares of Tesla (yes/no)");
             Scanner sc = new Scanner(System.in);
-            String response = sc.nextLine();
+            String response = sc.next();
             if (response.equalsIgnoreCase("yes")) {
                 int owner = company.getCompanyOwner(5);
-                int sharesForsale = player.getPlayerSharesOwned(owner, 2) - 10;
+                int sharesForsale = player.getPlayerSharesOwned(owner, 2) - 23;
+                System.out.println(sharesForsale);
 
                 System.out.println("How many shares of Tesla do you want to buy out of " + sharesForsale);
                 int buyShare = sc.nextInt();
@@ -1297,10 +1297,10 @@ public class App {
             a++;
             System.out.println("Do you want to buy shares of Microsoft (yes/no)");
             Scanner sc = new Scanner(System.in);
-            String response = sc.nextLine();
+            String response = sc.next();
             if (response.equalsIgnoreCase("yes")) {
                 int owner = company.getCompanyOwner(6);
-                int sharesForsale = player.getPlayerSharesOwned(owner, 2) - 10;
+                int sharesForsale = player.getPlayerSharesOwned(owner, 2) - 15;
 
                 System.out.println("How many shares of Microsoft do you want to buy out of " + sharesForsale);
                 int buyShare = sc.nextInt();
@@ -1328,10 +1328,10 @@ public class App {
             a++;
             System.out.println("Do you want to buy shares of Google (yes/no)");
             Scanner sc = new Scanner(System.in);
-            String response = sc.nextLine();
+            String response = sc.next();
             if (response.equalsIgnoreCase("yes")) {
                 int owner = company.getCompanyOwner(9);
-                int sharesForsale = player.getPlayerSharesOwned(owner, 2) - 10;
+                int sharesForsale = player.getPlayerSharesOwned(owner, 2) - 4;
 
                 System.out.println("How many shares of Google do you want to buy out of " + sharesForsale);
                 int buyShare = sc.nextInt();
@@ -1357,10 +1357,10 @@ public class App {
             a++;
             System.out.println("Do you want to buy shares of ISRO (yes/no)");
             Scanner sc = new Scanner(System.in);
-            String response = sc.nextLine();
+            String response = sc.next();
             if (response.equalsIgnoreCase("yes")) {
                 int owner = company.getCompanyOwner(10);
-                int sharesForsale = player.getPlayerSharesOwned(owner, 2) - 10;
+                int sharesForsale = player.getPlayerSharesOwned(owner, 2) - 5;
 
                 System.out.println(" How many shares of ISRO do you want to buy out of " + sharesForsale);
                 int buyShare = sc.nextInt();
@@ -1386,10 +1386,10 @@ public class App {
             a++;
             System.out.println(" Do you want to buy shares of Facebook (yes/no)");
             Scanner sc = new Scanner(System.in);
-            String response = sc.nextLine();
+            String response = sc.next();
             if (response.equalsIgnoreCase("yes")) {
                 int owner = company.getCompanyOwner(11);
-                int sharesForsale = player.getPlayerSharesOwned(owner, 2) - 10;
+                int sharesForsale = player.getPlayerSharesOwned(owner, 2) - 15;
 
                 System.out.println(" How many shares of Facebook do you want to buy out of " + sharesForsale);
                 int buyShare = sc.nextInt();
