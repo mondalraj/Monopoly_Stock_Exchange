@@ -68,23 +68,23 @@ public class Company {
         return companyCost;
     }
 
-    public void setCompanySharePrice(float price, int n) {
+    public void setCompanySharePrice(float d, int n) {
         if (n == 2) {
-            a2.setSharePrice(price);
+            a2.setSharePrice((float) d);
         } else if (n == 5) {
-            t5.setSharePrice(price);
+            t5.setSharePrice((float) d);
 
         } else if (n == 6) {
-            m6.setSharePrice(price);
+            m6.setSharePrice((float) d);
 
         } else if (n == 9) {
-            g9.setSharePrice(price);
+            g9.setSharePrice((float) d);
 
         } else if (n == 10) {
-            i10.setSharePrice(price);
+            i10.setSharePrice((float) d);
 
         } else if (n == 11) {
-            f11.setSharePrice(price);
+            f11.setSharePrice((float) d);
 
         }
     }
