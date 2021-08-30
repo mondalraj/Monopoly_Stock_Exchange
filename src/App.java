@@ -1238,11 +1238,11 @@ public class App {
     }
 
     public static int excessBalance(int p) {
-        if (player.getPlayerCurrentBal(p) > 15000) {
-            System.out.println(" Since your current balance is more than 20000,So you won");
+        if (player.getPlayerCurrentBal(p) > 15001) {
+            System.out.println(" Since your current balance is more than 15000,So you won");
             winner();
+            System.exit(0);
         }
-        System.exit(0);
         return 0;
     }
 
