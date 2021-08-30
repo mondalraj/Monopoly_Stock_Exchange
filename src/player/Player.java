@@ -108,7 +108,7 @@ public class Player {
     }
 
     public void excessBalance(int p) {
-        if (getPlayerCurrentBal(p) >= 20000) {
+        if (getPlayerCurrentBal(p) >= 150) {
             System.out.println("Since your current balance is more than 20000,So you won");
         }
     }

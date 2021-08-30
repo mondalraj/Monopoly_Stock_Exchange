@@ -226,7 +226,7 @@ class Amazon {
 
 class Tesla {
     int cost = 5500;
-    float sharePrice = 100;
+    float sharePrice = 250;
     int noOfShares = 45;
     float serviceRent = 450;
     int owner = 0;
@@ -266,7 +266,7 @@ class Tesla {
 
 class Microsoft {
     int cost = 5000;
-    float sharePrice = 100;
+    float sharePrice = 300;
     int noOfShares = 30;
     float serviceRent = 300;
     int owner = 0;
@@ -306,7 +306,7 @@ class Microsoft {
 
 class Google {
     int cost = 10000;
-    float sharePrice = 1000;
+    float sharePrice = 700;
     int noOfShares = 8;
     float serviceRent = 400;
     int owner = 0;
@@ -346,7 +346,7 @@ class Google {
 
 class ISRO {
     int cost = 7000;
-    float sharePrice = 500;
+    float sharePrice = 400;
     int noOfShares = 10;
     float serviceRent = 500;
     int owner = 0;
