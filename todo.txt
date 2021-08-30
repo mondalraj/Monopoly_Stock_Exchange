@@ -13,3 +13,5 @@ name null aa rha hai scorecard pe(Sore card mei null position add karni hai)
 
         stock price 10% increase krvana ha when any players arrives at an already bought company
         board ko call krna ha baar baar
+        Shift welcome to the right
+        google ka share price ka karna hai
