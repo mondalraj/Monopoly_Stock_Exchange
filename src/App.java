@@ -776,33 +776,52 @@ public class App {
     }
 
     public static int board() {
-        System.out.println("                                                          \t"+ "________________________________________________________________                                                                                 ");
-        System.out.println("  _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ \t"+ "                                                      ");
-        System.out.println(" |            |             |             |              |\t"+ "         " + player.getPlayerName(1));
-        System.out.println(" |     1.     |      2.     |      3.     |      4.      |\t"+ "    Current Balance     :- " + player.getPlayerCurrentBal(1));
-        System.out.println(" |     GO     |   Amazon    |    Stock    |   Short      |\t"+ "    Companies Owned     :- " + companiesOwned(1, 1));
-        System.out.println(" |            |             |    Market   |   Listing    |\t"+ "    Shared Owned        :- " + sharesOwned(1));
-        System.out.println(" |            |             |             |   Fraud      |\t"+ "    Current Position    :- " + player.getPlayerCurrentPosition(1));
-        System.out.println(" |_ _ _ _ _ _ |_ _ _ _ _ _ _| _ _ _ _ _ _ |_ _ _ _ _ _ _ |\t"+ "________________________________________________________________                                                               ");
-        System.out.println(" |            |                           |              |\t"+ "                                                                          ");
-        System.out.println(" |    12.     |                           |      5.      |\t"+ "         "+ player.getPlayerName(2));
-        System.out.println(" |   Chance   |                           |    Tesla     |\t"+ "    Current Balance     :- " + player.getPlayerCurrentBal(2));
-        System.out.println(" |            |                           |              |\t"+ "    Companies Owned     :- " + companiesOwned(2, 1));
-        System.out.println(" |_ _ _ _ _ _ |                           | _ _ _ _ _ _ _|\t"+ "    Shared Owned        :- " + sharesOwned(2));
-        System.out.println(" |            |                           |              |\t"+ "    Current Position    :- " + player.getPlayerCurrentPosition(2));
-        System.out.println(" |     11.    |                           |      6.      |\t"+ "_________________________________________________________________                                                             ");
-        System.out.println(" |  Facebook  |                           |   Micorsoft  |\t"+ "                                                                   ");
-        System.out.println(" |            |                           |              |\t"+ "          "+ player.getPlayerName(3));
-        System.out.println(" |_ _ _ _ _ _ | _ _ _ _ _ _ _ _ _ _ _ _ _ |_ _ _ _ _ _ _ |\t"+ "    Current Balance     :- " + player.getPlayerCurrentBal(3));
-        System.out.println(" |            |              |            |              |\t"+ "    Companies Owned     :- " + companiesOwned(3, 1));
-        System.out.println(" |     10.    |      9.      |     8.     |      7.      |\t"+ "    Shared Owned        :- " + sharesOwned(3));
-        System.out.println(" |    ISRO    |    Google    |   Stock    |    Income    |\t"+ "    Current Position    :- " + player.getPlayerCurrentPosition(3));
-        System.out.println(" |            |              |   Market   |   Tax Raid   |\t"+ "_________________________________________________________________                                                                    ");
-        System.out.println(" |            |              |            |              |\t"+ "                                                                                ");
-        System.out.println(" |_ _ _ _ _ _ |_ _ _ _ _ _ _ |_ _ _ _ _ _ |_ _ _ _ _ _ _ |\t"+ "                                                                             ");
+        System.out.println("  _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ ");
+        System.out.println(" |            |            |            |              |");
+        System.out.println(" |     1.     |      2.    |      3.    |      4.      |");
+        System.out.println(" |     GO     |   Amazon   |    Stock   |    Short     |");
+        System.out.println(" |            |            |    Market  |Listing Fraud |");
+        System.out.println(" |_ _ _ _ _ _ |_ _ _ _ _ _ | _ _ _ _ _ _|_ _ _ _ _ _ _ |");
+        System.out.println(" |            |                         |              |");
+        System.out.println(" |    12.     |                         |      5.      |");
+        System.out.println(" |   Chance   |                         |    Tesla     |");
+        System.out.println(" |_ _ _ _ _ _ |                         | _ _ _ _ _ _ _|");
+        System.out.println(" |            |                         |              |");
+        System.out.println(" |     11.    |                         |      6.      |");
+        System.out.println(" |  Facebook  |                         |   Microsoft  |");
+        System.out.println(" |_ _ _ _ _ _ | _ _ _ _ _ _ _ _ _ _ _ _ |_ _ _ _ _ _ _ |");
+        System.out.println(" |            |            |            |              |");
+        System.out.println(" |     10.    |      9.    |     8.     |      7.      |");
+        System.out.println(" |    ISRO    |    Google  |   Stock    |    Income    |");
+        System.out.println(" |            |            |   Market   |   Tax Raid   |");
+        System.out.println(" |_ _ _ _ _ _ |_ _ _ _ _ _ |_ _ _ _ _ _ |_ _ _ _ _ _ _ |");
+        System.out.println(" ");
 
         System.out.println("SHARE PRICE :  Amazon - "+ company.getCompanySharePrice(2)+ " , Tesla - "+ company.getCompanySharePrice(5)+ " , Microsoft - "+ company.getCompanySharePrice(6)+ " , Google - "+ company.getCompanySharePrice(9)+ " , ISRO - "+ company.getCompanySharePrice(10)+ " , Facebook - "+ company.getCompanySharePrice(11) );
         System.out.println("SERVICE RENT : Amazon - "+ company.getCompanyServiceRent(2) + " , Tesla - "+ company.getCompanyServiceRent(5)+ " , Microsoft - "+ company.getCompanyServiceRent(6)+" , Google - "+ company.getCompanyServiceRent(9)+" , ISRO - "+ company.getCompanyServiceRent(10)+" , Facebook - "+ company.getCompanyServiceRent(11) );
+        //
+        System.out.println("__________________________________________________________________________________________________________________________________________");
+        System.out.println(player.getPlayerName(1));
+        System.out.println("Current Balance     :- " + player.getPlayerCurrentBal(1));
+        System.out.print("Companies Owned     :- "); companiesOwned(1, 1);
+        System.out.print("\t Shared Owned    :- "); sharesOwned(1);
+        System.out.println(" ");
+        System.out.println("Current Position    :- " + player.getPlayerCurrentPosition(1));
+        System.out.println("___________________________________________________________________________________________________________________________________________");
+        System.out.println(player.getPlayerName(2));
+        System.out.println("Current Balance     :- " + player.getPlayerCurrentBal(2));
+        System.out.print("Companies Owned     :- "); companiesOwned(2, 1);
+        System.out.print("\t Shared Owned    :- "); sharesOwned(2);
+        System.out.println(" ");
+        System.out.println("Current Position    :- " + player.getPlayerCurrentPosition(2));
+        System.out.println("___________________________________________________________________________________________________________________________________________");
+        System.out.println(player.getPlayerName(3));
+        System.out.println("Current Balance     :- " + player.getPlayerCurrentBal(3));
+        System.out.print("Companies Owned     :- "); companiesOwned(3, 1);
+        System.out.print("\t Shared Owned    :- "); sharesOwned(3);
+        System.out.println(" ");
+        System.out.println("Current Position    :- " + player.getPlayerCurrentPosition(3));
+        System.out.println("___________________________________________________________________________________________________________________________________________");
         return 0;
     }
 
