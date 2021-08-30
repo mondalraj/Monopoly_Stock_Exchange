@@ -776,25 +776,25 @@ public class App {
     }
 
     public static int board() {
-        System.out.println("  _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ ");
-        System.out.println(" |            |            |            |              |");
-        System.out.println(" |     1.     |      2.    |      3.    |      4.      |");
-        System.out.println(" |     GO     |   Amazon   |    Stock   |    Short     |");
-        System.out.println(" |            |            |    Market  |Listing Fraud |");
-        System.out.println(" |_ _ _ _ _ _ |_ _ _ _ _ _ | _ _ _ _ _ _|_ _ _ _ _ _ _ |");
-        System.out.println(" |            |                         |              |");
-        System.out.println(" |    12.     |                         |      5.      |");
-        System.out.println(" |   Chance   |                         |    Tesla     |");
-        System.out.println(" |_ _ _ _ _ _ |                         | _ _ _ _ _ _ _|");
-        System.out.println(" |            |                         |              |");
-        System.out.println(" |     11.    |                         |      6.      |");
-        System.out.println(" |  Facebook  |                         |   Microsoft  |");
-        System.out.println(" |_ _ _ _ _ _ | _ _ _ _ _ _ _ _ _ _ _ _ |_ _ _ _ _ _ _ |");
-        System.out.println(" |            |            |            |              |");
-        System.out.println(" |     10.    |      9.    |     8.     |      7.      |");
-        System.out.println(" |    ISRO    |    Google  |   Stock    |    Income    |");
-        System.out.println(" |            |            |   Market   |   Tax Raid   |");
-        System.out.println(" |_ _ _ _ _ _ |_ _ _ _ _ _ |_ _ _ _ _ _ |_ _ _ _ _ _ _ |");
+        System.out.println("\t\t\t\t\t  _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ ");
+        System.out.println("\t\t\t\t\t |            |            |            |              |");
+        System.out.println("\t\t\t\t\t |     1.     |      2.    |      3.    |      4.      |");
+        System.out.println("\t\t\t\t\t |     GO     |   Amazon   |    Stock   |    Short     |");
+        System.out.println("\t\t\t\t\t |            |            |    Market  |Listing Fraud |");
+        System.out.println("\t\t\t\t\t |_ _ _ _ _ _ |_ _ _ _ _ _ | _ _ _ _ _ _|_ _ _ _ _ _ _ |");
+        System.out.println("\t\t\t\t\t |            |                         |              |");
+        System.out.println("\t\t\t\t\t |    12.     |                         |      5.      |");
+        System.out.println("\t\t\t\t\t |   Chance   |                         |    Tesla     |");
+        System.out.println("\t\t\t\t\t |_ _ _ _ _ _ |                         | _ _ _ _ _ _ _|");
+        System.out.println("\t\t\t\t\t |            |                         |              |");
+        System.out.println("\t\t\t\t\t |     11.    |                         |      6.      |");
+        System.out.println("\t\t\t\t\t |  Facebook  |                         |   Microsoft  |");
+        System.out.println("\t\t\t\t\t |_ _ _ _ _ _ | _ _ _ _ _ _ _ _ _ _ _ _ |_ _ _ _ _ _ _ |");
+        System.out.println("\t\t\t\t\t |            |            |            |              |");
+        System.out.println("\t\t\t\t\t |     10.    |      9.    |     8.     |      7.      |");
+        System.out.println("\t\t\t\t\t |    ISRO    |    Google  |   Stock    |    Income    |");
+        System.out.println("\t\t\t\t\t |            |            |   Market   |   Tax Raid   |");
+        System.out.println("\t\t\t\t\t |_ _ _ _ _ _ |_ _ _ _ _ _ |_ _ _ _ _ _ |_ _ _ _ _ _ _ |");
         System.out.println(" ");
 
         System.out.println("SHARE PRICE :  Amazon - "+ company.getCompanySharePrice(2)+ " , Tesla - "+ company.getCompanySharePrice(5)+ " , Microsoft - "+ company.getCompanySharePrice(6)+ " , Google - "+ company.getCompanySharePrice(9)+ " , ISRO - "+ company.getCompanySharePrice(10)+ " , Facebook - "+ company.getCompanySharePrice(11) );
