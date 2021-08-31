@@ -932,11 +932,13 @@ public class App {
     }
 
     public static int sharesOwned(int p) {
+
         if (player.getPlayerSharesOwned(p, 2) > 0) {
             System.out.print(" Amazon: " + player.getPlayerSharesOwned(p, 2));
         }
         if (player.getPlayerSharesOwned(p, 5) > 0) {
             System.out.print(" Tesla: " + player.getPlayerSharesOwned(p, 5));
+
         }
         if (player.getPlayerSharesOwned(p, 6) > 0) {
             System.out.print(" Microsoft: " + player.getPlayerSharesOwned(p, 6));
@@ -1224,9 +1226,10 @@ public class App {
                 }
             }
         } else {
+            int shareCount = 0;
             if (player.getPlayerSharesOwned(i, 2) > 0) {
                 if (company.getCompanyOwner(2) != i) {
-                    //
+                    shareCount++;
                     System.out.println("Do you want to Sell the shares of Amazon ? (YES/NO)");
                     String res = sc.next();
 
@@ -1256,7 +1259,7 @@ public class App {
             }
             if (player.getPlayerSharesOwned(i, 5) > 0) {
                 if (company.getCompanyOwner(5) != i) {
-                    //
+                    shareCount++;
                     System.out.println("Do you want to Sell the shares of Tesla ? (YES/NO)");
                     String res = sc.next();
 
@@ -1286,7 +1289,7 @@ public class App {
             }
             if (player.getPlayerSharesOwned(i, 6) > 0) {
                 if (company.getCompanyOwner(6) != i) {
-                    //
+                    shareCount++;
                     System.out.println("Do you want to Sell the shares of Microsoft ? (YES/NO)");
                     String res = sc.next();
 
@@ -1316,7 +1319,7 @@ public class App {
             }
             if (player.getPlayerSharesOwned(i, 9) > 0) {
                 if (company.getCompanyOwner(9) != i) {
-                    //
+                    shareCount++;
                     System.out.println("Do you want to Sell the shares of Google ? (YES/NO)");
                     String res = sc.next();
 
@@ -1346,7 +1349,7 @@ public class App {
             }
             if (player.getPlayerSharesOwned(i, 10) > 0) {
                 if (company.getCompanyOwner(10) != i) {
-                    //
+                    shareCount++;
                     System.out.println("Do you want to Sell the shares of ISRO ? (YES/NO)");
                     String res = sc.next();
 
@@ -1376,7 +1379,7 @@ public class App {
             }
             if (player.getPlayerSharesOwned(i, 11) > 0) {
                 if (company.getCompanyOwner(11) != i) {
-                    //
+                    shareCount++;
                     System.out.println("Do you want to Sell the shares of Facebook ? (YES/NO)");
                     String res = sc.next();
 
@@ -1404,7 +1407,9 @@ public class App {
 
                 }
             }
-
+            if (shareCount == 0) {
+                System.out.println("You don't have any shares of other companies");
+            }
         }
 
         return 0;
