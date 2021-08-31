@@ -16,125 +16,176 @@ public class App {
 
         instructions();
 
-        System.out.print(" Enter the First Player's name:- ");
-        String name1 = sc.nextLine();
-        player.setPlayerName(name1, 1);
+        System.out.print("How many players want to play the GAME ( 2 or 3 ) ? ");
+        int playerCount = sc.nextInt();
+        System.out.println(" ");
 
-        System.out.print(" Enter the Second Player's name:- ");
-        String name2 = sc.nextLine();
-        player.setPlayerName(name2, 2);
+        if (playerCount == 2) {
+            System.out.print(" Enter the First Player's name:- ");
+            String name1 = sc.next();
+            player.setPlayerName(name1, 1);
 
-        System.out.print(" Enter the Third Player's name:- ");
-        String name3 = sc.nextLine();
-        player.setPlayerName(name3, 3);
+            System.out.print(" Enter the Second Player's name:- ");
+            String name2 = sc.next();
+            player.setPlayerName(name2, 2);
+        } else if (playerCount == 3) {
+            System.out.print(" Enter the First Player's name:- ");
+            String name1 = sc.next();
+            player.setPlayerName(name1, 1);
+
+            System.out.print(" Enter the Second Player's name:- ");
+            String name2 = sc.next();
+            player.setPlayerName(name2, 2);
+
+            System.out.print(" Enter the Third Player's name:- ");
+            String name3 = sc.next();
+            player.setPlayerName(name3, 3);
+        } else {
+            System.out.println("You Entered wrong choice !");
+            System.exit(0);
+        }
 
         System.out.println("\n Press Enter to start the game... ");
 
         promptEnterKey();
-        board();
+        board(playerCount);
 
         for (int i = 1; i > 0; i++) {
             System.out.println("");
             if (i % 3 == 1) {
                 i = 1;
-                System.out.println(player.getPlayerName(1) + " press ENTER to roll the dice");
+                System.out.println(player.getPlayerName(i) + "! Do you want to sell any Shares? ");
+                String res = sc.next();
+                if (res.equalsIgnoreCase("yes")) {
+                    sell(i, false);
+                }
+                System.out.println(player.getPlayerName(i) + " press ENTER to roll the dice");
+                gameCase(i, playerCount);
 
             } else if (i % 3 == 2) {
                 i = 2;
-                System.out.println(player.getPlayerName(2) + " press ENTER to roll the dice");
-
-            } else {
-                i = 3;
-                System.out.println(player.getPlayerName(3) + " press ENTER to roll the dice");
-            }
-            promptEnterKey();
-            excessBalance(i);
-
-            int die = (int) (3.0 * Math.random()) + 1;
-            int currentPosition = player.getPlayerCurrentPosition(i);
-            currentPosition = currentPosition + die;
-            player.setPlayerCurrentPosition(currentPosition, i);
-            currentPosition = resetPostion(player.getPlayerCurrentPosition(i), i);
-
-            System.out.println(" You rolled " + die);
-            System.out.println(" Now you are on block " + player.getPlayerCurrentPosition(i));
-
-            switch (currentPosition) {
-                case 1: {
-
-                    System.out.println(" You are on |GO|");
-                    System.out.println(" You will recieve $ 2000 when you pass");
-                    System.out.println("");
-                    System.out.print(" Press ENTER to Continue ...");
-                    promptEnterKey();
-                    System.out.print("\033[H\033[2J");
-                    System.out.flush();
-                    board();
-                    break;
+                System.out.println(player.getPlayerName(i) + "! Do you want to sell any Shares? ");
+                String res = sc.next();
+                if (res.equalsIgnoreCase("yes")) {
+                    sell(i, false);
                 }
-                case 2: {
-                    System.out.println(" You have reached | AMAZON |");
+                System.out.println(player.getPlayerName(i) + " press ENTER to roll the dice");
+                gameCase(i, playerCount);
 
-                    if (company.getCompanyOwner(2) == i) {
-                        System.out.println("You are the owner of Amazon");
-                    }
+            } else if (i % 3 == 0 && playerCount == 3) {
+                i = 3;
+                System.out.println(player.getPlayerName(i) + "! Do you want to sell any Shares? ");
+                String res = sc.next();
+                if (res.equalsIgnoreCase("yes")) {
+                    sell(i, false);
+                }
+                System.out.println(player.getPlayerName(i) + " press ENTER to roll the dice");
+                gameCase(i, playerCount);
+            }
+        }
+    }
 
-                    else if (company.getCompanyOwner(2) == 0) {
+    public static int gameCase(int i, int playerCount) {
+        promptEnterKey();
+        excessBalance(i);
 
-                        System.out.println(" Cost = $ 6000 ");
-                        System.out.println(" Total shares = 20 ");
-                        System.out.println(" Share price = $ 200 ");
-                        System.out.println(" It will increase by 10% whenever other players arrives on the same");
-                        System.out.println(" Service Rent of Amazon is $ 400");
-                        System.out.println(" Do you want to buy or not ? (YES/NO)");
+        int die = (int) (3.0 * Math.random()) + 1;
+        int currentPosition = player.getPlayerCurrentPosition(i);
+        currentPosition = currentPosition + die;
+        player.setPlayerCurrentPosition(currentPosition, i);
+        currentPosition = resetPostion(player.getPlayerCurrentPosition(i), i);
 
-                        String response = sc.next();
+        System.out.println(" You rolled " + die);
+        System.out.println(" Now you are on block " + player.getPlayerCurrentPosition(i));
 
-                        if (response.equalsIgnoreCase("yes")) {
-                            if (player.getPlayerCurrentBal(i) >= 6000) {
-                                player.setPlayerCurrentBal(player.getPlayerCurrentBal(i) - 6000, i);
-                                player.setPlayerSharesOwned(i, 2, company.getCompanyNoOfShares(2));
-                                company.setCompanyOwner(2, i);
-                                player.setPlayerCompaniesOwned(i, 1);
-                                System.out.println(" Congratulations !!!");
-                                System.out.println(" You bought Amazon");
-                            } else {
-                                System.out.println(" You don't have sufficient balance to buy Amazon");
-                                System.out.println(
-                                        " Do u want to sell your shares ? Remember , you will have to sell all your shares ,you will not be allowed to sell a particular amount of shares ( Enter yes / no )");
+        switch (currentPosition) {
+            case 1: {
 
-                                String res = sc.next();
+                System.out.println(" You are on |GO|");
+                System.out.println(" You will recieve $ 2000 when you pass");
+                System.out.println("");
+                System.out.print(" Press ENTER to Continue ...");
+                promptEnterKey();
+                System.out.print("\033[H\033[2J");
+                System.out.flush();
+                board(playerCount);
+                break;
+            }
+            case 2: {
+                System.out.println(" You have reached | AMAZON |");
 
-                                if (res.equalsIgnoreCase("yes")) {
-                                    sell(i);
-                                    if (player.getPlayerCurrentBal(i) >= 6000) {
-                                        player.setPlayerCurrentBal(player.getPlayerCurrentBal(i) - 6000, i);
-                                        player.setPlayerSharesOwned(i, 2, company.getCompanyNoOfShares(2));
-                                        company.setCompanyOwner(2, i);
-                                        player.setPlayerCompaniesOwned(i, 1);
-                                        System.out.println(" Congratulations !!!");
-                                        System.out.println(" You bought Amazon");
-                                        // System.out.println(" Player " + i + "'s current Balance = ");
-                                        player.getPlayerCurrentBal(i);
-                                    } else {
-                                        System.out.println(" You still don't have enough balance");
-                                        System.out.println(" Come back soon");
-                                    }
+                if (company.getCompanyOwner(2) == i) {
+                    System.out.println("You are the owner of Amazon");
+                }
+
+                else if (company.getCompanyOwner(2) == 0) {
+
+                    System.out.println(" Cost = $ 6000 ");
+                    System.out.println(" Total shares = 20 ");
+                    System.out.println(" Share price = $ 200 ");
+                    System.out.println(" It will increase by 10% whenever other players arrives on the same");
+                    System.out.println(" Service Rent of Amazon is $ 400");
+                    System.out.println(" Do you want to buy or not ? (YES/NO)");
+
+                    String response = sc.next();
+
+                    if (response.equalsIgnoreCase("yes")) {
+                        if (player.getPlayerCurrentBal(i) >= 6000) {
+                            player.setPlayerCurrentBal(player.getPlayerCurrentBal(i) - 6000, i);
+                            player.setPlayerSharesOwned(i, 2, company.getCompanyNoOfShares(2));
+                            company.setCompanyOwner(2, i);
+                            player.setPlayerCompaniesOwned(i, 1);
+                            System.out.println(" Congratulations !!!");
+                            System.out.println(" You bought Amazon");
+                        } else {
+                            System.out.println(" You don't have sufficient balance to buy Amazon");
+                            System.out.println(
+                                    " Do u want to sell your shares ? Remember , you will have to sell all your shares ,you will not be allowed to sell a particular amount of shares ( Enter yes / no )");
+
+                            String res = sc.next();
+
+                            if (res.equalsIgnoreCase("yes")) {
+                                sell(i, true);
+                                if (player.getPlayerCurrentBal(i) >= 6000) {
+                                    player.setPlayerCurrentBal(player.getPlayerCurrentBal(i) - 6000, i);
+                                    player.setPlayerSharesOwned(i, 2, company.getCompanyNoOfShares(2));
+                                    company.setCompanyOwner(2, i);
+                                    player.setPlayerCompaniesOwned(i, 1);
+                                    System.out.println(" Congratulations !!!");
+                                    System.out.println(" You bought Amazon");
+                                    // System.out.println(" Player " + i + "'s current Balance = ");
+                                    player.getPlayerCurrentBal(i);
+                                } else {
+                                    System.out.println(" You still don't have enough balance");
+                                    System.out.println(" Come back soon");
                                 }
                             }
-                        } else {
-                            System.out.println(" Continue the game");
-                            System.out.println(" Thanks for visiting Amazon");
                         }
+                    } else {
+                        System.out.println(" Continue the game");
+                        System.out.println(" Thanks for visiting Amazon");
+                    }
+
+                } else {
+                    int owner = company.getCompanyOwner(2);
+
+                    if (player.getPlayerCurrentBal(i) >= company.getCompanyServiceRent(2)) {
+                        System.out.println(" Amazon is owned by " + player.getPlayerName(owner));
+
+                        System.out.println(" You will have to pay $" + company.getCompanyServiceRent(2) + " as rent");
+                        player.setPlayerCurrentBal(player.getPlayerCurrentBal(i) - company.getCompanyServiceRent(2), i);
+
+                        player.setPlayerCurrentBal(player.getPlayerCurrentBal(owner) + company.getCompanyServiceRent(2),
+                                owner);
+                        updateSharePrice(2);
 
                     } else {
-                        int owner = company.getCompanyOwner(2);
-
+                        sell(i, true);
                         if (player.getPlayerCurrentBal(i) >= company.getCompanyServiceRent(2)) {
                             System.out.println(" Amazon is owned by " + player.getPlayerName(owner));
 
-                            System.out
-                                    .println(" You will have to pay $" + company.getCompanyServiceRent(2) + " as rent");
+                            System.out.println(
+                                    " You will have to pay $ " + company.getCompanyServiceRent(2) + " as rent");
                             player.setPlayerCurrentBal(player.getPlayerCurrentBal(i) - company.getCompanyServiceRent(2),
                                     i);
 
@@ -143,116 +194,114 @@ public class App {
                             updateSharePrice(2);
 
                         } else {
-                            sell(i);
-                            if (player.getPlayerCurrentBal(i) >= company.getCompanyServiceRent(2)) {
-                                System.out.println(" Amazon is owned by " + player.getPlayerName(owner));
-
-                                System.out.println(
-                                        " You will have to pay $ " + company.getCompanyServiceRent(2) + " as rent");
-                                player.setPlayerCurrentBal(
-                                        player.getPlayerCurrentBal(i) - company.getCompanyServiceRent(2), i);
-
-                                player.setPlayerCurrentBal(
-                                        player.getPlayerCurrentBal(owner) + company.getCompanyServiceRent(2), owner);
-                                updateSharePrice(2);
-
-                            } else {
-                                bankRupt(player.getPlayerName(i));
-                            }
-
+                            bankRupt(player.getPlayerName(i));
                         }
 
                     }
-                    System.out.println("");
-                    System.out.print(" Press ENTER to Continue ...");
-                    promptEnterKey();
-                    System.out.print("\033[H\033[2J");
-                    System.out.flush();
-                    board();
-
-                    break;
-                }
-                case 3: {
-                    stockMarket(i);
-                    System.out.println("");
-                    System.out.print(" Press ENTER to Continue ...");
-                    promptEnterKey();
-                    System.out.print("\033[H\033[2J");
-                    System.out.flush();
-                    board();
-
-                    break;
-                }
-                case 4: {
-                    fraud(i);
-                    System.out.println("");
-                    System.out.print(" Press ENTER to Continue ...");
-                    promptEnterKey();
-                    System.out.print("\033[H\033[2J");
-                    System.out.flush();
-                    board();
-
-                    break;
 
                 }
-                case 5: {
-                    System.out.println(" You have reached | TESLA |");
-                    if (company.getCompanyOwner(5) == i) {
-                        System.out.println("You are the owner of Tesla");
-                    }
+                System.out.println("");
+                System.out.print(" Press ENTER to Continue ...");
+                promptEnterKey();
+                System.out.print("\033[H\033[2J");
+                System.out.flush();
+                board(playerCount);
 
-                    else if (company.getCompanyOwner(5) == 0) {
+                break;
+            }
+            case 3: {
+                stockMarket(i);
+                System.out.println("");
+                System.out.print(" Press ENTER to Continue ...");
+                promptEnterKey();
+                System.out.print("\033[H\033[2J");
+                System.out.flush();
+                board(playerCount);
 
-                        System.out.println(" Cost = $ 5500 ");
-                        System.out.println(" Total shares = $ 45 ");
-                        System.out.println(" Share price = $ 250 ");
-                        System.out.println(" It will increase by 10% whenever other players arrives on the same");
-                        System.out.println(" Service Rent = $ 450");
-                        System.out.println(" Do you want to buy or not ? (YES/NO)");
+                break;
+            }
+            case 4: {
+                fraud(i);
+                System.out.println("");
+                System.out.print(" Press ENTER to Continue ...");
+                promptEnterKey();
+                System.out.print("\033[H\033[2J");
+                System.out.flush();
+                board(playerCount);
 
-                        String response = sc.next();
+                break;
 
-                        if (response.equalsIgnoreCase("yes")) {
-                            if (player.getPlayerCurrentBal(i) >= 5500) {
-                                player.setPlayerCurrentBal(player.getPlayerCurrentBal(i) - 5500, i);
-                                player.setPlayerSharesOwned(i, 5, company.getCompanyNoOfShares(5));
-                                company.setCompanyOwner(5, i);
-                                player.setPlayerCompaniesOwned(i, 4);
-                                System.out.println(" Congratulations !!!");
-                                System.out.println(" You bought Tesla");
+            }
+            case 5: {
+                System.out.println(" You have reached | TESLA |");
+                if (company.getCompanyOwner(5) == i) {
+                    System.out.println("You are the owner of Tesla");
+                }
 
-                            } else {
-                                System.out.println(" You don't have sufficient balance to buy Tesla");
-                                System.out.println(
-                                        " Do you want to sell your shares ? Remember , you will have to sell all your shares ,you will not be allowed to sell a particular amount of shares ( Enter yes / no )");
+                else if (company.getCompanyOwner(5) == 0) {
 
-                                String res = sc.next();
+                    System.out.println(" Cost = $ 5500 ");
+                    System.out.println(" Total shares = $ 45 ");
+                    System.out.println(" Share price = $ 250 ");
+                    System.out.println(" It will increase by 10% whenever other players arrives on the same");
+                    System.out.println(" Service Rent = $ 450");
+                    System.out.println(" Do you want to buy or not ? (YES/NO)");
 
-                                if (res.equalsIgnoreCase("yes")) {
-                                    sell(i);
-                                    if (player.getPlayerCurrentBal(i) >= 5500) {
-                                        player.setPlayerCurrentBal(player.getPlayerCurrentBal(i) - 5500, i);
-                                        player.setPlayerSharesOwned(i, 5, company.getCompanyNoOfShares(5));
-                                        company.setCompanyOwner(5, i);
-                                        player.setPlayerCompaniesOwned(i, 4);
-                                        System.out.println(" Congratulations !!!");
-                                        System.out.println(" You bought Tesla");
+                    String response = sc.next();
 
-                                        player.getPlayerCurrentBal(i);
-                                    } else {
-                                        System.out.println(" You still don't have enough balance");
-                                        System.out.println(" Come back soon");
-                                    }
+                    if (response.equalsIgnoreCase("yes")) {
+                        if (player.getPlayerCurrentBal(i) >= 5500) {
+                            player.setPlayerCurrentBal(player.getPlayerCurrentBal(i) - 5500, i);
+                            player.setPlayerSharesOwned(i, 5, company.getCompanyNoOfShares(5));
+                            company.setCompanyOwner(5, i);
+                            player.setPlayerCompaniesOwned(i, 4);
+                            System.out.println(" Congratulations !!!");
+                            System.out.println(" You bought Tesla");
+
+                        } else {
+                            System.out.println(" You don't have sufficient balance to buy Tesla");
+                            System.out.println(
+                                    " Do you want to sell your shares ? Remember , you will have to sell all your shares ,you will not be allowed to sell a particular amount of shares ( Enter yes / no )");
+
+                            String res = sc.next();
+
+                            if (res.equalsIgnoreCase("yes")) {
+                                sell(i, true);
+                                if (player.getPlayerCurrentBal(i) >= 5500) {
+                                    player.setPlayerCurrentBal(player.getPlayerCurrentBal(i) - 5500, i);
+                                    player.setPlayerSharesOwned(i, 5, company.getCompanyNoOfShares(5));
+                                    company.setCompanyOwner(5, i);
+                                    player.setPlayerCompaniesOwned(i, 4);
+                                    System.out.println(" Congratulations !!!");
+                                    System.out.println(" You bought Tesla");
+
+                                    player.getPlayerCurrentBal(i);
+                                } else {
+                                    System.out.println(" You still don't have enough balance");
+                                    System.out.println(" Come back soon");
                                 }
                             }
-                        } else {
-                            System.out.println(" Continue the game");
-                            System.out.println(" Thanks for visiting Tesla");
                         }
+                    } else {
+                        System.out.println(" Continue the game");
+                        System.out.println(" Thanks for visiting Tesla");
+                    }
+
+                } else {
+                    int owner = company.getCompanyOwner(5);
+
+                    if (player.getPlayerCurrentBal(i) >= company.getCompanyServiceRent(5)) {
+                        System.out.println(" Tesla is owned by " + player.getPlayerName(owner));
+
+                        System.out.println(" You will have to pay $" + company.getCompanyServiceRent(5) + " as rent");
+                        player.setPlayerCurrentBal(player.getPlayerCurrentBal(i) - company.getCompanyServiceRent(5), i);
+
+                        player.setPlayerCurrentBal(player.getPlayerCurrentBal(owner) + company.getCompanyServiceRent(5),
+                                owner);
+                        updateSharePrice(5);
 
                     } else {
-                        int owner = company.getCompanyOwner(5);
-
+                        sell(i, true);
                         if (player.getPlayerCurrentBal(i) >= company.getCompanyServiceRent(5)) {
                             System.out.println(" Tesla is owned by " + player.getPlayerName(owner));
 
@@ -266,95 +315,93 @@ public class App {
                             updateSharePrice(5);
 
                         } else {
-                            sell(i);
-                            if (player.getPlayerCurrentBal(i) >= company.getCompanyServiceRent(5)) {
-                                System.out.println(" Tesla is owned by " + player.getPlayerName(owner));
-
-                                System.out.println(
-                                        " You will have to pay $" + company.getCompanyServiceRent(5) + " as rent");
-                                player.setPlayerCurrentBal(
-                                        player.getPlayerCurrentBal(i) - company.getCompanyServiceRent(5), i);
-
-                                player.setPlayerCurrentBal(
-                                        player.getPlayerCurrentBal(owner) + company.getCompanyServiceRent(5), owner);
-                                updateSharePrice(5);
-
-                            } else {
-                                bankRupt(player.getPlayerName(i));
-                            }
-
+                            bankRupt(player.getPlayerName(i));
                         }
 
                     }
-                    System.out.println("");
-                    System.out.print(" Press ENTER to Continue ...");
-                    promptEnterKey();
-                    System.out.print("\033[H\033[2J");
-                    System.out.flush();
-                    board();
 
-                    break;
+                }
+                System.out.println("");
+                System.out.print(" Press ENTER to Continue ...");
+                promptEnterKey();
+                System.out.print("\033[H\033[2J");
+                System.out.flush();
+                board(playerCount);
+
+                break;
+            }
+
+            case 6: {
+                System.out.println(" You have reached | MICROSOFT |");
+                System.out.println("");
+                if (company.getCompanyOwner(6) == i) {
+                    System.out.println("You are the owner of Microsoft");
                 }
 
-                case 6: {
-                    System.out.println(" You have reached | MICROSOFT |");
-                    System.out.println("");
-                    if (company.getCompanyOwner(6) == i) {
-                        System.out.println("You are the owner of Microsoft");
-                    }
+                else if (company.getCompanyOwner(6) == 0) {
 
-                    else if (company.getCompanyOwner(6) == 0) {
+                    System.out.println(" Cost = $5000");
+                    System.out.println(" Total shares = 30 ");
+                    System.out.println(" Each share cost = 300 ");
+                    System.out.println(" will increase 10% whenever other players arrives on the same");
+                    System.out.println(" Service Rent = $ 300");
+                    System.out.println(" Do you want to buy or not ? ( YES/NO )");
 
-                        System.out.println(" Cost = $5000");
-                        System.out.println(" Total shares = 30 ");
-                        System.out.println(" Each share cost = 300 ");
-                        System.out.println(" will increase 10% whenever other players arrives on the same");
-                        System.out.println(" Service Rent = $ 300");
-                        System.out.println(" Do you want to buy or not ? ( YES/NO )");
+                    String response = sc.next();
 
-                        String response = sc.next();
+                    if (response.equalsIgnoreCase("yes")) {
+                        if (player.getPlayerCurrentBal(i) >= 5000) {
+                            player.setPlayerCurrentBal(player.getPlayerCurrentBal(i) - 5000, i);
+                            player.setPlayerSharesOwned(i, 6, company.getCompanyNoOfShares(6));
+                            company.setCompanyOwner(6, i);
+                            player.setPlayerCompaniesOwned(i, 5);
+                            System.out.println(" Congratulations !!!");
+                            System.out.println(" You have bought Microsoft");
 
-                        if (response.equalsIgnoreCase("yes")) {
-                            if (player.getPlayerCurrentBal(i) >= 5000) {
-                                player.setPlayerCurrentBal(player.getPlayerCurrentBal(i) - 5000, i);
-                                player.setPlayerSharesOwned(i, 6, company.getCompanyNoOfShares(6));
-                                company.setCompanyOwner(6, i);
-                                player.setPlayerCompaniesOwned(i, 5);
-                                System.out.println(" Congratulations !!!");
-                                System.out.println(" You have bought Microsoft");
+                        } else {
+                            System.out.println(" You don't have sufficient balance to buy Microsoft");
+                            System.out.println(
+                                    " Do u want to sell your shares ? Remember , you will have to sell all your shares ,you will not be allowed to sell a particular amount of shares ( Enter yes / no )");
 
-                            } else {
-                                System.out.println(" You don't have sufficient balance to buy Microsoft");
-                                System.out.println(
-                                        " Do u want to sell your shares ? Remember , you will have to sell all your shares ,you will not be allowed to sell a particular amount of shares ( Enter yes / no )");
+                            String res = sc.next();
 
-                                String res = sc.next();
+                            if (res.equalsIgnoreCase("yes")) {
+                                sell(i, true);
+                                if (player.getPlayerCurrentBal(i) >= 5000) {
+                                    player.setPlayerCurrentBal(player.getPlayerCurrentBal(i) - 5000, i);
+                                    player.setPlayerSharesOwned(i, 6, company.getCompanyNoOfShares(6));
+                                    company.setCompanyOwner(6, i);
+                                    player.setPlayerCompaniesOwned(i, 5);
+                                    System.out.println(" Congratulations !!!");
+                                    System.out.println(" You have bought Microsoft");
 
-                                if (res.equalsIgnoreCase("yes")) {
-                                    sell(i);
-                                    if (player.getPlayerCurrentBal(i) >= 5000) {
-                                        player.setPlayerCurrentBal(player.getPlayerCurrentBal(i) - 5000, i);
-                                        player.setPlayerSharesOwned(i, 6, company.getCompanyNoOfShares(6));
-                                        company.setCompanyOwner(6, i);
-                                        player.setPlayerCompaniesOwned(i, 5);
-                                        System.out.println(" Congratulations !!!");
-                                        System.out.println(" You have bought Microsoft");
-
-                                        player.getPlayerCurrentBal(i);
-                                    } else {
-                                        System.out.println(" You still don't have enough balance");
-                                        System.out.println(" Come back soon");
-                                    }
+                                    player.getPlayerCurrentBal(i);
+                                } else {
+                                    System.out.println(" You still don't have enough balance");
+                                    System.out.println(" Come back soon");
                                 }
                             }
-                        } else {
-                            System.out.println(" Continue the game");
-                            System.out.println(" Thanks for visiting Microsoft");
                         }
+                    } else {
+                        System.out.println(" Continue the game");
+                        System.out.println(" Thanks for visiting Microsoft");
+                    }
+
+                } else {
+                    int owner = company.getCompanyOwner(6);
+
+                    if (player.getPlayerCurrentBal(i) >= company.getCompanyServiceRent(6)) {
+                        System.out.println(" Microsoft is owned by " + player.getPlayerName(owner));
+
+                        System.out.println(" You will have to pay $" + company.getCompanyServiceRent(6) + " as rent");
+                        player.setPlayerCurrentBal(player.getPlayerCurrentBal(i) - company.getCompanyServiceRent(6), i);
+
+                        player.setPlayerCurrentBal(player.getPlayerCurrentBal(owner) + company.getCompanyServiceRent(6),
+                                owner);
+                        updateSharePrice(6);
 
                     } else {
-                        int owner = company.getCompanyOwner(6);
-
+                        sell(i, true);
                         if (player.getPlayerCurrentBal(i) >= company.getCompanyServiceRent(6)) {
                             System.out.println(" Microsoft is owned by " + player.getPlayerName(owner));
 
@@ -368,119 +415,117 @@ public class App {
                             updateSharePrice(6);
 
                         } else {
-                            sell(i);
-                            if (player.getPlayerCurrentBal(i) >= company.getCompanyServiceRent(6)) {
-                                System.out.println(" Microsoft is owned by " + player.getPlayerName(owner));
-
-                                System.out.println(
-                                        " You will have to pay $" + company.getCompanyServiceRent(6) + " as rent");
-                                player.setPlayerCurrentBal(
-                                        player.getPlayerCurrentBal(i) - company.getCompanyServiceRent(6), i);
-
-                                player.setPlayerCurrentBal(
-                                        player.getPlayerCurrentBal(owner) + company.getCompanyServiceRent(6), owner);
-                                updateSharePrice(6);
-
-                            } else {
-                                bankRupt(player.getPlayerName(i));
-                            }
-
+                            bankRupt(player.getPlayerName(i));
                         }
 
                     }
-                    System.out.println("");
-                    System.out.print(" Press ENTER to Continue ...");
-                    promptEnterKey();
-                    System.out.print("\033[H\033[2J");
-                    System.out.flush();
-                    board();
-
-                    break;
-                }
-
-                case 7: {
-                    taxRaid(i);
-                    System.out.println("");
-                    System.out.print(" Press ENTER to Continue ...");
-                    promptEnterKey();
-                    System.out.print("\033[H\033[2J");
-                    System.out.flush();
-                    board();
-
-                    break;
-                }
-                case 8: {
-                    stockMarket(i);
-                    System.out.println("");
-                    System.out.print(" Press ENTER to Continue ...");
-                    promptEnterKey();
-                    System.out.print("\033[H\033[2J");
-                    System.out.flush();
-                    board();
-
-                    break;
 
                 }
-                case 9: {
-                    System.out.println(" You have reached | GOOGLE |");
+                System.out.println("");
+                System.out.print(" Press ENTER to Continue ...");
+                promptEnterKey();
+                System.out.print("\033[H\033[2J");
+                System.out.flush();
+                board(playerCount);
 
-                    if (company.getCompanyOwner(9) == i) {
-                        System.out.println("You are the owner of Google");
-                    }
+                break;
+            }
 
-                    else if (company.getCompanyOwner(9) == 0) {
+            case 7: {
+                taxRaid(i);
+                System.out.println("");
+                System.out.print(" Press ENTER to Continue ...");
+                promptEnterKey();
+                System.out.print("\033[H\033[2J");
+                System.out.flush();
+                board(playerCount);
 
-                        System.out.println(" Cost = $10000 ");
-                        System.out.println(" Total shares = 10 ");
-                        System.out.println(" Each share cost is 700 " );
-                        System.out.println(" will increase 10% whenever other players arrives on the same ");
-                        System.out.println(" Service Rent = 400");
-                        System.out.println(" Do you want to buy or not ? ( YES/NO )");
+                break;
+            }
+            case 8: {
+                stockMarket(i);
+                System.out.println("");
+                System.out.print(" Press ENTER to Continue ...");
+                promptEnterKey();
+                System.out.print("\033[H\033[2J");
+                System.out.flush();
+                board(playerCount);
 
-                        String response = sc.next();
+                break;
 
-                        if (response.equalsIgnoreCase("yes")) {
-                            if (player.getPlayerCurrentBal(i) >= 10000) {
-                                player.setPlayerCurrentBal(player.getPlayerCurrentBal(i) - 10000, i);
-                                player.setPlayerSharesOwned(i, 9, company.getCompanyNoOfShares(9));
-                                company.setCompanyOwner(9, i);
-                                player.setPlayerCompaniesOwned(i, 8);
-                                System.out.println(" Congratulations !!!");
-                                System.out.println(" You have bought Google");
+            }
+            case 9: {
+                System.out.println(" You have reached | GOOGLE |");
 
-                                player.getPlayerCurrentBal(i);
-                            } else {
-                                System.out.println(" You don't have sufficient balance to buy Google");
-                                System.out.println(
-                                        " Do u want to sell your shares ? Remember , you will have to sell all your shares ,you will not be allowed to sell a particular amount of shares ( Enter yes / no )");
+                if (company.getCompanyOwner(9) == i) {
+                    System.out.println("You are the owner of Google");
+                }
 
-                                String res = sc.next();
+                else if (company.getCompanyOwner(9) == 0) {
 
-                                if (res.equalsIgnoreCase("yes")) {
-                                    sell(i);
-                                    if (player.getPlayerCurrentBal(i) >= 10000) {
-                                        player.setPlayerCurrentBal(player.getPlayerCurrentBal(i) - 10000, i);
-                                        player.setPlayerSharesOwned(i, 9, company.getCompanyNoOfShares(9));
-                                        company.setCompanyOwner(9, i);
-                                        player.setPlayerCompaniesOwned(i, 8);
-                                        System.out.println(" Congratulations !!!");
-                                        System.out.println(" You have bought Google");
-                                        
-                                        player.getPlayerCurrentBal(i);
-                                    } else {
-                                        System.out.println(" You still don't have enough balance");
-                                        System.out.println(" Come back soon");
-                                    }
+                    System.out.println(" Cost = $10000 ");
+                    System.out.println(" Total shares = 10 ");
+                    System.out.println(" Each share cost is 700 ");
+                    System.out.println(" will increase 10% whenever other players arrives on the same ");
+                    System.out.println(" Service Rent = 400");
+                    System.out.println(" Do you want to buy or not ? ( YES/NO )");
+
+                    String response = sc.next();
+
+                    if (response.equalsIgnoreCase("yes")) {
+                        if (player.getPlayerCurrentBal(i) >= 10000) {
+                            player.setPlayerCurrentBal(player.getPlayerCurrentBal(i) - 10000, i);
+                            player.setPlayerSharesOwned(i, 9, company.getCompanyNoOfShares(9));
+                            company.setCompanyOwner(9, i);
+                            player.setPlayerCompaniesOwned(i, 8);
+                            System.out.println(" Congratulations !!!");
+                            System.out.println(" You have bought Google");
+
+                            player.getPlayerCurrentBal(i);
+                        } else {
+                            System.out.println(" You don't have sufficient balance to buy Google");
+                            System.out.println(
+                                    " Do u want to sell your shares ? Remember , you will have to sell all your shares ,you will not be allowed to sell a particular amount of shares ( Enter yes / no )");
+
+                            String res = sc.next();
+
+                            if (res.equalsIgnoreCase("yes")) {
+                                sell(i, true);
+                                if (player.getPlayerCurrentBal(i) >= 10000) {
+                                    player.setPlayerCurrentBal(player.getPlayerCurrentBal(i) - 10000, i);
+                                    player.setPlayerSharesOwned(i, 9, company.getCompanyNoOfShares(9));
+                                    company.setCompanyOwner(9, i);
+                                    player.setPlayerCompaniesOwned(i, 8);
+                                    System.out.println(" Congratulations !!!");
+                                    System.out.println(" You have bought Google");
+
+                                    player.getPlayerCurrentBal(i);
+                                } else {
+                                    System.out.println(" You still don't have enough balance");
+                                    System.out.println(" Come back soon");
                                 }
                             }
-                        } else {
-                            System.out.println(" Continue the game");
-                            System.out.println(" Thanks for visiting Google");
                         }
+                    } else {
+                        System.out.println(" Continue the game");
+                        System.out.println(" Thanks for visiting Google");
+                    }
+
+                } else {
+                    int owner = company.getCompanyOwner(9);
+
+                    if (player.getPlayerCurrentBal(i) >= company.getCompanyServiceRent(9)) {
+                        System.out.println(" Google is owned by " + player.getPlayerName(owner));
+
+                        System.out.println(" You will have to pay $" + company.getCompanyServiceRent(9) + " as rent");
+                        player.setPlayerCurrentBal(player.getPlayerCurrentBal(i) - company.getCompanyServiceRent(9), i);
+
+                        player.setPlayerCurrentBal(player.getPlayerCurrentBal(owner) + company.getCompanyServiceRent(9),
+                                owner);
+                        updateSharePrice(9);
 
                     } else {
-                        int owner = company.getCompanyOwner(9);
-
+                        sell(i, true);
                         if (player.getPlayerCurrentBal(i) >= company.getCompanyServiceRent(9)) {
                             System.out.println(" Google is owned by " + player.getPlayerName(owner));
 
@@ -494,94 +539,93 @@ public class App {
                             updateSharePrice(9);
 
                         } else {
-                            sell(i);
-                            if (player.getPlayerCurrentBal(i) >= company.getCompanyServiceRent(9)) {
-                                System.out.println(" Google is owned by " + player.getPlayerName(owner));
-
-                                System.out.println(
-                                        " You will have to pay $" + company.getCompanyServiceRent(9) + " as rent");
-                                player.setPlayerCurrentBal(
-                                        player.getPlayerCurrentBal(i) - company.getCompanyServiceRent(9), i);
-
-                                player.setPlayerCurrentBal(
-                                        player.getPlayerCurrentBal(owner) + company.getCompanyServiceRent(9), owner);
-                                updateSharePrice(9);
-
-                            } else {
-                                bankRupt(player.getPlayerName(i));
-                            }
-
+                            bankRupt(player.getPlayerName(i));
                         }
 
                     }
-                    System.out.println("");
-                    System.out.print(" Press ENTER to Continue ...");
-                    promptEnterKey();
-                    System.out.print("\033[H\033[2J");
-                    System.out.flush();
-                    board();
 
-                    break;
                 }
-                case 10: {
-                    System.out.println(" You have reached | ISRO |");
-                    if (company.getCompanyOwner(10) == i) {
-                        System.out.println("You are the owner of ISRO");
-                    }
+                System.out.println("");
+                System.out.print(" Press ENTER to Continue ...");
+                promptEnterKey();
+                System.out.print("\033[H\033[2J");
+                System.out.flush();
+                board(playerCount);
 
-                    else if (company.getCompanyOwner(10) == 0) {
+                break;
+            }
+            case 10: {
+                System.out.println(" You have reached | ISRO |");
+                if (company.getCompanyOwner(10) == i) {
+                    System.out.println("You are the owner of ISRO");
+                }
 
-                        System.out.println(" Cost = $7000 ");
-                        System.out.println(" Total shares = 10 ");
-                        System.out.println(" Share price = $400 ");
-                        System.out.println(" It will increase 10% whenever other players arrives on the same ");
-                        System.out.println(" Service Rent = $500");
-                        System.out.println(" Do you want to buy or not ?(YES/NO)");
+                else if (company.getCompanyOwner(10) == 0) {
 
-                        String response = sc.next();
+                    System.out.println(" Cost = $7000 ");
+                    System.out.println(" Total shares = 10 ");
+                    System.out.println(" Share price = $400 ");
+                    System.out.println(" It will increase 10% whenever other players arrives on the same ");
+                    System.out.println(" Service Rent = $500");
+                    System.out.println(" Do you want to buy or not ?(YES/NO)");
 
-                        if (response.equalsIgnoreCase("yes")) {
-                            if (player.getPlayerCurrentBal(i) >= 7000) {
-                                player.setPlayerCurrentBal(player.getPlayerCurrentBal(i) - 7000, i);
-                                player.setPlayerSharesOwned(i, 10, company.getCompanyNoOfShares(10));
-                                company.setCompanyOwner(10, i);
-                                player.setPlayerCompaniesOwned(i, 9);
-                                System.out.println(" Congratulations !!!");
-                                System.out.println(" You bought ISRO");
+                    String response = sc.next();
 
-                                player.getPlayerCurrentBal(i);
-                            } else {
-                                System.out.println(" You don't have sufficient balance to buy ISRO");
-                                System.out.println(
-                                        " Do u want to sell your shares ? Remember , you will have to sell all your shares ,you will not be allowed to sell a particular amount of shares ( Enter yes / no )");
+                    if (response.equalsIgnoreCase("yes")) {
+                        if (player.getPlayerCurrentBal(i) >= 7000) {
+                            player.setPlayerCurrentBal(player.getPlayerCurrentBal(i) - 7000, i);
+                            player.setPlayerSharesOwned(i, 10, company.getCompanyNoOfShares(10));
+                            company.setCompanyOwner(10, i);
+                            player.setPlayerCompaniesOwned(i, 9);
+                            System.out.println(" Congratulations !!!");
+                            System.out.println(" You bought ISRO");
 
-                                String res = sc.next();
+                            player.getPlayerCurrentBal(i);
+                        } else {
+                            System.out.println(" You don't have sufficient balance to buy ISRO");
+                            System.out.println(
+                                    " Do u want to sell your shares ? Remember , you will have to sell all your shares ,you will not be allowed to sell a particular amount of shares ( Enter yes / no )");
 
-                                if (res.equalsIgnoreCase("yes")) {
-                                    sell(i);
-                                    if (player.getPlayerCurrentBal(i) >= 7000) {
-                                        player.setPlayerCurrentBal(player.getPlayerCurrentBal(i) - 7000, i);
-                                        player.setPlayerSharesOwned(i, 10, company.getCompanyNoOfShares(10));
-                                        company.setCompanyOwner(10, i);
-                                        player.setPlayerCompaniesOwned(i, 9);
-                                        System.out.println(" Congratulations !!!");
-                                        System.out.println(" You have bought ISRO");
+                            String res = sc.next();
 
-                                        player.getPlayerCurrentBal(i);
-                                    } else {
-                                        System.out.println(" You still don't have enough balance");
-                                        System.out.println(" Come back soon");
-                                    }
+                            if (res.equalsIgnoreCase("yes")) {
+                                sell(i, true);
+                                if (player.getPlayerCurrentBal(i) >= 7000) {
+                                    player.setPlayerCurrentBal(player.getPlayerCurrentBal(i) - 7000, i);
+                                    player.setPlayerSharesOwned(i, 10, company.getCompanyNoOfShares(10));
+                                    company.setCompanyOwner(10, i);
+                                    player.setPlayerCompaniesOwned(i, 9);
+                                    System.out.println(" Congratulations !!!");
+                                    System.out.println(" You have bought ISRO");
+
+                                    player.getPlayerCurrentBal(i);
+                                } else {
+                                    System.out.println(" You still don't have enough balance");
+                                    System.out.println(" Come back soon");
                                 }
                             }
-                        } else {
-                            System.out.println(" Continue the game");
-                            System.out.println(" Thanks for visiting ISRO");
                         }
+                    } else {
+                        System.out.println(" Continue the game");
+                        System.out.println(" Thanks for visiting ISRO");
+                    }
+
+                } else {
+                    int owner = company.getCompanyOwner(10);
+
+                    if (player.getPlayerCurrentBal(i) >= company.getCompanyServiceRent(10)) {
+                        System.out.println(" ISRO is owned by " + player.getPlayerName(owner));
+
+                        System.out.println(" You will have to pay $" + company.getCompanyServiceRent(10) + " as rent");
+                        player.setPlayerCurrentBal(player.getPlayerCurrentBal(i) - company.getCompanyServiceRent(10),
+                                i);
+
+                        player.setPlayerCurrentBal(
+                                player.getPlayerCurrentBal(owner) + company.getCompanyServiceRent(10), owner);
+                        updateSharePrice(10);
 
                     } else {
-                        int owner = company.getCompanyOwner(10);
-
+                        sell(i, true);
                         if (player.getPlayerCurrentBal(i) >= company.getCompanyServiceRent(10)) {
                             System.out.println(" ISRO is owned by " + player.getPlayerName(owner));
 
@@ -595,94 +639,93 @@ public class App {
                             updateSharePrice(10);
 
                         } else {
-                            sell(i);
-                            if (player.getPlayerCurrentBal(i) >= company.getCompanyServiceRent(10)) {
-                                System.out.println(" ISRO is owned by " + player.getPlayerName(owner));
-
-                                System.out.println(
-                                        " You will have to pay $" + company.getCompanyServiceRent(10) + " as rent");
-                                player.setPlayerCurrentBal(
-                                        player.getPlayerCurrentBal(i) - company.getCompanyServiceRent(10), i);
-
-                                player.setPlayerCurrentBal(
-                                        player.getPlayerCurrentBal(owner) + company.getCompanyServiceRent(10), owner);
-                                updateSharePrice(10);
-
-                            } else {
-                                bankRupt(player.getPlayerName(i));
-                            }
-
+                            bankRupt(player.getPlayerName(i));
                         }
 
                     }
-                    System.out.println("");
-                    System.out.print(" Press ENTER to Continue ...");
-                    promptEnterKey();
-                    System.out.print("\033[H\033[2J");
-                    System.out.flush();
-                    board();
 
-                    break;
                 }
-                case 11: {
-                    System.out.println(" You have reached | Facebook |");
-                    if (company.getCompanyOwner(11) == i) {
-                        System.out.println("You are the owner of Facebook");
-                    }
+                System.out.println("");
+                System.out.print(" Press ENTER to Continue ...");
+                promptEnterKey();
+                System.out.print("\033[H\033[2J");
+                System.out.flush();
+                board(playerCount);
 
-                    else if (company.getCompanyOwner(11) == 0) {
+                break;
+            }
+            case 11: {
+                System.out.println(" You have reached | Facebook |");
+                if (company.getCompanyOwner(11) == i) {
+                    System.out.println("You are the owner of Facebook");
+                }
 
-                        System.out.println(" Cost = $6500 ");
-                        System.out.println(" Total shares = 30");
-                        System.out.println(" Each share cost is 200");
-                        System.out.println(" It will increase by 10% whenever other players arrives on the same ");
-                        System.out.println(" Service Rent = 600");
-                        System.out.println(" Do you want to buy or not ?(YES/NO)");
+                else if (company.getCompanyOwner(11) == 0) {
 
-                        String response = sc.next();
+                    System.out.println(" Cost = $6500 ");
+                    System.out.println(" Total shares = 30");
+                    System.out.println(" Each share cost is 200");
+                    System.out.println(" It will increase by 10% whenever other players arrives on the same ");
+                    System.out.println(" Service Rent = 600");
+                    System.out.println(" Do you want to buy or not ?(YES/NO)");
 
-                        if (response.equalsIgnoreCase("yes")) {
-                            if (player.getPlayerCurrentBal(i) >= 6500) {
-                                player.setPlayerCurrentBal(player.getPlayerCurrentBal(i) - 6500, i);
-                                player.setPlayerSharesOwned(i, 11, company.getCompanyNoOfShares(11));
-                                company.setCompanyOwner(11, i);
-                                player.setPlayerCompaniesOwned(i, 10);
-                                System.out.println(" Congratulations !!!");
-                                System.out.println(" You have bought Facebook");
+                    String response = sc.next();
 
-                                player.getPlayerCurrentBal(i);
-                            } else {
-                                System.out.println(" You don't have sufficient balance to buy Facebook");
-                                System.out.println(
-                                        "Do u want to sell your shares ? Remember , you will have to sell all your shares ,you will not be allowed to sell a particular amount of shares ( Enter yes / no )");
+                    if (response.equalsIgnoreCase("yes")) {
+                        if (player.getPlayerCurrentBal(i) >= 6500) {
+                            player.setPlayerCurrentBal(player.getPlayerCurrentBal(i) - 6500, i);
+                            player.setPlayerSharesOwned(i, 11, company.getCompanyNoOfShares(11));
+                            company.setCompanyOwner(11, i);
+                            player.setPlayerCompaniesOwned(i, 10);
+                            System.out.println(" Congratulations !!!");
+                            System.out.println(" You have bought Facebook");
 
-                                String res = sc.next();
+                            player.getPlayerCurrentBal(i);
+                        } else {
+                            System.out.println(" You don't have sufficient balance to buy Facebook");
+                            System.out.println(
+                                    "Do u want to sell your shares ? Remember , you will have to sell all your shares ,you will not be allowed to sell a particular amount of shares ( Enter yes / no )");
 
-                                if (res.equalsIgnoreCase("yes")) {
-                                    sell(i);
-                                    if (player.getPlayerCurrentBal(i) >= 6500) {
-                                        player.setPlayerCurrentBal(player.getPlayerCurrentBal(i) - 6500, i);
-                                        player.setPlayerSharesOwned(i, 11, company.getCompanyNoOfShares(11));
-                                        company.setCompanyOwner(11, i);
-                                        player.setPlayerCompaniesOwned(i, 11);
-                                        System.out.println(" Congratulations !!!");
-                                        System.out.println(" You have bought Facebook");
+                            String res = sc.next();
 
-                                        player.getPlayerCurrentBal(i);
-                                    } else {
-                                        System.out.println(" You still don't have enough balance");
-                                        System.out.println(" Come back soon");
-                                    }
+                            if (res.equalsIgnoreCase("yes")) {
+                                sell(i, true);
+                                if (player.getPlayerCurrentBal(i) >= 6500) {
+                                    player.setPlayerCurrentBal(player.getPlayerCurrentBal(i) - 6500, i);
+                                    player.setPlayerSharesOwned(i, 11, company.getCompanyNoOfShares(11));
+                                    company.setCompanyOwner(11, i);
+                                    player.setPlayerCompaniesOwned(i, 11);
+                                    System.out.println(" Congratulations !!!");
+                                    System.out.println(" You have bought Facebook");
+
+                                    player.getPlayerCurrentBal(i);
+                                } else {
+                                    System.out.println(" You still don't have enough balance");
+                                    System.out.println(" Come back soon");
                                 }
                             }
-                        } else {
-                            System.out.println(" Continue the game");
-                            System.out.println(" Thanks for visiting Amazon");
                         }
+                    } else {
+                        System.out.println(" Continue the game");
+                        System.out.println(" Thanks for visiting Amazon");
+                    }
+
+                } else {
+                    int owner = company.getCompanyOwner(11);
+
+                    if (player.getPlayerCurrentBal(i) >= company.getCompanyServiceRent(11)) {
+                        System.out.println(" Facebook is owned by " + player.getPlayerName(owner));
+
+                        System.out.println(" You will have to pay $" + company.getCompanyServiceRent(11) + " as rent");
+                        player.setPlayerCurrentBal(player.getPlayerCurrentBal(i) - company.getCompanyServiceRent(11),
+                                i);
+
+                        player.setPlayerCurrentBal(
+                                player.getPlayerCurrentBal(owner) + company.getCompanyServiceRent(11), owner);
+                        updateSharePrice(11);
 
                     } else {
-                        int owner = company.getCompanyOwner(11);
-
+                        sell(i, true);
                         if (player.getPlayerCurrentBal(i) >= company.getCompanyServiceRent(11)) {
                             System.out.println(" Facebook is owned by " + player.getPlayerName(owner));
 
@@ -696,49 +739,34 @@ public class App {
                             updateSharePrice(11);
 
                         } else {
-                            sell(i);
-                            if (player.getPlayerCurrentBal(i) >= company.getCompanyServiceRent(11)) {
-                                System.out.println(" Facebook is owned by " + player.getPlayerName(owner));
-
-                                System.out.println(
-                                        " You will have to pay $" + company.getCompanyServiceRent(11) + " as rent");
-                                player.setPlayerCurrentBal(
-                                        player.getPlayerCurrentBal(i) - company.getCompanyServiceRent(11), i);
-
-                                player.setPlayerCurrentBal(
-                                        player.getPlayerCurrentBal(owner) + company.getCompanyServiceRent(11), owner);
-                                updateSharePrice(11);
-
-                            } else {
-                                bankRupt(player.getPlayerName(i));
-                            }
-
+                            bankRupt(player.getPlayerName(i));
                         }
 
                     }
-                    System.out.println("");
-                    System.out.print(" Press ENTER to Continue ...");
-                    promptEnterKey();
-                    System.out.print("\033[H\033[2J");
-                    System.out.flush();
-                    board();
 
-                    break;
                 }
-                case 12: {
-                    chance(i);
-                    System.out.println("");
-                    System.out.print(" Press ENTER to Continue ...");
-                    promptEnterKey();
-                    System.out.print("\033[H\033[2J");
-                    System.out.flush();
-                    board();
+                System.out.println("");
+                System.out.print(" Press ENTER to Continue ...");
+                promptEnterKey();
+                System.out.print("\033[H\033[2J");
+                System.out.flush();
+                board(playerCount);
 
-                    break;
-                }
+                break;
+            }
+            case 12: {
+                chance(i);
+                System.out.println("");
+                System.out.print(" Press ENTER to Continue ...");
+                promptEnterKey();
+                System.out.print("\033[H\033[2J");
+                System.out.flush();
+                board(playerCount);
+
+                break;
             }
         }
-
+        return 0;
     }
 
     static int welcome() {
@@ -775,7 +803,7 @@ public class App {
         return 0;
     }
 
-    public static int board() {
+    public static int board(int playerCount) {
         System.out.println("\t\t\t\t\t  _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ ");
         System.out.println("\t\t\t\t\t |            |            |            |              |");
         System.out.println("\t\t\t\t\t |     1.     |      2.    |      3.    |      4.      |");
@@ -797,31 +825,73 @@ public class App {
         System.out.println("\t\t\t\t\t |_ _ _ _ _ _ |_ _ _ _ _ _ |_ _ _ _ _ _ |_ _ _ _ _ _ _ |");
         System.out.println(" ");
 
-        System.out.println("SHARE PRICE :  Amazon - "+ company.getCompanySharePrice(2)+ " , Tesla - "+ company.getCompanySharePrice(5)+ " , Microsoft - "+ company.getCompanySharePrice(6)+ " , Google - "+ company.getCompanySharePrice(9)+ " , ISRO - "+ company.getCompanySharePrice(10)+ " , Facebook - "+ company.getCompanySharePrice(11) );
-        System.out.println("SERVICE RENT : Amazon - "+ company.getCompanyServiceRent(2) + " , Tesla - "+ company.getCompanyServiceRent(5)+ " , Microsoft - "+ company.getCompanyServiceRent(6)+" , Google - "+ company.getCompanyServiceRent(9)+" , ISRO - "+ company.getCompanyServiceRent(10)+" , Facebook - "+ company.getCompanyServiceRent(11) );
-        //
-        System.out.println("__________________________________________________________________________________________________________________________________________");
-        System.out.println(player.getPlayerName(1));
-        System.out.println("Current Balance     :- " + player.getPlayerCurrentBal(1));
-        System.out.print("Companies Owned     :- "); companiesOwned(1, 1);
-        System.out.print("\t Shared Owned    :- "); sharesOwned(1);
-        System.out.println(" ");
-        System.out.println("Current Position    :- " + player.getPlayerCurrentPosition(1));
-        System.out.println("___________________________________________________________________________________________________________________________________________");
-        System.out.println(player.getPlayerName(2));
-        System.out.println("Current Balance     :- " + player.getPlayerCurrentBal(2));
-        System.out.print("Companies Owned     :- "); companiesOwned(2, 1);
-        System.out.print("\t Shared Owned    :- "); sharesOwned(2);
-        System.out.println(" ");
-        System.out.println("Current Position    :- " + player.getPlayerCurrentPosition(2));
-        System.out.println("___________________________________________________________________________________________________________________________________________");
-        System.out.println(player.getPlayerName(3));
-        System.out.println("Current Balance     :- " + player.getPlayerCurrentBal(3));
-        System.out.print("Companies Owned     :- "); companiesOwned(3, 1);
-        System.out.print("\t Shared Owned    :- "); sharesOwned(3);
-        System.out.println(" ");
-        System.out.println("Current Position    :- " + player.getPlayerCurrentPosition(3));
-        System.out.println("___________________________________________________________________________________________________________________________________________");
+        System.out.println("SHARE PRICE :  Amazon - " + company.getCompanySharePrice(2) + " , Tesla - "
+                + company.getCompanySharePrice(5) + " , Microsoft - " + company.getCompanySharePrice(6) + " , Google - "
+                + company.getCompanySharePrice(9) + " , ISRO - " + company.getCompanySharePrice(10) + " , Facebook - "
+                + company.getCompanySharePrice(11));
+        System.out.println("SERVICE RENT : Amazon - " + company.getCompanyServiceRent(2) + " , Tesla - "
+                + company.getCompanyServiceRent(5) + " , Microsoft - " + company.getCompanyServiceRent(6)
+                + " , Google - " + company.getCompanyServiceRent(9) + " , ISRO - " + company.getCompanyServiceRent(10)
+                + " , Facebook - " + company.getCompanyServiceRent(11));
+
+        if (playerCount == 3) {
+            System.out.println(
+                    "__________________________________________________________________________________________________________________________________________");
+            System.out.println(player.getPlayerName(1));
+            System.out.println("Current Balance     :- " + player.getPlayerCurrentBal(1));
+            System.out.print("Companies Owned     :- ");
+            companiesOwned(1, 1);
+            System.out.print("\t Shared Owned    :- ");
+            sharesOwned(1);
+            System.out.println(" ");
+            System.out.println("Current Position    :- " + player.getPlayerCurrentPosition(1));
+            System.out.println(
+                    "___________________________________________________________________________________________________________________________________________");
+            System.out.println(player.getPlayerName(2));
+            System.out.println("Current Balance     :- " + player.getPlayerCurrentBal(2));
+            System.out.print("Companies Owned     :- ");
+            companiesOwned(2, 1);
+            System.out.print("\t Shared Owned    :- ");
+            sharesOwned(2);
+            System.out.println(" ");
+            System.out.println("Current Position    :- " + player.getPlayerCurrentPosition(2));
+            System.out.println(
+                    "___________________________________________________________________________________________________________________________________________");
+            System.out.println(player.getPlayerName(3));
+            System.out.println("Current Balance     :- " + player.getPlayerCurrentBal(3));
+            System.out.print("Companies Owned     :- ");
+            companiesOwned(3, 1);
+            System.out.print("\t Shared Owned    :- ");
+            sharesOwned(3);
+            System.out.println(" ");
+            System.out.println("Current Position    :- " + player.getPlayerCurrentPosition(3));
+            System.out.println(
+                    "___________________________________________________________________________________________________________________________________________");
+        } else {
+            System.out.println(
+                    "__________________________________________________________________________________________________________________________________________");
+            System.out.println(player.getPlayerName(1));
+            System.out.println("Current Balance     :- " + player.getPlayerCurrentBal(1));
+            System.out.print("Companies Owned     :- ");
+            companiesOwned(1, 1);
+            System.out.print("\t Shared Owned    :- ");
+            sharesOwned(1);
+            System.out.println(" ");
+            System.out.println("Current Position    :- " + player.getPlayerCurrentPosition(1));
+            System.out.println(
+                    "___________________________________________________________________________________________________________________________________________");
+            System.out.println(player.getPlayerName(2));
+            System.out.println("Current Balance     :- " + player.getPlayerCurrentBal(2));
+            System.out.print("Companies Owned     :- ");
+            companiesOwned(2, 1);
+            System.out.print("\t Shared Owned    :- ");
+            sharesOwned(2);
+            System.out.println(" ");
+            System.out.println("Current Position    :- " + player.getPlayerCurrentPosition(2));
+            System.out.println(
+                    "___________________________________________________________________________________________________________________________________________");
+        }
+
         return 0;
     }
 
@@ -898,7 +968,7 @@ public class App {
             if (player.getPlayerCurrentBal(p) >= 1000) {
                 player.setPlayerCurrentBal(player.getPlayerCurrentBal(p) - 1000, p);
             } else {
-                sell(p);
+                sell(p, true);
                 if (player.getPlayerCurrentBal(p) >= 1000) {
                     player.setPlayerCurrentBal(player.getPlayerCurrentBal(p) - 1000, p);
                 } else {
@@ -944,7 +1014,7 @@ public class App {
             if (player.getPlayerCurrentBal(p) >= fine) {
                 player.setPlayerCurrentBal(player.getPlayerCurrentBal(p) - fine, p);
             } else {
-                sell(p);
+                sell(p, true);
                 if (player.getPlayerCurrentBal(p) >= fine) {
                     player.setPlayerCurrentBal(player.getPlayerCurrentBal(p) - fine, p);
                 } else {
@@ -991,7 +1061,7 @@ public class App {
             if (player.getPlayerCurrentBal(p) >= fine) {
                 player.setPlayerCurrentBal(player.getPlayerCurrentBal(p) - fine, p);
             } else {
-                sell(p);
+                sell(p, true);
                 if (player.getPlayerCurrentBal(p) >= fine) {
                     player.setPlayerCurrentBal(player.getPlayerCurrentBal(p) - fine, p);
                 } else {
@@ -1054,102 +1124,287 @@ public class App {
         company.setCompanySharePrice((float) (company.getCompanySharePrice(n) * 1.1), n);
     }
 
-    public static int sell(int i) {
-        if (player.getPlayerSharesOwned(i, 2) > 0) {
-            if (company.getCompanyOwner(2) != i) {
-                int shareNum = player.getPlayerSharesOwned(i, 2);
-                int owner = company.getCompanyOwner(2);
-                float shareBal = (player.getPlayerSharesOwned(i, 2)) * (company.getCompanySharePrice(2));
-                player.setPlayerCurrentBal(player.getPlayerCurrentBal(i) + shareBal, i);
-                player.setPlayerSharesOwned(i, 2, 0);
+    public static int sell(int i, boolean outOfBal) {
 
-                if (player.getPlayerCurrentBal(owner) > shareBal) {
-                    player.setPlayerSharesOwned(owner, 2, player.getPlayerSharesOwned(owner, 2) + shareNum);
-                    player.setPlayerCurrentBal(player.getPlayerCurrentBal(owner) - shareBal, owner);
-                } else {
-                    bankRupt(player.getPlayerName(owner));
+        if (outOfBal == true) {
+            if (player.getPlayerSharesOwned(i, 2) > 0) {
+                if (company.getCompanyOwner(2) != i) {
+                    int shareNum = player.getPlayerSharesOwned(i, 2);
+                    int owner = company.getCompanyOwner(2);
+                    float shareBal = (player.getPlayerSharesOwned(i, 2)) * (company.getCompanySharePrice(2));
+                    player.setPlayerCurrentBal(player.getPlayerCurrentBal(i) + shareBal, i);
+                    player.setPlayerSharesOwned(i, 2, 0);
+
+                    if (player.getPlayerCurrentBal(owner) > shareBal) {
+                        player.setPlayerSharesOwned(owner, 2, player.getPlayerSharesOwned(owner, 2) + shareNum);
+                        player.setPlayerCurrentBal(player.getPlayerCurrentBal(owner) - shareBal, owner);
+                    } else {
+                        bankRupt(player.getPlayerName(owner));
+                    }
                 }
             }
-        }
-        if (player.getPlayerSharesOwned(i, 5) > 0) {
-            if (company.getCompanyOwner(5) != i) {
-                int shareNum = player.getPlayerSharesOwned(i, 5);
-                int owner = company.getCompanyOwner(5);
-                float shareBal = (player.getPlayerSharesOwned(i, 5)) * (company.getCompanySharePrice(5));
-                player.setPlayerCurrentBal(player.getPlayerCurrentBal(i) + shareBal, i);
-                player.setPlayerSharesOwned(i, 5, 0);
+            if (player.getPlayerSharesOwned(i, 5) > 0) {
+                if (company.getCompanyOwner(5) != i) {
+                    int shareNum = player.getPlayerSharesOwned(i, 5);
+                    int owner = company.getCompanyOwner(5);
+                    float shareBal = (player.getPlayerSharesOwned(i, 5)) * (company.getCompanySharePrice(5));
+                    player.setPlayerCurrentBal(player.getPlayerCurrentBal(i) + shareBal, i);
+                    player.setPlayerSharesOwned(i, 5, 0);
 
-                if (player.getPlayerCurrentBal(owner) > shareBal) {
-                    player.setPlayerSharesOwned(owner, 5, player.getPlayerSharesOwned(owner, 5) + shareNum);
-                    player.setPlayerCurrentBal(player.getPlayerCurrentBal(owner) - shareBal, owner);
-                } else {
-                    bankRupt(player.getPlayerName(owner));
+                    if (player.getPlayerCurrentBal(owner) > shareBal) {
+                        player.setPlayerSharesOwned(owner, 5, player.getPlayerSharesOwned(owner, 5) + shareNum);
+                        player.setPlayerCurrentBal(player.getPlayerCurrentBal(owner) - shareBal, owner);
+                    } else {
+                        bankRupt(player.getPlayerName(owner));
+                    }
                 }
             }
-        }
-        if (player.getPlayerSharesOwned(i, 6) > 0) {
-            if (company.getCompanyOwner(6) != i) {
-                int shareNum = player.getPlayerSharesOwned(i, 6);
-                int owner = company.getCompanyOwner(6);
-                float shareBal = (player.getPlayerSharesOwned(i, 6)) * (company.getCompanySharePrice(6));
-                player.setPlayerCurrentBal(player.getPlayerCurrentBal(i) + shareBal, i);
-                player.setPlayerSharesOwned(i, 6, 0);
+            if (player.getPlayerSharesOwned(i, 6) > 0) {
+                if (company.getCompanyOwner(6) != i) {
+                    int shareNum = player.getPlayerSharesOwned(i, 6);
+                    int owner = company.getCompanyOwner(6);
+                    float shareBal = (player.getPlayerSharesOwned(i, 6)) * (company.getCompanySharePrice(6));
+                    player.setPlayerCurrentBal(player.getPlayerCurrentBal(i) + shareBal, i);
+                    player.setPlayerSharesOwned(i, 6, 0);
 
-                if (player.getPlayerCurrentBal(owner) > shareBal) {
-                    player.setPlayerSharesOwned(owner, 6, player.getPlayerSharesOwned(owner, 6) + shareNum);
-                    player.setPlayerCurrentBal(player.getPlayerCurrentBal(owner) - shareBal, owner);
-                } else {
-                    bankRupt(player.getPlayerName(owner));
+                    if (player.getPlayerCurrentBal(owner) > shareBal) {
+                        player.setPlayerSharesOwned(owner, 6, player.getPlayerSharesOwned(owner, 6) + shareNum);
+                        player.setPlayerCurrentBal(player.getPlayerCurrentBal(owner) - shareBal, owner);
+                    } else {
+                        bankRupt(player.getPlayerName(owner));
+                    }
                 }
             }
-        }
-        if (player.getPlayerSharesOwned(i, 9) > 0) {
-            if (company.getCompanyOwner(9) != i) {
-                int shareNum = player.getPlayerSharesOwned(i, 9);
-                int owner = company.getCompanyOwner(9);
-                float shareBal = (player.getPlayerSharesOwned(i, 9)) * (company.getCompanySharePrice(9));
-                player.setPlayerCurrentBal(player.getPlayerCurrentBal(i) + shareBal, i);
-                player.setPlayerSharesOwned(i, 9, 0);
+            if (player.getPlayerSharesOwned(i, 9) > 0) {
+                if (company.getCompanyOwner(9) != i) {
+                    int shareNum = player.getPlayerSharesOwned(i, 9);
+                    int owner = company.getCompanyOwner(9);
+                    float shareBal = (player.getPlayerSharesOwned(i, 9)) * (company.getCompanySharePrice(9));
+                    player.setPlayerCurrentBal(player.getPlayerCurrentBal(i) + shareBal, i);
+                    player.setPlayerSharesOwned(i, 9, 0);
 
-                if (player.getPlayerCurrentBal(owner) > shareBal) {
-                    player.setPlayerSharesOwned(owner, 9, player.getPlayerSharesOwned(owner, 9) + shareNum);
-                    player.setPlayerCurrentBal(player.getPlayerCurrentBal(owner) - shareBal, owner);
-                } else {
-                    bankRupt(player.getPlayerName(owner));
+                    if (player.getPlayerCurrentBal(owner) > shareBal) {
+                        player.setPlayerSharesOwned(owner, 9, player.getPlayerSharesOwned(owner, 9) + shareNum);
+                        player.setPlayerCurrentBal(player.getPlayerCurrentBal(owner) - shareBal, owner);
+                    } else {
+                        bankRupt(player.getPlayerName(owner));
+                    }
                 }
             }
-        }
-        if (player.getPlayerSharesOwned(i, 10) > 0) {
-            if (company.getCompanyOwner(10) != i) {
-                int shareNum = player.getPlayerSharesOwned(i, 10);
-                int owner = company.getCompanyOwner(10);
-                float shareBal = (player.getPlayerSharesOwned(i, 10)) * (company.getCompanySharePrice(10));
-                player.setPlayerCurrentBal(player.getPlayerCurrentBal(i) + shareBal, i);
-                player.setPlayerSharesOwned(i, 10, 0);
+            if (player.getPlayerSharesOwned(i, 10) > 0) {
+                if (company.getCompanyOwner(10) != i) {
+                    int shareNum = player.getPlayerSharesOwned(i, 10);
+                    int owner = company.getCompanyOwner(10);
+                    float shareBal = (player.getPlayerSharesOwned(i, 10)) * (company.getCompanySharePrice(10));
+                    player.setPlayerCurrentBal(player.getPlayerCurrentBal(i) + shareBal, i);
+                    player.setPlayerSharesOwned(i, 10, 0);
 
-                if (player.getPlayerCurrentBal(owner) > shareBal) {
-                    player.setPlayerSharesOwned(owner, 10, player.getPlayerSharesOwned(owner, 10) + shareNum);
-                    player.setPlayerCurrentBal(player.getPlayerCurrentBal(owner) - shareBal, owner);
-                } else {
-                    bankRupt(player.getPlayerName(owner));
+                    if (player.getPlayerCurrentBal(owner) > shareBal) {
+                        player.setPlayerSharesOwned(owner, 10, player.getPlayerSharesOwned(owner, 10) + shareNum);
+                        player.setPlayerCurrentBal(player.getPlayerCurrentBal(owner) - shareBal, owner);
+                    } else {
+                        bankRupt(player.getPlayerName(owner));
+                    }
                 }
             }
-        }
-        if (player.getPlayerSharesOwned(i, 11) > 0) {
-            if (company.getCompanyOwner(11) != i) {
-                int shareNum = player.getPlayerSharesOwned(i, 11);
-                int owner = company.getCompanyOwner(11);
-                float shareBal = (player.getPlayerSharesOwned(i, 11)) * (company.getCompanySharePrice(11));
-                player.setPlayerCurrentBal(player.getPlayerCurrentBal(i) + shareBal, i);
-                player.setPlayerSharesOwned(i, 11, 0);
+            if (player.getPlayerSharesOwned(i, 11) > 0) {
+                if (company.getCompanyOwner(11) != i) {
+                    int shareNum = player.getPlayerSharesOwned(i, 11);
+                    int owner = company.getCompanyOwner(11);
+                    float shareBal = (player.getPlayerSharesOwned(i, 11)) * (company.getCompanySharePrice(11));
+                    player.setPlayerCurrentBal(player.getPlayerCurrentBal(i) + shareBal, i);
+                    player.setPlayerSharesOwned(i, 11, 0);
 
-                if (player.getPlayerCurrentBal(owner) > shareBal) {
-                    player.setPlayerSharesOwned(owner, 11, player.getPlayerSharesOwned(owner, 11) + shareNum);
-                    player.setPlayerCurrentBal(player.getPlayerCurrentBal(owner) - shareBal, owner);
-                } else {
-                    bankRupt(player.getPlayerName(owner));
+                    if (player.getPlayerCurrentBal(owner) > shareBal) {
+                        player.setPlayerSharesOwned(owner, 11, player.getPlayerSharesOwned(owner, 11) + shareNum);
+                        player.setPlayerCurrentBal(player.getPlayerCurrentBal(owner) - shareBal, owner);
+                    } else {
+                        bankRupt(player.getPlayerName(owner));
+                    }
                 }
             }
+        } else {
+            if (player.getPlayerSharesOwned(i, 2) > 0) {
+                if (company.getCompanyOwner(2) != i) {
+                    //
+                    System.out.println("Do you want to Sell the shares of Amazon ? (YES/NO)");
+                    String res = sc.next();
+
+                    if (res.equalsIgnoreCase("yes")) {
+                        int shareNum = player.getPlayerSharesOwned(i, 2);
+                        int owner = company.getCompanyOwner(2);
+                        System.out.println("How many Shares of Amazon do you want to sell out of " + shareNum);
+                        int shareSell = sc.nextInt();
+                        float shareBal = (shareSell) * company.getCompanySharePrice(2);
+                        player.setPlayerCurrentBal(player.getPlayerCurrentBal(i) + shareBal, i);
+                        player.setPlayerSharesOwned(i, 2, player.getPlayerSharesOwned(i, 2) + shareSell);
+                        if (shareSell < shareNum && shareSell >= 0) {
+                            if (player.getPlayerCurrentBal(owner) > shareBal) {
+                                player.setPlayerCurrentBal(player.getPlayerCurrentBal(owner) - shareBal, owner);
+                                player.setPlayerSharesOwned(owner, 2,
+                                        player.getPlayerSharesOwned(owner, 2) + shareSell);
+                            } else {
+                                bankRupt(player.getPlayerName(owner));
+                            }
+
+                        } else {
+                            System.out.println("You Entered invalid No. of Shares");
+                        }
+                    }
+
+                }
+            }
+            if (player.getPlayerSharesOwned(i, 5) > 0) {
+                if (company.getCompanyOwner(5) != i) {
+                    //
+                    System.out.println("Do you want to Sell the shares of Tesla ? (YES/NO)");
+                    String res = sc.next();
+
+                    if (res.equalsIgnoreCase("yes")) {
+                        int shareNum = player.getPlayerSharesOwned(i, 5);
+                        int owner = company.getCompanyOwner(5);
+                        System.out.println("How many Shares of Tesla do you want to sell out of " + shareNum);
+                        int shareSell = sc.nextInt();
+                        float shareBal = (shareSell) * company.getCompanySharePrice(5);
+                        player.setPlayerCurrentBal(player.getPlayerCurrentBal(i) + shareBal, i);
+                        player.setPlayerSharesOwned(i, 5, player.getPlayerSharesOwned(i, 5) + shareSell);
+                        if (shareSell < shareNum && shareSell >= 0) {
+                            if (player.getPlayerCurrentBal(owner) > shareBal) {
+                                player.setPlayerCurrentBal(player.getPlayerCurrentBal(owner) - shareBal, owner);
+                                player.setPlayerSharesOwned(owner, 5,
+                                        player.getPlayerSharesOwned(owner, 5) + shareSell);
+                            } else {
+                                bankRupt(player.getPlayerName(owner));
+                            }
+
+                        } else {
+                            System.out.println("You Entered invalid No. of Shares");
+                        }
+                    }
+
+                }
+            }
+            if (player.getPlayerSharesOwned(i, 6) > 0) {
+                if (company.getCompanyOwner(6) != i) {
+                    //
+                    System.out.println("Do you want to Sell the shares of Microsoft ? (YES/NO)");
+                    String res = sc.next();
+
+                    if (res.equalsIgnoreCase("yes")) {
+                        int shareNum = player.getPlayerSharesOwned(i, 6);
+                        int owner = company.getCompanyOwner(6);
+                        System.out.println("How many Shares of Microsoft do you want to sell out of " + shareNum);
+                        int shareSell = sc.nextInt();
+                        float shareBal = (shareSell) * company.getCompanySharePrice(6);
+                        player.setPlayerCurrentBal(player.getPlayerCurrentBal(i) + shareBal, i);
+                        player.setPlayerSharesOwned(i, 6, player.getPlayerSharesOwned(i, 6) + shareSell);
+                        if (shareSell < shareNum && shareSell >= 0) {
+                            if (player.getPlayerCurrentBal(owner) > shareBal) {
+                                player.setPlayerCurrentBal(player.getPlayerCurrentBal(owner) - shareBal, owner);
+                                player.setPlayerSharesOwned(owner, 6,
+                                        player.getPlayerSharesOwned(owner, 6) + shareSell);
+                            } else {
+                                bankRupt(player.getPlayerName(owner));
+                            }
+
+                        } else {
+                            System.out.println("You Entered invalid No. of Shares");
+                        }
+                    }
+
+                }
+            }
+            if (player.getPlayerSharesOwned(i, 9) > 0) {
+                if (company.getCompanyOwner(9) != i) {
+                    //
+                    System.out.println("Do you want to Sell the shares of Google ? (YES/NO)");
+                    String res = sc.next();
+
+                    if (res.equalsIgnoreCase("yes")) {
+                        int shareNum = player.getPlayerSharesOwned(i, 9);
+                        int owner = company.getCompanyOwner(9);
+                        System.out.println("How many Shares of Google do you want to sell out of " + shareNum);
+                        int shareSell = sc.nextInt();
+                        float shareBal = (shareSell) * company.getCompanySharePrice(9);
+                        player.setPlayerCurrentBal(player.getPlayerCurrentBal(i) + shareBal, i);
+                        player.setPlayerSharesOwned(i, 9, player.getPlayerSharesOwned(i, 9) + shareSell);
+                        if (shareSell < shareNum && shareSell >= 0) {
+                            if (player.getPlayerCurrentBal(owner) > shareBal) {
+                                player.setPlayerCurrentBal(player.getPlayerCurrentBal(owner) - shareBal, owner);
+                                player.setPlayerSharesOwned(owner, 9,
+                                        player.getPlayerSharesOwned(owner, 9) + shareSell);
+                            } else {
+                                bankRupt(player.getPlayerName(owner));
+                            }
+
+                        } else {
+                            System.out.println("You Entered invalid No. of Shares");
+                        }
+                    }
+
+                }
+            }
+            if (player.getPlayerSharesOwned(i, 10) > 0) {
+                if (company.getCompanyOwner(10) != i) {
+                    //
+                    System.out.println("Do you want to Sell the shares of ISRO ? (YES/NO)");
+                    String res = sc.next();
+
+                    if (res.equalsIgnoreCase("yes")) {
+                        int shareNum = player.getPlayerSharesOwned(i, 10);
+                        int owner = company.getCompanyOwner(10);
+                        System.out.println("How many Shares of ISRO do you want to sell out of " + shareNum);
+                        int shareSell = sc.nextInt();
+                        float shareBal = (shareSell) * company.getCompanySharePrice(10);
+                        player.setPlayerCurrentBal(player.getPlayerCurrentBal(i) + shareBal, i);
+                        player.setPlayerSharesOwned(i, 10, player.getPlayerSharesOwned(i, 10) + shareSell);
+                        if (shareSell < shareNum && shareSell >= 0) {
+                            if (player.getPlayerCurrentBal(owner) > shareBal) {
+                                player.setPlayerCurrentBal(player.getPlayerCurrentBal(owner) - shareBal, owner);
+                                player.setPlayerSharesOwned(owner, 10,
+                                        player.getPlayerSharesOwned(owner, 10) + shareSell);
+                            } else {
+                                bankRupt(player.getPlayerName(owner));
+                            }
+
+                        } else {
+                            System.out.println("You Entered invalid No. of Shares");
+                        }
+                    }
+
+                }
+            }
+            if (player.getPlayerSharesOwned(i, 11) > 0) {
+                if (company.getCompanyOwner(11) != i) {
+                    //
+                    System.out.println("Do you want to Sell the shares of Facebook ? (YES/NO)");
+                    String res = sc.next();
+
+                    if (res.equalsIgnoreCase("yes")) {
+                        int shareNum = player.getPlayerSharesOwned(i, 11);
+                        int owner = company.getCompanyOwner(11);
+                        System.out.println("How many Shares of Facebook do you want to sell out of " + shareNum);
+                        int shareSell = sc.nextInt();
+                        float shareBal = (shareSell) * company.getCompanySharePrice(11);
+                        player.setPlayerCurrentBal(player.getPlayerCurrentBal(i) + shareBal, i);
+                        player.setPlayerSharesOwned(i, 11, player.getPlayerSharesOwned(i, 11) + shareSell);
+                        if (shareSell < shareNum && shareSell >= 0) {
+                            if (player.getPlayerCurrentBal(owner) > shareBal) {
+                                player.setPlayerCurrentBal(player.getPlayerCurrentBal(owner) - shareBal, owner);
+                                player.setPlayerSharesOwned(owner, 11,
+                                        player.getPlayerSharesOwned(owner, 11) + shareSell);
+                            } else {
+                                bankRupt(player.getPlayerName(owner));
+                            }
+
+                        } else {
+                            System.out.println("You Entered invalid No. of Shares");
+                        }
+                    }
+
+                }
+            }
+
         }
 
         return 0;
@@ -1196,7 +1451,7 @@ public class App {
             player.setPlayerCurrentBal(player.getPlayerCurrentBal(p) - taxraid, p);
         } else {
             System.out.println(" You will have to sell your shares");
-            sell(p);
+            sell(p, true);
             if (player.getPlayerCurrentBal(p) > taxraid) {
 
                 player.setPlayerCurrentBal(player.getPlayerCurrentBal(p) - taxraid, p);
@@ -1232,9 +1487,9 @@ public class App {
         if (owned[10] == true) {
             count++;
         }
-        if(count == 0){
+        if (count == 0) {
             System.out.println(" You have no companies");
-        } else{     
+        } else {
             System.out.println(" List of companies owned by " + player.getPlayerName(p) + " - ");
             companiesOwned(p, (float) 0.80);
         }
@@ -1246,7 +1501,7 @@ public class App {
             System.out.println(
                     " You don't have enough balance to pay for the short listing fraud \n Press Enter to sell all your shares. ");
             promptEnterKey();
-            sell(p);
+            sell(p, true);
             if (player.getPlayerCurrentBal(p) >= 500) {
                 player.setPlayerCurrentBal(player.getPlayerCurrentBal(p) - 500, p);
 
@@ -1271,18 +1526,16 @@ public class App {
         System.out.println(" Here you can buy stocks of the companies already owned by other players.");
         int a = 0;
 
-        if(company.getCompanyOwner(2)==p){
+        if (company.getCompanyOwner(2) == p) {
 
-        }
-        else if (company.getCompanyOwner(2) != 0) {
+        } else if (company.getCompanyOwner(2) != 0) {
             a++;
             System.out.println("Do you want to buy shares of Amazon (yes/no)");
             int owner = company.getCompanyOwner(2);
-                int sharesForsale = player.getPlayerSharesOwned(owner, 2) - 10;
-            Scanner sc = new Scanner(System.in);
+            int sharesForsale = player.getPlayerSharesOwned(owner, 2) - 10;
+            // Scanner sc = new Scanner(System.in);
             String response = sc.next();
             if (response.equalsIgnoreCase("yes")) {
-                
 
                 System.out.println(" How many shares of Amazon do you want to buy out of " + sharesForsale);
                 int buyShare = sc.nextInt();
@@ -1305,18 +1558,16 @@ public class App {
             }
         }
 
-        if(company.getCompanyOwner(5)==p){
+        if (company.getCompanyOwner(5) == p) {
 
-        }
-        else if (company.getCompanyOwner(5) != 0) {
+        } else if (company.getCompanyOwner(5) != 0) {
             a++;
             System.out.println(" Do you want to buy shares of Tesla (yes/no)");
             int owner = company.getCompanyOwner(5);
-                int sharesForsale = player.getPlayerSharesOwned(owner, 5) - 23;
-            Scanner sc = new Scanner(System.in);
+            int sharesForsale = player.getPlayerSharesOwned(owner, 5) - 23;
+            // Scanner sc = new Scanner(System.in);
             String response = sc.next();
             if (response.equalsIgnoreCase("yes")) {
-                
 
                 System.out.println(" How many shares of Tesla do you want to buy out of " + sharesForsale);
                 int buyShare = sc.nextInt();
@@ -1339,18 +1590,16 @@ public class App {
             }
         }
 
-        if(company.getCompanyOwner(6)==p){
+        if (company.getCompanyOwner(6) == p) {
 
-        }
-        else if (company.getCompanyOwner(6) != 0) {
+        } else if (company.getCompanyOwner(6) != 0) {
             a++;
             System.out.println("Do you want to buy shares of Microsoft (yes/no)");
             int owner = company.getCompanyOwner(6);
-                int sharesForsale = player.getPlayerSharesOwned(owner, 6) - 15;
-            Scanner sc = new Scanner(System.in);
+            int sharesForsale = player.getPlayerSharesOwned(owner, 6) - 15;
+            // Scanner sc = new Scanner(System.in);
             String response = sc.next();
             if (response.equalsIgnoreCase("yes")) {
-                
 
                 System.out.println("How many shares of Microsoft do you want to buy out of " + sharesForsale);
                 int buyShare = sc.nextInt();
@@ -1374,18 +1623,16 @@ public class App {
             }
         }
 
-        if(company.getCompanyOwner(9)==p){
+        if (company.getCompanyOwner(9) == p) {
 
-        }
-        else if (company.getCompanyOwner(9) != 0) {
+        } else if (company.getCompanyOwner(9) != 0) {
             a++;
             System.out.println("Do you want to buy shares of Google (yes/no)");
             int owner = company.getCompanyOwner(9);
-                int sharesForsale = player.getPlayerSharesOwned(owner, 9) - 4;
-            Scanner sc = new Scanner(System.in);
+            int sharesForsale = player.getPlayerSharesOwned(owner, 9) - 4;
+            // Scanner sc = new Scanner(System.in);
             String response = sc.next();
             if (response.equalsIgnoreCase("yes")) {
-                
 
                 System.out.println("How many shares of Google do you want to buy out of " + sharesForsale);
                 int buyShare = sc.nextInt();
@@ -1407,18 +1654,16 @@ public class App {
 
             }
         }
-        if(company.getCompanyOwner(10)==p){
+        if (company.getCompanyOwner(10) == p) {
 
-        }
-        else if (company.getCompanyOwner(10) != 0) {
+        } else if (company.getCompanyOwner(10) != 0) {
             a++;
             System.out.println("Do you want to buy shares of ISRO (yes/no)");
             int owner = company.getCompanyOwner(10);
-                int sharesForsale = player.getPlayerSharesOwned(owner, 10) - 5;
-            Scanner sc = new Scanner(System.in);
+            int sharesForsale = player.getPlayerSharesOwned(owner, 10) - 5;
+            // Scanner sc = new Scanner(System.in);
             String response = sc.next();
             if (response.equalsIgnoreCase("yes")) {
-                
 
                 System.out.println(" How many shares of ISRO do you want to buy out of " + sharesForsale);
                 int buyShare = sc.nextInt();
@@ -1440,18 +1685,16 @@ public class App {
 
             }
         }
-        if(company.getCompanyOwner(11)==p){
+        if (company.getCompanyOwner(11) == p) {
 
-        }
-        else if (company.getCompanyOwner(11) != 0) {
+        } else if (company.getCompanyOwner(11) != 0) {
             a++;
             System.out.println(" Do you want to buy shares of Facebook (yes/no)");
             int owner = company.getCompanyOwner(11);
-                int sharesForsale = player.getPlayerSharesOwned(owner, 11) - 15;
-            Scanner sc = new Scanner(System.in);
+            int sharesForsale = player.getPlayerSharesOwned(owner, 11) - 15;
+            // Scanner sc = new Scanner(System.in);
             String response = sc.next();
             if (response.equalsIgnoreCase("yes")) {
-                
 
                 System.out.println(" How many shares of Facebook do you want to buy out of " + sharesForsale);
                 int buyShare = sc.nextInt();
