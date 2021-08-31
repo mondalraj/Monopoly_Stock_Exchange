@@ -1077,6 +1077,7 @@ public class App {
 
             player.setPlayerCurrentBal(player.getPlayerCurrentBal(p) + 2000, p);
             player.setPlayerCurrentPosition(3, p);
+            stockMarket(p);
         }
 
         return s;
@@ -1241,7 +1242,7 @@ public class App {
                         float shareBal = (shareSell) * company.getCompanySharePrice(2);
                         player.setPlayerCurrentBal(player.getPlayerCurrentBal(i) + shareBal, i);
                         player.setPlayerSharesOwned(i, 2, player.getPlayerSharesOwned(i, 2) + shareSell);
-                        if (shareSell < shareNum && shareSell >= 0) {
+                        if (shareSell <= shareNum && shareSell >= 0) {
                             if (player.getPlayerCurrentBal(owner) > shareBal) {
                                 player.setPlayerCurrentBal(player.getPlayerCurrentBal(owner) - shareBal, owner);
                                 player.setPlayerSharesOwned(owner, 2,
@@ -1271,7 +1272,7 @@ public class App {
                         float shareBal = (shareSell) * company.getCompanySharePrice(5);
                         player.setPlayerCurrentBal(player.getPlayerCurrentBal(i) + shareBal, i);
                         player.setPlayerSharesOwned(i, 5, player.getPlayerSharesOwned(i, 5) + shareSell);
-                        if (shareSell < shareNum && shareSell >= 0) {
+                        if (shareSell <= shareNum && shareSell >= 0) {
                             if (player.getPlayerCurrentBal(owner) > shareBal) {
                                 player.setPlayerCurrentBal(player.getPlayerCurrentBal(owner) - shareBal, owner);
                                 player.setPlayerSharesOwned(owner, 5,
@@ -1301,7 +1302,7 @@ public class App {
                         float shareBal = (shareSell) * company.getCompanySharePrice(6);
                         player.setPlayerCurrentBal(player.getPlayerCurrentBal(i) + shareBal, i);
                         player.setPlayerSharesOwned(i, 6, player.getPlayerSharesOwned(i, 6) + shareSell);
-                        if (shareSell < shareNum && shareSell >= 0) {
+                        if (shareSell <= shareNum && shareSell >= 0) {
                             if (player.getPlayerCurrentBal(owner) > shareBal) {
                                 player.setPlayerCurrentBal(player.getPlayerCurrentBal(owner) - shareBal, owner);
                                 player.setPlayerSharesOwned(owner, 6,
@@ -1331,7 +1332,7 @@ public class App {
                         float shareBal = (shareSell) * company.getCompanySharePrice(9);
                         player.setPlayerCurrentBal(player.getPlayerCurrentBal(i) + shareBal, i);
                         player.setPlayerSharesOwned(i, 9, player.getPlayerSharesOwned(i, 9) + shareSell);
-                        if (shareSell < shareNum && shareSell >= 0) {
+                        if (shareSell <= shareNum && shareSell >= 0) {
                             if (player.getPlayerCurrentBal(owner) > shareBal) {
                                 player.setPlayerCurrentBal(player.getPlayerCurrentBal(owner) - shareBal, owner);
                                 player.setPlayerSharesOwned(owner, 9,
@@ -1361,7 +1362,7 @@ public class App {
                         float shareBal = (shareSell) * company.getCompanySharePrice(10);
                         player.setPlayerCurrentBal(player.getPlayerCurrentBal(i) + shareBal, i);
                         player.setPlayerSharesOwned(i, 10, player.getPlayerSharesOwned(i, 10) + shareSell);
-                        if (shareSell < shareNum && shareSell >= 0) {
+                        if (shareSell <= shareNum && shareSell >= 0) {
                             if (player.getPlayerCurrentBal(owner) > shareBal) {
                                 player.setPlayerCurrentBal(player.getPlayerCurrentBal(owner) - shareBal, owner);
                                 player.setPlayerSharesOwned(owner, 10,
@@ -1391,7 +1392,7 @@ public class App {
                         float shareBal = (shareSell) * company.getCompanySharePrice(11);
                         player.setPlayerCurrentBal(player.getPlayerCurrentBal(i) + shareBal, i);
                         player.setPlayerSharesOwned(i, 11, player.getPlayerSharesOwned(i, 11) + shareSell);
-                        if (shareSell < shareNum && shareSell >= 0) {
+                        if (shareSell <= shareNum && shareSell >= 0) {
                             if (player.getPlayerCurrentBal(owner) > shareBal) {
                                 player.setPlayerCurrentBal(player.getPlayerCurrentBal(owner) - shareBal, owner);
                                 player.setPlayerSharesOwned(owner, 11,
