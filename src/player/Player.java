@@ -44,6 +44,7 @@ public class Player {
     }
 
     boolean[] companies;
+
     public boolean[] getPlayerCompaniesOwned(int p) {
         if (p == 1) {
             companies = p1.getCompaniesOwned();
@@ -287,6 +288,177 @@ public class Player {
         }
         return shares;
     }
+
+    public void setPlayerBuy(int p, int c, float price) {
+        if (p == 1) {
+            switch (c) {
+                case 2: {
+                    p1.setAmazonBuy(price);
+                    break;
+                }
+                case 5: {
+                    p1.setTeslaBuy(price);
+                    break;
+                }
+                case 6: {
+                    p1.setMicrosoftBuy(price);
+                    break;
+                }
+                case 9: {
+                    p1.setGoogleBuy(price);
+                    break;
+                }
+                case 10: {
+                    p1.setIsroBuy(price);
+                    break;
+                }
+                case 11: {
+                    p1.setFacebookBuy(price);
+                    break;
+                }
+            }
+        } else if (p == 2) {
+            switch (c) {
+                case 2: {
+                    p2.setAmazonBuy(price);
+                    break;
+                }
+                case 5: {
+                    p2.setTeslaBuy(price);
+                    break;
+                }
+                case 6: {
+                    p2.setMicrosoftBuy(price);
+                    break;
+                }
+                case 9: {
+                    p2.setGoogleBuy(price);
+                    break;
+                }
+                case 10: {
+                    p2.setIsroBuy(price);
+                    break;
+                }
+                case 11: {
+                    p2.setFacebookBuy(price);
+                    break;
+                }
+            }
+        } else {
+            switch (c) {
+                case 2: {
+                    p3.setAmazonBuy(price);
+                    break;
+                }
+                case 5: {
+                    p3.setTeslaBuy(price);
+                    break;
+                }
+                case 6: {
+                    p3.setMicrosoftBuy(price);
+                    break;
+                }
+                case 9: {
+                    p3.setGoogleBuy(price);
+                    break;
+                }
+                case 10: {
+                    p3.setIsroBuy(price);
+                    break;
+                }
+                case 11: {
+                    p3.setFacebookBuy(price);
+                    break;
+                }
+            }
+        }
+    }
+    float buy=0;
+    public float getPlayerBuy(int p, int c) {
+        if (p == 1) {
+            switch (c) {
+                case 2: {
+                    buy = p1.getAmazonBuy();
+                    break;
+                }
+                case 5: {
+                    buy = p1.getTeslaBuy();
+                    break;
+                }
+                case 6: {
+                    buy = p1.getMicrosoftBuy();
+                    break;
+                }
+                case 9: {
+                    buy = p1.getGoogleBuy();
+                    break;
+                }
+                case 10: {
+                    buy = p1.getIsroBuy();
+                    break;
+                }
+                case 11: {
+                    buy = p1.getFacebookBuy();
+                    break;
+                }
+            }
+        } else if (p == 2) {
+            switch (c) {
+                case 2: {
+                    buy = p2.getAmazonBuy();
+                    break;
+                }
+                case 5: {
+                    buy = p2.getTeslaBuy();
+                    break;
+                }
+                case 6: {
+                    buy = p2.getMicrosoftBuy();
+                    break;
+                }
+                case 9: {
+                    buy = p2.getGoogleBuy();
+                    break;
+                }
+                case 10: {
+                    buy = p2.getIsroBuy();
+                    break;
+                }
+                case 11: {
+                    buy = p2.getFacebookBuy();
+                    break;
+                }
+            }
+        } else {
+            switch (c) {
+                case 2: {
+                    buy = p3.getAmazonBuy();
+                    break;
+                }
+                case 5: {
+                    buy = p3.getTeslaBuy();
+                    break;
+                }
+                case 6: {
+                    buy = p3.getMicrosoftBuy();
+                    break;
+                }
+                case 9: {
+                    buy = p3.getGoogleBuy();
+                    break;
+                }
+                case 10: {
+                    buy = p3.getIsroBuy();
+                    break;
+                }
+                case 11: {
+                    buy = p3.getFacebookBuy();
+                    break;
+                }
+            }
+        }
+        return buy;
+    }
 }
 
 class Player1 {
@@ -300,6 +472,60 @@ class Player1 {
     int googleShares = 0;
     int isroShares = 0;
     int facebookShares = 0;
+    float amazonBuy = 0;
+    float teslaBuy = 0;
+    float microsoftBuy = 0;
+    float googleBuy = 0;
+    float isroBuy = 0;
+    float facebookBuy = 0;
+
+    public void setAmazonBuy(float price) {
+        this.amazonBuy = price;
+    }
+
+    public void setTeslaBuy(float price) {
+        this.teslaBuy = price;
+    }
+
+    public void setMicrosoftBuy(float price) {
+        this.microsoftBuy = price;
+    }
+
+    public void setGoogleBuy(float price) {
+        this.googleBuy = price;
+    }
+
+    public void setIsroBuy(float price) {
+        this.isroBuy = price;
+    }
+
+    public void setFacebookBuy(float price) {
+        this.facebookBuy = price;
+    }
+
+    public float getAmazonBuy() {
+        return this.amazonBuy;
+    }
+
+    public float getTeslaBuy() {
+        return this.teslaBuy;
+    }
+
+    public float getMicrosoftBuy() {
+        return this.microsoftBuy;
+    }
+
+    public float getGoogleBuy() {
+        return this.googleBuy;
+    }
+
+    public float getIsroBuy() {
+        return this.isroBuy;
+    }
+
+    public float getFacebookBuy() {
+        return this.facebookBuy;
+    }
 
     public void setAmazonShares(int shares) {
         this.amazonShares = shares;
@@ -393,6 +619,60 @@ class Player2 {
     int googleShares = 0;
     int isroShares = 0;
     int facebookShares = 0;
+    float amazonBuy = 0;
+    float teslaBuy = 0;
+    float microsoftBuy = 0;
+    float googleBuy = 0;
+    float isroBuy = 0;
+    float facebookBuy = 0;
+
+    public void setAmazonBuy(float price) {
+        this.amazonBuy = price;
+    }
+
+    public void setTeslaBuy(float price) {
+        this.teslaBuy = price;
+    }
+
+    public void setMicrosoftBuy(float price) {
+        this.microsoftBuy = price;
+    }
+
+    public void setGoogleBuy(float price) {
+        this.googleBuy = price;
+    }
+
+    public void setIsroBuy(float price) {
+        this.isroBuy = price;
+    }
+
+    public void setFacebookBuy(float price) {
+        this.facebookBuy = price;
+    }
+
+    public float getAmazonBuy() {
+        return this.amazonBuy;
+    }
+
+    public float getTeslaBuy() {
+        return this.teslaBuy;
+    }
+
+    public float getMicrosoftBuy() {
+        return this.microsoftBuy;
+    }
+
+    public float getGoogleBuy() {
+        return this.googleBuy;
+    }
+
+    public float getIsroBuy() {
+        return this.isroBuy;
+    }
+
+    public float getFacebookBuy() {
+        return this.facebookBuy;
+    }
 
     public void setAmazonShares(int shares) {
         this.amazonShares = shares;
@@ -486,6 +766,60 @@ class Player3 {
     int googleShares = 0;
     int isroShares = 0;
     int facebookShares = 0;
+    float amazonBuy = 0;
+    float teslaBuy = 0;
+    float microsoftBuy = 0;
+    float googleBuy = 0;
+    float isroBuy = 0;
+    float facebookBuy = 0;
+
+    public void setAmazonBuy(float price) {
+        this.amazonBuy = price;
+    }
+
+    public void setTeslaBuy(float price) {
+        this.teslaBuy = price;
+    }
+
+    public void setMicrosoftBuy(float price) {
+        this.microsoftBuy = price;
+    }
+
+    public void setGoogleBuy(float price) {
+        this.googleBuy = price;
+    }
+
+    public void setIsroBuy(float price) {
+        this.isroBuy = price;
+    }
+
+    public void setFacebookBuy(float price) {
+        this.facebookBuy = price;
+    }
+
+    public float getAmazonBuy() {
+        return this.amazonBuy;
+    }
+
+    public float getTeslaBuy() {
+        return this.teslaBuy;
+    }
+
+    public float getMicrosoftBuy() {
+        return this.microsoftBuy;
+    }
+
+    public float getGoogleBuy() {
+        return this.googleBuy;
+    }
+
+    public float getIsroBuy() {
+        return this.isroBuy;
+    }
+
+    public float getFacebookBuy() {
+        return this.facebookBuy;
+    }
 
     public void setAmazonShares(int shares) {
         this.amazonShares = shares;
