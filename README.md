@@ -7,14 +7,15 @@ This is a basic java implementation program that mainly deals with oops concepts
 **JAVA**, Object Oriented Programming, Modular Programming
 
 ## Instuctions For Playing The Game  
-       1. This is a multiplayer player  modern stock trading game.
-       2. Player who reaches $ 20k wins the game and player with $ 0 balance loses the game.
-       3. Players will have an option to move maximum of 3 blocks at a time.
-       4. Once you land on a company you will get the chance to buy that company and you will own company shares.
-       5. If another player lands on your company, he/she will have to pay service rent and your share price will also increase by 10 % .
-       6. Blocks numbered 3,8 are the |Trading blocks|. Here players can buy other company's shares.
-       7. The players will have an option to sell their share anytime during the course of the game.
-       8. 4th and 12th are the | Chance | block, there are 7 chances which will be chosen randomly by computer.
+1. This is a multiplayer player  modern stock trading game.
+2. Player who reaches $ 20k wins the game and player with $ 0 balance loses the game.
+3. Players will have an option to move maximum of 3 blocks at a time.
+4. Once you land on a company you will get the chance to buy that company and you will own company shares.
+5. If another player lands on your company, he/she will have to pay service rent and your share price will also increase by 10 % .
+6. Blocks numbered 3,8 are the |Trading blocks|. Here players can buy other company's shares.
+7. The players will have an option to sell their share anytime during the course of the game.
+8. 4th and 12th are the | Chance | block, there are 7 chances which will be chosen randomly by computer.  
+
 ## Installing and Running the game 
 1. Download the Java Development Kit (JDK) from [here](https://www.oracle.com/in/java/technologies/javase-downloads.html).
 2. Install [Git](https://git-scm.com/downloads).
