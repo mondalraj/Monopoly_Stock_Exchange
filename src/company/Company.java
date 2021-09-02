@@ -187,7 +187,7 @@ public class Company {
 class Amazon {
     int cost = 6000;
     float sharePrice = 200;
-    int noOfShares = 20;
+    int noOfShares = 30;
     float serviceRent = 400;
     int owner = 0;
 
@@ -305,9 +305,9 @@ class Microsoft {
 }
 
 class Google {
-    int cost = 10000;
+    int cost = 8000;
     float sharePrice = 700;
-    int noOfShares = 8;
+    int noOfShares = 12;
     float serviceRent = 400;
     int owner = 0;
 
@@ -347,7 +347,7 @@ class Google {
 class ISRO {
     int cost = 7000;
     float sharePrice = 400;
-    int noOfShares = 10;
+    int noOfShares = 30;
     float serviceRent = 500;
     int owner = 0;
 

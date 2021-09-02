@@ -16,7 +16,7 @@ public class App {
 
         instructions();
 
-        System.out.print("How many players want to play the GAME ( 2 or 3 ) ? ");
+        System.out.print(" Enter the number of Players playing ( 2 or 3 ) ? ");
         int playerCount = sc.nextInt();
         System.out.println(" ");
 
@@ -41,7 +41,7 @@ public class App {
             String name3 = sc.next();
             player.setPlayerName(name3, 3);
         } else {
-            System.out.println("You Entered wrong choice !");
+            System.out.println(" You Entered wrong choice !");
             System.exit(0);
         }
 
@@ -49,36 +49,47 @@ public class App {
 
         promptEnterKey();
         board(playerCount);
+        int sellCount = 0;
 
         for (int i = 1; i > 0; i++) {
+            sellCount++;
             System.out.println("");
             if (i % 3 == 1) {
                 i = 1;
-                System.out.println(player.getPlayerName(i) + "! Do you want to sell any Shares? ");
-                String res = sc.next();
-                if (res.equalsIgnoreCase("yes")) {
-                    sell(i, false);
+                if (sellCount > 6) {
+                    System.out.println(player.getPlayerName(i) + " Do you want to sell any Shares? ");
+                    String res = sc.next();
+                    if (res.equalsIgnoreCase("yes")) {
+                        sell(i, false);
+                    }
                 }
+
                 System.out.println(player.getPlayerName(i) + " press ENTER to roll the dice");
                 gameCase(i, playerCount);
 
             } else if (i % 3 == 2) {
                 i = 2;
-                System.out.println(player.getPlayerName(i) + "! Do you want to sell any Shares? ");
-                String res = sc.next();
-                if (res.equalsIgnoreCase("yes")) {
-                    sell(i, false);
+                if (sellCount > 6) {
+                    System.out.println(player.getPlayerName(i) + " Do you want to sell any Shares? ");
+                    String res = sc.next();
+                    if (res.equalsIgnoreCase("yes")) {
+                        sell(i, false);
+                    }
                 }
+
                 System.out.println(player.getPlayerName(i) + " press ENTER to roll the dice");
                 gameCase(i, playerCount);
 
             } else if (i % 3 == 0 && playerCount == 3) {
                 i = 3;
-                System.out.println(player.getPlayerName(i) + "! Do you want to sell any Shares? ");
-                String res = sc.next();
-                if (res.equalsIgnoreCase("yes")) {
-                    sell(i, false);
+                if (sellCount > 6) {
+                    System.out.println(player.getPlayerName(i) + " Do you want to sell any Shares? ");
+                    String res = sc.next();
+                    if (res.equalsIgnoreCase("yes")) {
+                        sell(i, false);
+                    }
                 }
+
                 System.out.println(player.getPlayerName(i) + " press ENTER to roll the dice");
                 gameCase(i, playerCount);
             }
@@ -94,15 +105,17 @@ public class App {
         currentPosition = currentPosition + die;
         player.setPlayerCurrentPosition(currentPosition, i);
         currentPosition = resetPostion(player.getPlayerCurrentPosition(i), i);
-
-        System.out.println(" You rolled " + die);
-        System.out.println(" Now you are on block " + player.getPlayerCurrentPosition(i));
+        System.out.println("             ---");
+        System.out.println(" You rolled | " + die +" |");
+        System.out.println("             ---");
+        // System.out.println(" Now you are on block " + player.getPlayerCurrentPosition(i));
 
         switch (currentPosition) {
             case 1: {
-
-                System.out.println(" You are on |GO|");
-                System.out.println(" You will recieve $ 2000 when you pass");
+                System.out.println("\t\t\t\t\t\t --------------------------- ");
+                System.out.println("\t\t\t\t\t\t| You are on block 1 ( GO ) | ");
+                System.out.println("\t\t\t\t\t\t ---------------------------  ");
+                System.out.println("\t\t\t\t You will recieve $ 2000 when you pass");
                 System.out.println("");
                 System.out.print(" Press ENTER to Continue ...");
                 promptEnterKey();
@@ -111,8 +124,10 @@ public class App {
                 board(playerCount);
                 break;
             }
-            case 2: {
-                System.out.println(" You have reached | AMAZON |");
+            case 2:{
+                System.out.println("\t\t\t\t\t\t  ------------------------------------- ");
+                System.out.println("\t\t\t\t\t\t | You have reached block 2 ( AMAZON ) |");
+                System.out.println("\t\t\t\t\t\t  ------------------------------------- ");
 
                 if (company.getCompanyOwner(2) == i) {
                     System.out.println("You are the owner of Amazon");
@@ -221,19 +236,28 @@ public class App {
                 break;
             }
             case 4: {
-                fraud(i);
+                chance(i);
                 System.out.println("");
                 System.out.print(" Press ENTER to Continue ...");
                 promptEnterKey();
                 System.out.print("\033[H\033[2J");
                 System.out.flush();
                 board(playerCount);
+                // fraud(i);
+                // System.out.println("");
+                // System.out.print(" Press ENTER to Continue ...");
+                // promptEnterKey();
+                // System.out.print("\033[H\033[2J");
+                // System.out.flush();
+                // board(playerCount);
 
                 break;
 
             }
             case 5: {
-                System.out.println(" You have reached | TESLA |");
+                System.out.println("\t\t\t\t\t\t  -----------------------------------");
+                System.out.println("\t\t\t\t\t\t | You have reached block 5 ( TESLA ) |");
+                System.out.println("\t\t\t\t\t\t  ------------------------------------");
                 if (company.getCompanyOwner(5) == i) {
                     System.out.println("You are the owner of Tesla");
                 }
@@ -332,8 +356,9 @@ public class App {
             }
 
             case 6: {
-                System.out.println(" You have reached | MICROSOFT |");
-                System.out.println("");
+                System.out.println("\t\t\t\t\t\t  -------------------------------------- -  ");
+                System.out.println("\t\t\t\t\t\t | You have reached block 6 ( MICROSOFT ) |");
+                System.out.println("\t\t\t\t\t\t  ---------------------------------------  ");
                 if (company.getCompanyOwner(6) == i) {
                     System.out.println("You are the owner of Microsoft");
                 }
@@ -432,13 +457,21 @@ public class App {
             }
 
             case 7: {
-                taxRaid(i);
+                fraud(i);
                 System.out.println("");
                 System.out.print(" Press ENTER to Continue ...");
                 promptEnterKey();
                 System.out.print("\033[H\033[2J");
                 System.out.flush();
                 board(playerCount);
+
+                // taxRaid(i);
+                // System.out.println("");
+                // System.out.print(" Press ENTER to Continue ...");
+                // promptEnterKey();
+                // System.out.print("\033[H\033[2J");
+                // System.out.flush();
+                // board(playerCount);
 
                 break;
             }
@@ -455,16 +488,17 @@ public class App {
 
             }
             case 9: {
-                System.out.println(" You have reached | GOOGLE |");
-
+                System.out.println("\t\t\t\t\t\t\t  ------------------------------------- ");
+                System.out.println("\t\t\t\t\t\t\t | You have reached block 9 ( GOOGLE ) | ");
+                System.out.println("\t\t\t\t\t\t\t  ------------------------------------- ");
                 if (company.getCompanyOwner(9) == i) {
                     System.out.println("You are the owner of Google");
                 }
 
                 else if (company.getCompanyOwner(9) == 0) {
 
-                    System.out.println(" Cost = $10000 ");
-                    System.out.println(" Total shares = 10 ");
+                    System.out.println(" Cost = $8000 ");
+                    System.out.println(" Total shares = 12 ");
                     System.out.println(" Each share cost is 700 ");
                     System.out.println(" will increase 10% whenever other players arrives on the same ");
                     System.out.println(" Service Rent = 400");
@@ -473,8 +507,8 @@ public class App {
                     String response = sc.next();
 
                     if (response.equalsIgnoreCase("yes")) {
-                        if (player.getPlayerCurrentBal(i) >= 10000) {
-                            player.setPlayerCurrentBal(player.getPlayerCurrentBal(i) - 10000, i);
+                        if (player.getPlayerCurrentBal(i) >= 8000) {
+                            player.setPlayerCurrentBal(player.getPlayerCurrentBal(i) - 8000, i);
                             player.setPlayerSharesOwned(i, 9, company.getCompanyNoOfShares(9));
                             company.setCompanyOwner(9, i);
                             player.setPlayerCompaniesOwned(i, 8);
@@ -491,8 +525,8 @@ public class App {
 
                             if (res.equalsIgnoreCase("yes")) {
                                 sell(i, true);
-                                if (player.getPlayerCurrentBal(i) >= 10000) {
-                                    player.setPlayerCurrentBal(player.getPlayerCurrentBal(i) - 10000, i);
+                                if (player.getPlayerCurrentBal(i) >= 8000) {
+                                    player.setPlayerCurrentBal(player.getPlayerCurrentBal(i) - 8000, i);
                                     player.setPlayerSharesOwned(i, 9, company.getCompanyNoOfShares(9));
                                     company.setCompanyOwner(9, i);
                                     player.setPlayerCompaniesOwned(i, 8);
@@ -555,7 +589,9 @@ public class App {
                 break;
             }
             case 10: {
-                System.out.println(" You have reached | ISRO |");
+                System.out.println("\t\t\t\t\t\t  ------------------------------------");
+                System.out.println("\t\t\t\t\t\t | You have reached block 10 ( ISRO ) |");
+                System.out.println("\t\t\t\t\t\t  ------------------------------------ ");
                 if (company.getCompanyOwner(10) == i) {
                     System.out.println("You are the owner of ISRO");
                 }
@@ -655,7 +691,9 @@ public class App {
                 break;
             }
             case 11: {
-                System.out.println(" You have reached | Facebook |");
+                System.out.println("\t\t\t\t\t\t  ----------------------------------------");
+                System.out.println("\t\t\t\t\t\t | You have reached block 11 ( Facebook ) |");
+                System.out.println("\t\t\t\t\t\t  ----------------------------------------");
                 if (company.getCompanyOwner(11) == i) {
                     System.out.println("You are the owner of Facebook");
                 }
@@ -707,7 +745,7 @@ public class App {
                         }
                     } else {
                         System.out.println(" Continue the game");
-                        System.out.println(" Thanks for visiting Amazon");
+                        System.out.println(" Thanks for visiting Facebook");
                     }
 
                 } else {
@@ -777,28 +815,21 @@ public class App {
     }
 
     static int instructions() {
-        System.out.println(" Here are the rules of the game\n");
+        System.out.println(" Here are the rules of the game :- \n");
+        System.out.println("  1. This is a multiplayer player  modern stock trading game.\n ");
+        System.out
+                .println("  2. Player who reaches $ 20k wins the game and player with $ 0 balance loses the game. \n");
+        System.out.println("  3. Players will have an option to move maximum of 3 blocks at a time. \n");
         System.out.println(
-                "  1. This is a 3 player  modern stock trading game designed to be hassle-free and fun at every corner.\n ");
+                "  4. Once you land on a company you will get the chance to buy that company and you will own company shares. \n");
         System.out.println(
-                "  2. Goal of this game is to become the first player to have more than $ 20000 and win this ultimate stock market battle.The player will be declared bankrupt once he reaches $ 0.\n");
+                "  5. If another player lands on your company, he/she will have to pay service rent and your share price will also increase by 10 % .\n ");
         System.out.println(
-                "  3. This game has 12 blocks that start at 1 which is |GO|. Collect $ 2000 every time the player passes 1(GO).  Players will have an option to move maximum of 3 blocks at a time. \n");
+                "  6. Blocks numbered 3,8 are the |Trading blocks|. Here players can buy other company's shares. \n");
         System.out.println(
-                "  4. Land on the blocks numbered 2,5,6,8,10,11 to buy the company mentioned on the respective block by purchasing its shares. \n");
+                "  7. The players will have an option to sell their share anytime during the course of the game. \n");
         System.out.println(
-                "  5. If a player lands on any of these |Company Block| which is owned by another player, the share value of that company will increase accordingly and the company owner will collect service rent from that player.\n ");
-        System.out.println(
-                "  6. Blocks numbered 3,8 are the |Trading blocks|. Here players can trade and transfer their shares. \n");
-        System.out.println(
-                "  7. If a player lands on block 4, they are caught in Shortlisting Fraud, pay fine of $ 500 to the bank. \n");
-        System.out.println(
-                "  8. If a player lands on block 7, they face an |Income Tax Raid|, the share value of all the companies that player own will decrease by 5% along with a fine of $ 200 to the bank.\n ");
-        System.out.println("  9. Get lucky with a |Chance Card| every time the player lands on block 12. \n");
-        System.out.println(
-                " 10. The players will have an option to sell their share anytime during the course of the game.\n");
-        System.out.println(
-                " 11. Please note when a player is out of money and decides to sell his shares, he will have to sell all his shares.\n");
+                "  8. 4th and 12th are the | Chance | block, there are 7 chances which will be chosen randomly by computer. \n ");
 
         return 0;
     }
@@ -807,8 +838,8 @@ public class App {
         System.out.println("\t\t\t\t\t  _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ ");
         System.out.println("\t\t\t\t\t |            |            |            |              |");
         System.out.println("\t\t\t\t\t |     1.     |      2.    |      3.    |      4.      |");
-        System.out.println("\t\t\t\t\t |     GO     |   Amazon   |    Stock   |    Short     |");
-        System.out.println("\t\t\t\t\t |            |            |    Market  |Listing Fraud |");
+        System.out.println("\t\t\t\t\t |     GO     |   Amazon   |    Stock   |    Chance    |");
+        System.out.println("\t\t\t\t\t |            |            |    Market  |              |");
         System.out.println("\t\t\t\t\t |_ _ _ _ _ _ |_ _ _ _ _ _ | _ _ _ _ _ _|_ _ _ _ _ _ _ |");
         System.out.println("\t\t\t\t\t |            |                         |              |");
         System.out.println("\t\t\t\t\t |    12.     |                         |      5.      |");
@@ -820,8 +851,8 @@ public class App {
         System.out.println("\t\t\t\t\t |_ _ _ _ _ _ | _ _ _ _ _ _ _ _ _ _ _ _ |_ _ _ _ _ _ _ |");
         System.out.println("\t\t\t\t\t |            |            |            |              |");
         System.out.println("\t\t\t\t\t |     10.    |      9.    |     8.     |      7.      |");
-        System.out.println("\t\t\t\t\t |    ISRO    |    Google  |   Stock    |    Income    |");
-        System.out.println("\t\t\t\t\t |            |            |   Market   |   Tax Raid   |");
+        System.out.println("\t\t\t\t\t |    ISRO    |    Google  |   Stock    |    Short     |");
+        System.out.println("\t\t\t\t\t |            |            |   Market   | listingFraud |");
         System.out.println("\t\t\t\t\t |_ _ _ _ _ _ |_ _ _ _ _ _ |_ _ _ _ _ _ |_ _ _ _ _ _ _ |");
         System.out.println(" ");
 
@@ -956,10 +987,16 @@ public class App {
     }
 
     public static String chance(int p) {
-        String[] chanceName = { "Hostile takeover attempt - pay lawyer 1000",
-                "Your least expensive ticket -pay 5 times share price to bank ",
-                "Your most expensive ticket - pay 2 times share price to bank ",
-                "Go to trading allowed counter , pass go (nearest trading counter)." };
+        System.out.println("\t\t\t\t\t\t  ------------------------------- " );
+        System.out.println("\t\t\t\t\t\t |You have reached at ( Chance ) |");
+        System.out.println("\t\t\t\t\t\t  -------------------------------  ");
+        String[] chanceName = { " Hostile takeover attempt - pay lawyer 1000",
+                " Your least expensive ticket -pay 5 times share price to bank ",
+                " Your most expensive ticket - pay 2 times share price to bank ",
+                " Go to trading allowed counter , pass go (nearest trading counter).",
+                " Share value of all your companies will increase by 30%",
+                " Won the best company of the year award, collect $ 2000 ",
+                " Income Teax Raid, Share value of all your companies will decrease by 15% " };
         Random random = new Random();
         int randomNumber = random.nextInt(chanceName.length);
         String s = chanceName[randomNumber];
@@ -1078,6 +1115,18 @@ public class App {
             player.setPlayerCurrentBal(player.getPlayerCurrentBal(p) + 2000, p);
             player.setPlayerCurrentPosition(3, p);
             stockMarket(p);
+        }
+
+        if (randomNumber == 4) {
+            companiesOwned(p, (float) 1.30);
+        }
+
+        if (randomNumber == 5) {
+            player.setPlayerCurrentBal(player.getPlayerCurrentBal(p) + 2000, p);
+        }
+
+        if (randomNumber == 6) {
+            companiesOwned(p, (float) 0.85);
         }
 
         return s;
@@ -1232,7 +1281,7 @@ public class App {
                 if (company.getCompanyOwner(2) != i) {
                     shareCount++;
                     System.out.println("Do you want to Sell the shares of Amazon ? (YES/NO)");
-                    System.out.println(" Buying Price: "+ player.getPlayerBuy(i, 2));
+                    System.out.println(" Buying Price: " + player.getPlayerBuy(i, 2));
 
                     String res = sc.next();
 
@@ -1264,7 +1313,7 @@ public class App {
                 if (company.getCompanyOwner(5) != i) {
                     shareCount++;
                     System.out.print("Do you want to Sell the shares of Tesla ? (YES/NO)");
-                    System.out.println(" Buying Price: "+ player.getPlayerBuy(i, 5));
+                    System.out.println(" Buying Price: " + player.getPlayerBuy(i, 5));
 
                     String res = sc.next();
 
@@ -1296,7 +1345,7 @@ public class App {
                 if (company.getCompanyOwner(6) != i) {
                     shareCount++;
                     System.out.print("Do you want to Sell the shares of Microsoft ? (YES/NO)");
-                    System.out.println(" Buying Price: "+ player.getPlayerBuy(i, 6));
+                    System.out.println(" Buying Price: " + player.getPlayerBuy(i, 6));
 
                     String res = sc.next();
 
@@ -1328,7 +1377,7 @@ public class App {
                 if (company.getCompanyOwner(9) != i) {
                     shareCount++;
                     System.out.print("Do you want to Sell the shares of Google ? (YES/NO)");
-                    System.out.println(" Buying Price: "+ player.getPlayerBuy(i, 9));
+                    System.out.println(" Buying Price: " + player.getPlayerBuy(i, 9));
 
                     String res = sc.next();
 
@@ -1360,7 +1409,7 @@ public class App {
                 if (company.getCompanyOwner(10) != i) {
                     shareCount++;
                     System.out.print("Do you want to Sell the shares of ISRO ? (YES/NO)");
-                    System.out.println(" Buying Price: "+ player.getPlayerBuy(i, 10));
+                    System.out.println(" Buying Price: " + player.getPlayerBuy(i, 10));
 
                     String res = sc.next();
 
@@ -1392,8 +1441,8 @@ public class App {
                 if (company.getCompanyOwner(11) != i) {
                     shareCount++;
                     System.out.print("Do you want to Sell the shares of Facebook ? (YES/NO)");
-                    System.out.println(" Buying Price: "+ player.getPlayerBuy(i, 11));
-                    
+                    System.out.println(" Buying Price: " + player.getPlayerBuy(i, 11));
+
                     String res = sc.next();
 
                     if (res.equalsIgnoreCase("yes")) {
@@ -1482,7 +1531,9 @@ public class App {
     }
 
     public static void fraud(int p) {
-        System.out.println(" You arrived on Short Listing Fraud");
+        System.out.println("\t\t\t\t\t  ------------------------------------");
+        System.out.println("\t\t\t\t\t | You arrived on Short Listing Fraud |");
+        System.out.println("\t\t\t\t\t  ------------------------------------");
         System.out.println(" " + player.getPlayerName(p) + " Pay $500 to the bank");
         System.out.println(" Share price of your companies will be decreased by 20%");
         boolean[] owned = player.getPlayerCompaniesOwned(p);
@@ -1530,8 +1581,8 @@ public class App {
     }
 
     public static int excessBalance(int p) {
-        if (player.getPlayerCurrentBal(p) > 15001) {
-            System.out.println(" Since your current balance is more than 15000,So you won");
+        if (player.getPlayerCurrentBal(p) > 20000) {
+            System.out.println(" Since your current balance is more than 20000,So you won");
             winner();
             System.exit(0);
         }
@@ -1539,9 +1590,10 @@ public class App {
     }
 
     public static int stockMarket(int p) {
-
-        System.out.println(" You have arrived at the Stock Market ");
-        System.out.println(" Here you can buy stocks of the companies already owned by other players.");
+        System.out.println("\t\t\t\t\t\t  ----------------------------------");
+        System.out.println("\t\t\t\t\t\t | You have arrived at Stock Market |");
+        System.out.println("\t\t\t\t\t\t  ----------------------------------");
+        System.out.println("\t\t\t\t Here you can buy stocks of the companies already owned by other players.");
         int a = 0;
 
         if (company.getCompanyOwner(2) == p) {
@@ -1550,7 +1602,7 @@ public class App {
             a++;
             System.out.println("Do you want to buy shares of Amazon (yes/no)");
             int owner = company.getCompanyOwner(2);
-            int sharesForsale = player.getPlayerSharesOwned(owner, 2) - 10;
+            int sharesForsale = player.getPlayerSharesOwned(owner, 2) - 15;
             // Scanner sc = new Scanner(System.in);
             String response = sc.next();
             if (response.equalsIgnoreCase("yes")) {
@@ -1685,7 +1737,7 @@ public class App {
             a++;
             System.out.println("Do you want to buy shares of ISRO (yes/no)");
             int owner = company.getCompanyOwner(10);
-            int sharesForsale = player.getPlayerSharesOwned(owner, 10) - 5;
+            int sharesForsale = player.getPlayerSharesOwned(owner, 10) - 15;
             // Scanner sc = new Scanner(System.in);
             String response = sc.next();
             if (response.equalsIgnoreCase("yes")) {
