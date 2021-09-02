@@ -6,7 +6,7 @@ This is a basic java implementation program that mainly deals with oops concepts
 ## Tech Skills Implemented  
 **JAVA**, Object Oriented Programming, Modular Programming
 
-## Instuctions For Playing The Game  
+## Instructions For Playing The Game  
 1. This is a multiplayer player  modern stock trading game.
 2. Player who reaches $ 20k wins the game and player with $ 0 balance loses the game.
 3. Players will have an option to move maximum of 3 blocks at a time.
